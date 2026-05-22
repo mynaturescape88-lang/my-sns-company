@@ -1,0 +1,24 @@
+{
+  "name": "my-sns-company",
+  "owner": {
+    "name": "mynaturescape88-lang"
+  },
+  "metadata": {
+    "description": "仮想SNS運営組織プラグイン。秘書・PM・SNSマーケター・アナリスト・コンテンツ制作・SEが役割分担してSNS運営を進める。"
+  },
+  "plugins": [
+    {
+      "name": "sns-company",
+      "source": "./plugins/sns-company",
+      "description": "仮想SNS運営組織スキル。秘書・PM・SNSマーケター・アナリスト・コンテンツ制作・SEが役割分担してSNS運営を進める。",
+      "version": "1.0.0",
+      "author": {
+        "name": "mynaturescape88-lang"
+      },
+      "repository": "https://github.com/mynaturescape88-lang/my-sns-company",
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["sns", "marketing", "content", "analytics", "organization", "secretary"]
+    }
+  ]
+}
