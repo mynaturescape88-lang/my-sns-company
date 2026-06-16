@@ -103,6 +103,42 @@
 - 🟢 **自社適用**：植物PR/子育てショートの"カット単位で画像生成→動画化"を、Claudeがカット割り＋各プロンプトを生成しMCPで順次実行する**半自動フロー（ただし最安検証→人間レビュー→必要本数のみ・放置量産はしない）**に落とす。新規サブスク不要・既存スタックで完結。植物は静止＋カメラのみ[[feedback_plant_video_direction]]を維持。
 - ✅🆕 **Skyworkの"非動画＝AIオフィススイート"側も同様に内製可**（出典＝RKJ 23本目`F40dpeuQl3Y`「全機能徹底解説」＝動画でなくビジネス文書/スライド/Webページ等の網羅回）。**1指示で6種類を同時出力（文章/スライド/表/Webページ(HTML)/ポッドキャスト/YouTube動画分析〈YouVibe＝最大2hの動画をハイライト/スライド/マインドマップ化〉）＝AIオフィススイート**＝✅実在。**これらも当組織で代替可**：リサーチ→レポート/構成＝Claude＋WebSearch/WebFetch（既出18本目）／YouTube動画分析＝Claude＋`youtube-transcript`（既出17本目Mapify節）／ポッドキャスト＝ElevenLabs skill（19〜22本目）／スライド・Webページ＝ClaudeのHTML/アーティファクト生成／表・定期タスク＝Claude Code＋GitHub Actions＝**Skyワーク新規契約は不要**（16/18本目で結論済・[[feedback_ask_before_action]]）。**型として有用＝「1指示でリサーチ→複数フォーマット同時展開」のワンソース・マルチユース**（1つの調査ネタ＝植物の育て方/子育てグッズ比較を→WP記事＋note＋YouTube台本＋将来ポッドキャストに横展開）。料金＝**無料 初月毎日500cr→以降週500／Pro $19.99/月 7,000cr・DeepResearchフル・商用可／年間 $149.99**（✅裏取り・時点依存）。**「作業効率2倍」は定量根拠なし＝割り引く⚠️／AI要約・レポートは一次ソース照合してから断定（source-grounding・17/18本目）**。出典: [skywork YouVibe agent](https://skywork.ai/blog/a-complete-guide-to-skywork-youvibe-agent/) / [skywork Podcasts agent](https://skywork.ai/blog/a-complete-guide-to-skywork-podcasts-agent/) / [skywork copilot pricing 2026](https://skywork.ai/skypage/en/skywork-ai-copilot-pricing-2026/2034521488383823872) / [skywork super agents PRNewswire](https://www.prnewswire.com/news-releases/skywork-launches-skywork-super-agents-globally-the-ai-powered-office-suite-built-on-deep-research-302463133.html)
 
+## RKJ P3抽出ノウハウ（動画制作技術・一行索引・実施可否は後日判断）
+> 2026-06-16・RKJ調査P3の網羅版から「動画制作技術/AI生成/モデル・ツール」系の一行索引をTASKS.mdから移管・逐語保持。実施可否は制作時に個別判断。番号#はP3マスターリストの施策番号。各項目の詳細手法は本KB上節（モデル選択・Seedance/Kling・Higgsfield WF等）と重複する場合あり＝ここは"漏れ防止の索引"。
+- **#1-c スマホ完結合成（Hypic切り抜き+CapCutウルトラキー）**：急ぎのショート/Instagram制作向け。コスト0（植物YT/myraisingdiary）
+- **#1-d MotionBrush（Runway）部位別動き付与：無料4秒×26回**：Ambient=10で炎/霧/髪のゆらぎ。Higgsfield motion_controlで代替検討可。無料26回はcr節約に直結（AIチャンネル）
+- **#1-e カメラパン（左→右）でリアリティ大幅UP**：After Effects 2ノードカメラ/Higgsfield motion_control代替可（AIチャンネル）
+- **#1-g 合成色補正：外景と室内の彩度・明度を一致させると合成つなぎ目消える**：ffmpegのeq/scaleで実装可（AIチャンネル）
+- **#2-a Veo3 T2V：キャラクター一貫性1分動画・Higgsfield統合済**：当社スタック内・追加サブスク不要（AIチャンネル）
+- **#2-b Veo3カメラアングルプロンプト語彙（low angle tracking/crane/close-up+rise/POV）**：プロンプトライブラリに追記（AIチャンネル）
+- **#2-c Veo3日本語ナレーション改善：キャラ設定+環境に「Japanese/Japan」追加**：発音・アクセント大幅改善（AIチャンネル）
+- **#2-d Veo3字幕消し：末尾「no subtitles」必須/セリフに「/」を入れると字幕バグ**（AIチャンネル）
+- **#2-e Veo3縦動画対応：縦写真を横90度回転して入力→縦長動画生成**（Shorts/Instagram Reels向け・植物YT/myraisingdiary）
+- **#2-f Veo3弱点整理（声一貫性なし/1動画100cr/拡張でVeo2降格/横のみ）**：コスト判断の基準として参照（AIチャンネル）
+- **#3-a Kling/NanoBanana：写真1枚→複数アングル一括マルチカット生成（要検証）**：Higgsfield MCP実装可否不明・WebUI 0crで試せる可能性あり（AIチャンネル）
+- **#3-b Claudeとの「番号で答える対話」でプロンプト品質向上**：Claude Code+Higgsfieldで既に同等・意識的な活用が効果的（全般）
+- **#3-d モデル選択指針：Kling2.6（高品質課金）/Kling2.5（無料可）/Veo3.1（cr大・高品質カットのみ）**：RUNBOOK Step5のモデル選択基準に補記（AIチャンネル）
+- **#3-f 試行前提でcr予算を積む：1回で完璧を期待しない・3回出して良いものを選ぶ**（全般）
+- **#4-b ComfyUIローカル実行は当社不可（Mac VRAM不足/100GB+/ハイスペックPC必要）**：Higgsfield MCPで代替済み・ローカル構築不要（AIチャンネル）
+- **#5-a 日本語TTS文字数→音声時間目安：100文字≒25秒/2000文字≒5〜6分**：台本チャンク設計・尺見積もりに活用（AIチャンネル）
+- **#6-a YouTube動画URL→音声+映像解析→要約/マインドマップ/PPT自動出力（Skywork AI相当）**：Claude+Whisper+python-pptxで内製実装可（全般）
+- **#13-b AI動画延長でショートクリップを補完（Filmora/Higgsfield extend）**：2〜3秒素材をShorts尺に延長。最安構成で検証してから採用（植物YT/myraisingdiary）
+- **#20-b IPリスク境界線：著名IP再現（Marvel/Disney等）は商業利用不可**：当社（古代ミステリー・植物）では問題なし（全般）
+- **#21-b Lyria3（Google製音楽AI）はArtlist月額必須→当社採用見送り**：ElevenLabs+PexelsBGM継続（AIチャンネル）
+- **#49-a dzine.ai：キャラクタートレーニング→複数シーンで一貫した人物表現**：1日30cr無料・新規サブスク要・Higgsfieldリップシンクで代替可（AIチャンネル）
+- **#52-a Filmora15 AIサウンドエフェクト：日本語テキスト入力→効果音自動生成**：有料前提のため採用見送り（AIチャンネル）
+- **#55-a Skybox AI：360°パノラマ背景→横スクロール動画化（遺跡パン動画に転用可）**：⚠️質感衝突リスク（実写ドキュ調vs360°誇張）・採用時は実写と並べて質感差チェック必須（AIチャンネル）
+- **#56-b VoiceFront（声フォント）：複数キャラ別音声生成**：複数話者シナリオ時の候補・現時点はGemini TTS継続（AIチャンネル）
+- **#58-a .mdスキルファイルによる多ステップ自動化パターン（Manus方式）**：Claude Code+SKILL.mdで実質同等・当社スキル設計の参照として有用（全般）
+- **#61-a Veo3日本語セリフ制約：8秒=最大50文字・ローマ字必須**（#2-cと合わせて参照・AIチャンネル）
+- **#63-a BGM+ナレーション+効果音セット=YouTube収益化条件実証**：当社スタックが条件を満たす設計の裏付け・収益化申請時の根拠として参照（AIチャンネル/植物YT）
+- **#64-a MuRekaAI：動画/写真→イメージに合ったBGM自動生成**：月8ドル/著作権取得付き・FreePD CC0無料が主力のため即採用不要・将来シーン別カスタムBGM時の第一候補（AIチャンネル）
+- **#68-a FLF2Vモーフィング成功の必須条件：同背景+近距離**：Kling3.0 FLF2Vにも同原則適用・Seedanceラストフレームルールと合わせて参照（AIチャンネル）
+- **#69-a Seaart AI LoRA+ControlNet：同一歴史人物を複数エピソードで一貫維持**：Higgsfield MCPはLoRA非対応→Seaart AIが補完候補・採用時は質感チェック必須（AIチャンネル）
+- **#74-a BigP：白黒動画AIカラー化（当社スタック未存在のユニーク機能）**：古代白黒ニュース映像→現代化・月額7,300円〜・導入はGO待ち（AIチャンネル）
+- **#75-a 3Dモデル→任意アングルスクショ→画像生成AI参照フレーム活用**：Higgsfield generate_3dでも即活用可・構造物特定アングルの一貫再現に使える（AIチャンネル）
+- **#76-a BlenderでFBX透過(RGBA)アニメーション→ffmpeg動画化パイプライン**：Blender+ffmpegは無料・MeshAIはHiggsfield generate_3dで代替可（AIチャンネル）
+
 ## 出典
 - skywork「AI Video Creation Agent (JP)」: https://skywork.ai/agent/jp/ai-video-creation-agent-2018320364972335104
 - skywork「Ultimate AI Agent Guide / Copilot Pricing 2026」: https://skywork.ai/skypage/en/ultimate-skywork-ai-agent/2033789235665649664 ・ https://skywork.ai/skypage/en/skywork-ai-copilot-pricing-2026/2034521488383823872
