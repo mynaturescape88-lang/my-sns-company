@@ -48,6 +48,19 @@ description: >
 - **PDCA（ジャブ→ストレート）**: 打てる施策（ジャブ）を実施→反応が良かった方向にリソースを集中（ストレート）→繰り返す
 - **視聴者反応指標**: 企画評価は「総再生時間（視聴回数×平均視聴時間）」を主指標に、CTRと合わせて評価する
 
+### ✅実証済フロー：バズ動画URL→構造分析→模倣プロンプト（#3-c・生成手前まで・0cr/Claude完結）
+
+> 2026-06-16実証。バズ動画URL1本を渡すだけで「勝ち筋の構造」を抽出し、自社題材に置換した台本生成プロンプト（=模倣プロンプト）まで自動で作る。**動画/画像の生成（cr消費）はしない＝台本プロンプトの生成までが本フロー**。構造モデリング（型を借りる≠逐語コピー[[feedback_shop_article_rules]]）。
+
+**手順（毎回これを回す）**：
+1. **字幕取得**：`youtube-transcript`スキル。⚠️2026のYouTubeはbot判定が厳しく、確定レシピは **`yt-dlp --cookies-from-browser chrome --extractor-args "youtubepot-bgutilhttp:disable;youtube:player_client=default" --write-sub --sub-lang en --sub-format vtt --skip-download`**（`player_client=default`→tv downgradedクライアント＋deno JS解決が効く。素のyt-dlpやandroid_vrクライアントは403[[reference_ytdlp_deno_cookies_dl]]）。VTTはタグ/タイムスタンプ除去でプレーンテキスト化。
+2. **ビート分解**：冒頭(フック)・末尾(CTA)＋本文を15/30/45/60/75/90%地点でサンプリングし、**フック型→課題提示→停滞/フラストレーション→技術の転回→人間ドラマ→スケール拡大→CTA**の各ビートと保持装置（好奇心ギャップ・二人称没入・感情/弱者物語・段階的スケール拡大）を特定。
+3. **構造抽出**：勝ち筋＝「フックの型」「ビート順序とテンポ」「視聴維持の仕掛け」を箇条書き化（固有名詞・逐語表現は持ち込まない）。
+4. **模倣プロンプト生成**：抽出構造を**自社題材＋自社の声（日本語ナレ・AIインサイトの世界観・免責方針）に置換**した「台本生成プロンプト」をコピペ完全形で出力（[[feedback_prompt_copypaste_full]]）。**ここで停止＝実際の台本生成/TTS/画像/動画生成は別工程（無料テキストはClaude、cr生成はオーナーGO）**。
+5. 出力プロンプトはAIインサイト制作RUNBOOK Step1（台本+FC）の入力にそのまま使える。
+
+**実証例**：The Infographics Show『AI Just Decoded the Unreadable Herculaneum Scrolls』(28万再生)→ 二人称没入フック「あなたは石炭の塊を蹴る→実は呪いの古代巻物」＋弱者の人間ドラマ(Farritor)＋段階的スケール拡大(失われた図書館→歴史を書き換える)を抽出→第2弾ヘルクラネウム台本プロンプトへ変換。出典記録=[P3分析ノート](.company/secretary/notes/2026-06-15-rkj-p3-analysis.md)。
+
 ### RKJ P3抽出ノウハウ（企画・YouTube戦略・一行索引・実施可否は後日判断）
 
 > 2026-06-16・RKJ調査P3の網羅版から「企画/サムネ/投稿戦略/競合・指標」系の一行索引をTASKS.mdから移管・逐語保持。企画立案時に参照。番号#はP3マスターリストの施策番号。
