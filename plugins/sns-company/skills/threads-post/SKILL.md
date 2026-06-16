@@ -42,3 +42,10 @@ Threadsの投稿文を作るときに発動する。
 □ オーナーへ提示して承認を得る前提か（手動投稿時）
 ```
 > 「レビューに出す＝作り込み済み・既知の改善余地ゼロ」（[[feedback_review_means_finished_no_known_gaps]]）。
+
+---
+
+## SE技術メモ（Threads）
+
+- Threads APIはMeta Graph API経由。投稿済みIDは `threads_posted_ids.txt` で管理
+- Stage1→Stage2移行のため、投稿後1時間のコメント返信を人手で対応する必要がある（自動化不可）

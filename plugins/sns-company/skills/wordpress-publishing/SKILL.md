@@ -47,6 +47,19 @@ WordPress記事を作成・更新・公開するときに発動する。
 
 ---
 
-## SE WP操作注意点・affiキーワード挿入
+## WordPress操作の注意点
 
-（SE工程で追記）
+- メタ説明は `the_page_meta_description`（テーマ独自フィールド）→ XML-RPC経由で設定
+- `<p>` タグ内に `<div>` 等ブロック要素を入れない（無効HTML・レイアウト崩れの原因）
+- 記事コンテンツは `<!-- wp:html -->〜<!-- /wp:html -->` でラップする
+- `[toc]` ショートコードとプラグイン自動挿入を二重にしない
+- 公開前に `<div>` 開閉バランスが0であることを確認する
+
+## アフィリエイトキーワード挿入ルール（2026-05-29 FB反映）
+
+`shop_article_generator.py` から `_insert_affiliate` を呼ぶ際は以下を必ず守る。
+
+1. `_extract_keyword(title, content, post_id)` に `post_id` を渡す
+2. 商品取得後に `_record_keyword_usage(keyword, post_id)` を呼ぶ
+
+これを省略すると記事間でキーワード被りが発生し、全記事に同一商品が挿入される。
