@@ -57,7 +57,8 @@ setsar=1,eq=saturation=0.92:contrast=1.04,format=gbrp[bg];\
 [bg][ov]blend=all_mode=screen:all_opacity=0.85,format=yuv420p[out]" \
 -map "[out]" -r 30 -t 8 -c:v libx264 -crf 20 -pix_fmt yuv420p out.mp4
 ```
-- 🟢**残る手動依存＝背景のNanoBanana(0cr WebUI)生成のみ**（Claude自動操作はbot検知で封印・[[feedback_higgsfield_credit_conservation]]）。それ以外は無料・自動。第2弾ヘルクラネウム等のB-rollに即流用可。
+- ✅**一般化確認済（2026-06-16）＝雪/雨/炎の3要素すべて同レシピで成功**。要素別の最適設定：**雪 all_opacity≈0.85（明るい霧/昼景に合う）／雨 ≈0.9（同上・天候演出）／炎 ≈0.95＋背景は暗いシーン必須**（screen合成は加算的に明るくなるため、炎は明るい背景だと飛ぶ＝暗い岩肌/洞窟/夜景に乗せると古代ミステリー向きに灯る・eqの彩度は落とさず暖色を保つ）。マゼンタ色バグ非再発は合成後フレームの緑plane平均(signalstats YAVG)が中域(80-130)にあることで確認可。
+- 🟢**残る手動依存＝背景のNanoBanana(0cr WebUI)生成のみ**（Claude自動操作はbot検知で封印・[[feedback_higgsfield_credit_conservation]]）。それ以外は無料・自動。第2弾ヘルクラネウム等のB-rollに即流用可（火山/松明シーン＝炎、雨/雪の天候カット）。
 
 ## 制作ツールの注意（InVideo AI 等の無料枠）
 - ✅ **InVideo AI 無料プランは透かし付き・商用利用不可・書き出し回数/生成分数に制限**。透かし除去は有料（Plus $25/mo〜）。→**収益用途の動画には不向き**。出典: [flowith](https://flowith.io/blog/invideo-pricing-2026-free-vs-plus-vs-max/) / [mymarky](https://mymarky.com/blog/invideo-ai-free-plan-limits-2026)
