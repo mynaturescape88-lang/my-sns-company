@@ -27,7 +27,8 @@ description: >
 | 系統 | 駆動 | 工程の核 | 主に読む reference |
 |---|---|---|---|
 | **AIインサイト**（古代ミステリー×AI・長尺） | **台本駆動** | 台本の章にクリップ割当→TTS尺同期→章転換SFX→AI生成カットは実写に質感寄せ | `references/longform-pipeline.md` |
-| **@mynaturescape**（植物・実写長尺/ショート） | **実写駆動** | 撮影クリップを品質スコアリング→並び替え→色補正→BGM | `references/davinci-resolve.md`（スコアリング節） |
+| **@mynaturescape**（植物・実写長尺/イベント） | **実写駆動・1発生成** | 素材フォルダ＋名称＋色 → `mynaturescape_longform.py` が score→filter-people→assemble を自走（可変尺/散らし/フック/4K/連続BGM/エンドロール） | `references/mynaturescape-longform.md` |
+| @mynaturescape（手作業の高品質編集が要るとき） | 実写駆動 | 撮影クリップを品質スコアリング→並び替え→色補正→BGM | `references/davinci-resolve.md`（スコアリング節） |
 | 共通（全動画） | — | 冒頭フック5段・オリジナル化・カット密度・植物は静止＋カメラのみ | `references/editing-principles.md` |
 
 ---
@@ -38,7 +39,7 @@ description: >
 2. **editing-principles.md を必ず確認**（冒頭10秒フック5段・AI放置量産の回避・カット密度・植物演出）。
 3. 工程を実行：
    - 台本駆動 → `longform-pipeline.md` の工程順（題材→台本FC→TTS→素材→図解→AIカット→ビルド→Whisper同期→BGM/SFX→サムネ→非公開アップ）。
-   - 実写駆動 → `davinci-resolve.md`（クリップ品質スコアリングで採否→タイムライン構築→トランジション→カラー→音声ダッキング→書き出し）。
+   - 実写駆動（@mynaturescape長尺/イベント）→ **`mynaturescape-longform.md` の3ステップ（score→filter-people→assemble）を実行**＝1発生成。手作業の作り込みが要るときのみ `davinci-resolve.md`。
 4. **AI生成カットはフリー素材に質感を合わせる**（documentary調・彩度/グレイン・並べて差を点検）。
 5. 完成後、PM レビュー基準（editing-principles.md のチェックリスト）でセルフチェックしてから提示する。
 
@@ -66,7 +67,8 @@ description: >
 
 | ファイル | 中身 | 読むとき |
 |---|---|---|
-| `references/editing-principles.md` | 冒頭フック5段・オリジナル化ルール・カット密度・植物演出・PMレビュー基準 | **毎回** |
+| `references/editing-principles.md` | 冒頭フック5段・オリジナル化ルール・カット密度・植物演出・高速パン回避・カット尺の抑揚・PMレビュー基準 | **毎回** |
+| `references/mynaturescape-longform.md` | @mynaturescape長尺=1発生成（score→filter-people→assemble の3ステップ・確定仕様・パラメータ） | @mynaturescapeの長尺/イベント動画を作るとき |
 | `references/longform-pipeline.md` | AIインサイト長尺の全工程・カメラ語彙8種・Kling/Wan2.5/Veo3.1術・TTS/Whisper同期 | 台本駆動のとき |
 | `references/davinci-resolve.md` | DaVinci Resolve Python API接続・タイムライン/色/音・クリップ品質スコアリング | 実写編集・DaVinci使用時 |
 | `references/ai-video-pipeline.md` | AI動画制作の調査ノウハウ（ブランディング・台本モデリング・モデル選択・素材調達） | 企画/モデル選定/コスト見積り時 |
