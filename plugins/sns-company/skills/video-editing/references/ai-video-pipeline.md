@@ -42,6 +42,23 @@
 - ⚠️ RKJ流「他人のYouTube映像/映画ワンシーンを画面録画して欲しい箇所だけ取得」（ScreenFly等の無料録画ソフト）は**手間削減の発想は有用だが、他者映像の転用は著作権リスク**。自社は採用しない。
 - 🟢 自社代替：**自前の店舗写真／AI生成素材（Higgsfield）／フリー素材（Pexels）**に限定（[[reference_pexels_cloudflare_ua]]）。"必要部分だけ確保して無駄なくする"という効率思想だけを採り入れる。
 
+### ✅実証済B-roll合成レシピ（NanoBanana/実写背景＋Pexels分離オーバーレイ＋ffmpeg screen＝0cr・Claude完結）
+> 2026-06-16実証（B1-1検証）。背景静止画に雪/炎/雨等の"動く要素"を無料合成し「AIっぽくない」実写ドキュ調B-rollを作る確定手順。背景はNanoBanana(0cr WebUI・手動)生成 or Pexels実写静止画で代用可。素材取得・合成・色補正はClaude完結・無料。
+- ⚠️**Pexelsの汎用クエリ（"rain"等）は街の実写シーン全体が返る＝オーバーレイに使えない**。**クエリに "black background"/"overlay" を付けて黒背景に要素だけ分離した素材を取る**（例 `snow falling black background`）。雪・炎は分離素材が豊富、雨は少なめ。候補は1フレーム抽出して輝度平均(YAVG)が低い(≈18-23)＝黒背景を確認してから採用。
+- ⚠️**ffmpeg blendの色バグ＝合成が全面マゼンタ（緑チャンネル欠落）**＝blend前の入力フォーマット不一致が原因。**blend直前に両入力へ `format=gbrp` を明示・blend後に `format=yuv420p`**で解消。
+- 🟢**質感を実写ドキュ調に寄せる**＝背景に `zoompan` のゆるいズームイン（カメラ移動）＋`eq=saturation=0.92:contrast=1.04`（彩度を僅かに落とす）。screen合成は`all_opacity≈0.85`。生成後は必ず実写と並べて質感差チェック（[[feedback_ai_clip_match_stock_footage]]）。
+- **確定コマンド**（bg.jpg＝背景／snow.mp4＝黒背景分離オーバーレイ・8秒1080p）：
+```
+ffmpeg -y -loop 1 -t 8 -i bg.jpg -stream_loop -1 -t 8 -i snow.mp4 -filter_complex "\
+[0:v]scale=2304:1296:force_original_aspect_ratio=increase,crop=2304:1296,\
+zoompan=z='min(zoom+0.0007,1.15)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=240:fps=30:s=1920x1080,\
+setsar=1,eq=saturation=0.92:contrast=1.04,format=gbrp[bg];\
+[1:v]scale=1920:1080,setpts=PTS-STARTPTS,format=gbrp[ov];\
+[bg][ov]blend=all_mode=screen:all_opacity=0.85,format=yuv420p[out]" \
+-map "[out]" -r 30 -t 8 -c:v libx264 -crf 20 -pix_fmt yuv420p out.mp4
+```
+- 🟢**残る手動依存＝背景のNanoBanana(0cr WebUI)生成のみ**（Claude自動操作はbot検知で封印・[[feedback_higgsfield_credit_conservation]]）。それ以外は無料・自動。第2弾ヘルクラネウム等のB-rollに即流用可。
+
 ## 制作ツールの注意（InVideo AI 等の無料枠）
 - ✅ **InVideo AI 無料プランは透かし付き・商用利用不可・書き出し回数/生成分数に制限**。透かし除去は有料（Plus $25/mo〜）。→**収益用途の動画には不向き**。出典: [flowith](https://flowith.io/blog/invideo-pricing-2026-free-vs-plus-vs-max/) / [mymarky](https://mymarky.com/blog/invideo-ai-free-plan-limits-2026)
 - 🟢 教訓：紹介ツールは「無料で使える」と言われても**透かし/商用可否/出力制限を必ず確認**。自社は既存スタック（Claude/Higgsfield/Pexels/CapCut）を優先し、新規有料ツールは費用根拠提示の上で承認制（[[feedback_ask_before_action]]）。
