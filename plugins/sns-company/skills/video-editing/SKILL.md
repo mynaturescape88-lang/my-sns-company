@@ -59,6 +59,7 @@ description: >
 - **植物は静止・カメラだけ動かす**（breathing/orbit語禁止・[[feedback_plant_video_direction]]）。
 - **AI開示**：合成音声/AI生成ビジュアルを使った動画はアップロード時に合成コンテンツ開示をON（AIインサイトは `containsSyntheticMedia:True` を毎回）。
 - **版権・肖像/パブリシティNG**：芸能人・版権キャラ・他者映像の転用は採用不可。型のみ借りる。
+- **AI生成プロンプトの作法はモデル固有**：Seedance/Wan2.7/Kling 等は各々プロンプトの読み方が違う。あるモデルで効いた書き方を別モデルに流用しない／「動画生成一般のコツ」と一般化しない。モデル別 reference（例：`references/seedance-2.0-prompting.md`）を使い、新モデルは公式/実証例を読んで作法を別途確立する。
 - **公開GOはオーナーのみ**。スキルから生成・公開を催促しない。
 
 ---
@@ -70,6 +71,7 @@ description: >
 | `references/editing-principles.md` | 冒頭フック5段・オリジナル化ルール・カット密度・植物演出・高速パン回避・カット尺の抑揚・PMレビュー基準 | **毎回** |
 | `references/mynaturescape-longform.md` | @mynaturescape長尺=1発生成（score→filter-people→assemble の3ステップ・確定仕様・パラメータ） | @mynaturescapeの長尺/イベント動画を作るとき |
 | `references/longform-pipeline.md` | AIインサイト長尺の全工程・カメラ語彙8種・Kling/Wan2.5/Veo3.1術・TTS/Whisper同期 | 台本駆動のとき |
+| `references/seedance-2.0-prompting.md` | **Seedance 2.0 固有**のプロンプト作法＋作成後チェックリスト（語順・@タグ・肯定形・hype語回避・実証アンカー例）。**他モデルへ流用禁止** | Seedance 2.0 で生成するとき |
 | `references/davinci-resolve.md` | DaVinci Resolve Python API接続・タイムライン/色/音・クリップ品質スコアリング | 実写編集・DaVinci使用時 |
 | `references/ai-video-pipeline.md` | AI動画制作の調査ノウハウ（ブランディング・台本モデリング・モデル選択・素材調達） | 企画/モデル選定/コスト見積り時 |
 
