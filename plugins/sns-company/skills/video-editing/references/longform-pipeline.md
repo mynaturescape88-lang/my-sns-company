@@ -17,7 +17,10 @@
    - **全再生成しない**（冒頭の良いテンポが変わる）。直すのは音量正規化＋該当チャンクのみ。
    - 尺目安：日本語 100文字≒25秒 / 2000文字≒5〜6分（英語は約半分〜60%）。
    - 複数話者が必要なら Google AI Studio（Gemini native TTS）が無料でマルチスピーカー対応。
-3. **実写素材（Pexels・無料/商用可）** — ブラウザUA必須。**本物素材で作れるものはAIにしない**。
+3. **実写素材（6サイト横断・無料/商用可）** — ブラウザUA必須。**本物素材で作れるものはAIにしない**。
+   - 収集は `scripts/fetch_broll.py --query "..." --type video|image [--download N]` を使う（Pexels一本で足りない時の標準）。
+   - 横断先：Pexels/Pixabay（要キー・帰属不要）＋NASA/Wikimedia/Openverse/Internet Archive（キー不要）。商用OKのみ・動画は ffprobe で H.264 自動選別（[[reference_gyre_h264_only_codec]]）・帰属要素材はMDに自動でクレジット記録。
+   - **Internet Archiveは著作権物の転載が混入し得る**→収益動画で使う前に個別license確認必須。確実に安全＝Pexels/Pixabay/NASA（帰属不要）。
 4. **図解（自作・無料）** — 内容は縦中央寄せ・下部~y820までに収め字幕と被らせない。
    - 応用：背景グリーン(#00FF00)の図解PNG→ffmpeg `chromakey=0x00FF00:0.1:0.0` で透過オーバーレイ。
 5. **AIの“撮れないシーン”だけ生成（有料・各シーン許可制）** — 実写不可・素材無し・Ken Burnsでも作れないシーンのみ。
