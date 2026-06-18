@@ -71,7 +71,7 @@ description: >
 | `references/editing-principles.md` | 冒頭フック5段・オリジナル化ルール・カット密度・植物演出・高速パン回避・カット尺の抑揚・PMレビュー基準 | **毎回** |
 | `references/mynaturescape-longform.md` | @mynaturescape長尺=1発生成（score→filter-people→assemble の3ステップ・確定仕様・パラメータ） | @mynaturescapeの長尺/イベント動画を作るとき |
 | `references/longform-pipeline.md` | AIインサイト長尺の全工程・カメラ語彙8種・Kling/Wan2.5/Veo3.1術・TTS/Whisper同期 | 台本駆動のとき |
-| `references/seedance-2.0-prompting.md` | **Seedance 2.0 固有**のプロンプト作法＋作成後チェックリスト（語順・@タグ・肯定形・hype語回避・実証アンカー例）。**他モデルへ流用禁止** | Seedance 2.0 で生成するとき |
+| `references/seedance-2.0-prompting.md` | **Seedance 2.0 固有**のプロンプト作法（正本＝SeaArt記事）＝3基本構造/語順/@タグ/肯定形・品質語(masterpiece等は写実向上に使う)/カメラ用語/チェックリスト＋社内実証(失敗の真因=照明矛盾・老化描写)。**他モデルへ流用禁止** | Seedance 2.0 で生成するとき |
 | `references/davinci-resolve.md` | DaVinci Resolve Python API接続・タイムライン/色/音・クリップ品質スコアリング | 実写編集・DaVinci使用時 |
 | `references/ai-video-pipeline.md` | AI動画制作の調査ノウハウ（ブランディング・台本モデリング・モデル選択・素材調達） | 企画/モデル選定/コスト見積り時 |
 
