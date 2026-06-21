@@ -52,42 +52,37 @@ trigger: /sns-company
 
 ヒアリング結果をもとに以下を自動生成する。
 
-**生成するディレクトリ構造:**
+**生成するディレクトリ構造（4層アーキ v2）:**
 
 ```
 .company/
-├── CLAUDE.md              ← references/claude-md-template.md から生成
+├── CLAUDE.md              ← claude-md-template.md（責務・ルールのみ・KGI常駐）
+├── COMMON.md              ← departments.md「COMMON.md」（共通ルール＋標準フロー＋FBライフサイクル）
+├── skill-routing.md       ← departments.md「skill-routing.md」（タスク→skill/fb）
+├── fb/
+│   └── README.md          ← departments.md「fb/README.md」（fb/<task>.md は発生時に追加）
+├── knowledge/             ← 手順・方法論の正本 kb-*.md（初回は空）
 ├── secretary/
-│   ├── CLAUDE.md          ← references/departments.md の秘書テンプレートから生成
-│   ├── inbox/
-│   ├── todos/
-│   │   └── YYYY-MM-DD.md
-│   └── notes/
+│   ├── CLAUDE.md          ← departments.md「秘書」（rules-only）
+│   ├── inbox/ ├── todos/YYYY-MM-DD.md └── notes/
 ├── pm/
-│   └── CLAUDE.md          ← references/departments.md のPMテンプレートから生成
-├── marketer/
-│   └── CLAUDE.md          ← references/departments.md のSNSマーケターテンプレートから生成
-├── analyst/
-│   └── CLAUDE.md          ← references/departments.md のアナリストテンプレートから生成
-├── creator/
-│   └── CLAUDE.md          ← references/departments.md のコンテンツ制作テンプレートから生成
-└── se/
-    └── CLAUDE.md          ← references/departments.md のSEテンプレートから生成
+│   ├── CLAUDE.md          ← departments.md「PM」（rules-only）
+│   └── review-baseline.md ← departments.md「pm/review-baseline.md」（レビュー6観点）
+├── marketer/   { CLAUDE.md（rules-only）, results/ }
+├── analyst/    { CLAUDE.md（rules-only）, results/ }
+├── creator/    { CLAUDE.md（rules-only）, results/ }
+└── se/         { CLAUDE.md（rules-only）, results/ }
 ```
 
 **生成手順:**
 
 1. `.company/` ディレクトリを作成
 2. `references/claude-md-template.md` を読み込み、変数を置換して `.company/CLAUDE.md` を生成
-   - `{{ACCOUNT_NAME}}` ← Q1の回答
-   - `{{SNS_PLATFORMS}}` ← Q2のプラットフォーム
-   - `{{GOALS}}` ← Q2の目標
-   - `{{TARGET_AUDIENCE}}` ← Q3のターゲット層
-   - `{{CHALLENGES}}` ← Q3の課題
-   - `{{CREATED_DATE}}` ← 今日の日付
-3. `references/departments.md` から各役割のCLAUDE.mdテンプレートを取得して生成
-4. 秘書のサブフォルダ（`inbox/`、`todos/`、`notes/`）を作成
-5. 今日の日付で `secretary/todos/YYYY-MM-DD.md` を作成
+   - `{{ACCOUNT_NAME}}`←Q1 ／ `{{SNS_PLATFORMS}}`←Q2 ／ `{{GOALS}}`←Q2目標(KGI) ／ `{{TARGET_AUDIENCE}}`←Q3 ／ `{{CHALLENGES}}`←Q3 ／ `{{CREATED_DATE}}`←今日
+3. `references/departments.md` から**共通層**を生成：`COMMON.md`・`skill-routing.md`・`pm/review-baseline.md`・`fb/README.md`
+4. `references/departments.md` から各役割の**rules-only** CLAUDE.md を生成（手順は持たせない＝COMMON/skill-routing/skillへ委譲）
+5. 各役割に `results/` を作成（直近結果の永続化先）。`knowledge/`・`fb/` は空で用意
+6. 秘書のサブフォルダ（`inbox/`、`todos/`、`notes/`）＋今日の `secretary/todos/YYYY-MM-DD.md` を作成
 
 **完了メッセージ:**
 
@@ -95,13 +90,13 @@ trigger: /sns-company
 >
 > ```
 > .company/
-> ├── CLAUDE.md
+> ├── CLAUDE.md（責務・ルール・KGI）
+> ├── COMMON.md（共通ルール・標準フロー）
+> ├── skill-routing.md（タスク→skill/FB）
+> ├── fb/・knowledge/
 > ├── secretary/（窓口・進捗管理）
-> ├── pm/（全体管理・レビュー）
-> ├── marketer/（戦略立案）
-> ├── analyst/（数値分析）
-> ├── creator/（コンテンツ制作）
-> └── se/（ツール作成）
+> ├── pm/（管理・レビュー＋review-baseline）
+> ├── marketer/ analyst/ creator/ se/（各 CLAUDE.md＋results/）
 > ```
 >
 > これからは `/sns-company` でいつでも話しかけられます。
@@ -112,7 +107,7 @@ trigger: /sns-company
 ## Step 3: 運営モード
 
 `.company/` が存在する場合に自動で切り替わる。
-まず `.company/CLAUDE.md` を読み込む。
+まず `.company/CLAUDE.md`（責務・ルール）を読み込む。役割が着手する時に `.company/COMMON.md`（標準フロー・共通ルール）と `.company/skill-routing.md`（タスク→skill/fb）を読む。手順は各役割CLAUDE.mdに書かず skill/COMMON/knowledge に置く。
 
 ### 基本フロー
 
@@ -205,7 +200,8 @@ PM（要件との整合性確認）
 ファイル操作前に必ず今日の日付を確認する。
 
 **指摘・フィードバックの扱い（全役割共通）:**
-プロジェクト中にユーザーから指摘・修正・フィードバックを受けた場合、その内容を `secretary/notes/YYYY-MM-DD-learnings.md` に記録し、以降の全作業に反映する。同じ指摘を二度受けないようにする。これはすべての役割（秘書・PM・SNSマーケター・アナリスト・コンテンツ制作・SE）に適用される。
+プロジェクト中にユーザーから指摘・修正・フィードバックを受けた場合、その内容を `secretary/notes/YYYY-MM-DD-learnings.md` に記録し、以降の全作業に反映する。同じ指摘を二度受けないようにする。これはすべての役割に適用される。
+さらに、まとめ/クローズ時には `task-wrapup` skill が `COMMON.md`「FBの消化ライフサイクル」に従い、各FBを **ドメイン固有→`fb/<task>.md`／普遍→`pm/review-baseline.md`／手順→`knowledge/kb-*.md`** へ「□〜したか」で昇華し、auto-memory に正本保存＋`[[link]]`する。次回は `review-check` skill が自動適用する（learnings.md は深い正本／一次記録として併存）。
 
 ---
 
@@ -222,8 +218,10 @@ PM（要件との整合性確認）
 
 | 用途 | ファイル |
 |---|---|
-| 役割別CLAUDE.mdテンプレート | `references/departments.md` |
+| 役割CLAUDE.md＋共通層（COMMON/skill-routing/review-baseline/fb）テンプレート | `references/departments.md` |
 | .company/CLAUDE.md生成テンプレート | `references/claude-md-template.md` |
 | セキュリティガイドライン | `references/security.md` |
 | SNS戦略・分析ガイドライン | `references/sns-strategy.md` |
 | コンテンツ制作ガイドライン | `references/content-guide.md` |
+
+> 運用後のレビューは `review-check` skill（fb/<task>.md＋pm/review-baseline.md・fail-closed）、まとめ・クローズは `task-wrapup` skill を発動する。
