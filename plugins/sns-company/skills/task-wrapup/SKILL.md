@@ -57,6 +57,14 @@ description: >
 - **完成本編・未公開で再利用予定**のものは保持（生バイナリはGitHubに上げない＝md記録のみ）[[feedback_video_assets_local_not_github]]。
 - ※`drafts/` 全体の大規模断捨離は本ステップでなく**別タスク**（ファイル毎判断）。
 
+### ④-b WF/スクリプト台帳の更新（WF/スクリプトを追加・変更・無効化した場合のみ）
+
+- このタスクで `.github/workflows/*.yml` または稼働スクリプトを**追加・変更・無効化**したら：
+  - 新規WF/スクリプトなら `ops/inventory_meta.yml` に**目的を1行追加**（ステータス/cronは自動導出なので書かない）。
+  - **`python ops/wf_inventory.py generate`** で `WORKFLOWS.md` / `SCRIPTS.md` を再生成（実体から最新化）。
+  - `python ops/wf_inventory.py check` がドリフトなし（exit 0）を確認（足し忘れ・再生成漏れはここで弾く・preventiveも毎日検知）。
+- 台帳は**現状の真実源**＝診断/提案はまず `WORKFLOWS.md` を読む（他タスクのlogは読みに行かない）[[feedback_diagnose_failure_mechanism_from_logs]]。
+
 ### ⑤ 選択的コミット & プッシュ（両リポジトリ・安全策つき）
 
 - まず `git -C <repo> status --short` で作業ツリーを確認する。
@@ -99,6 +107,7 @@ description: >
 □ ② 該当 task_log の先頭「現在状態（引き継ぎ）」枠を最新化したか（完了＝状態を完了／継続＝次の一手を具体的に）
 □ ③ TASKS表を更新したか（完了＝TASKS_COMPLETED追記＋TASKS削除／継続＝TASKS最新化）
 □ ④ メディア生成/DLがあれば棚卸ししたか（公開済み・ボツはゴミ箱／他用途確認後・中身判断・rmでなくゴミ箱）
+□ ④-b WF/スクリプトを追加・変更・無効化したなら、inventory_meta.yml更新＋`wf_inventory.py generate`で台帳再生成＋`check`がexit0か
 □ ⑤ status --short を確認し、関係する変更だけをパス指定で add したか
 □ ⑤ `git add -A`・`git add .` を使っていないか
 □ ⑤ 他タスクの編集途中ファイル・未追跡物（drafts/等）を巻き込んでいないか
