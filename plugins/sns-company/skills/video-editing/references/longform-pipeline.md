@@ -70,6 +70,14 @@
 - プロンプト末尾に `no subtitles`。セリフ中に「/」を入れると字幕がランダム出現するバグ→「/」禁止。
 - セリフ固定＝`he says [ローマ字日本語]`。縦動画は横画像を90度回転入力で迂回。
 
+## ナスカ第1弾で確立した実制作の勘所（0cr内製・声統一・MCP・4Kアセンブラ）
+> 「人智の外側」第1弾ナスカ改修(2026-06)で実証。詳細は各[[memory]]を正本とする。
+- **図解・合成カットは0cr内製**（Higgsfield課金不要）[[reference_video_0cr_figures_composites]]：図解=PIL（暗背景/金アクセント/ヒラギノW6・下~240pxは字幕帯で空ける）。地上絵はアルキメデス螺旋が一発でclean。"光が灯る/差す"合成=numpyグロー→ffmpeg `blend=all_mode=screen`で実写に加算（黒地グローは追加cr0）。ハマり所＝①グローは**円形Hann窓**で縁を0に（四角ハロー枠防止）②screen合成は明るい映像で弱い→暗め(夕/曇)ベース③broll素材のファイル名は中身と不一致→**必ずフレーム抽出で目視選定**。
+- **Higgsfield MCP実務**[[reference_higgsfield_mcp_video_ops]]：i2vのstart_imageは過去生成の`job_id`を`medias:[{role:"start_image",value:<job_id>}]`で再利用可（再アップ不要）。`get_cost:true`で必ず0cr先読み（Kling std720p sound off=1.5cr/s・Seedance口パク=4.5cr/s最小4s）。presetが返って実生成されない時は`declined_preset_id`でリテラル生成。崩壊カットは末尾にffmpegフェード・トゥ・ブラック(0cr)で暗転救済。口パク出力の内蔵音は捨て最終アセンブリでマスター音声を上乗せ。
+- **語り部など"毎回同じ声"はGemini TTS不可**[[reference_tts_voice_consistency_and_4k_assembler]]：同条件でも生成毎に基本周波数が不定(77-108Hz実測)・声の保存/再利用ができず構造的に不向き。恒久策=ElevenLabs保存ボイス(Starter $6/月・30k cr・商用込＝語り部月78本相当)。応急の声統一=`rubberband -3 -p <半音> --formant`一択（声色保持・asetrate/afftdnは別人化/劣化でNG）。半音=`12*log2(目標Hz/現Hz)`。口パクはピッチを変えても口位置=タイミング不変＝同期は崩れない。
+- **誤読は章再生成せず文スプライス**[[reference_tts_voice_consistency_and_4k_assembler]]：1語の誤読は該当文だけ再生成→無音境界でスプライス(`splice_sentence.py`)。章丸ごと再生成は語速が変わり浮く。表示字幕は元のまま・TTS入力だけ読みをかな化。
+- **4Kアセンブラ＝行アンカー同期**(`build_nazca_4k.py`)[[reference_tts_voice_consistency_and_4k_assembler]]：各カットに開始ナレ行(sl)を持たせWhisper実測の行時刻に合わせる（比例配置は図・口パクがズレる主因）。このffmpeg(brew8.x)はsubtitles/drawtext非搭載→字幕/タイトルはPILでPNG生成しoverlayで焼く。内容ハッシュ・キャッシュ(出力名=md5(種別+素材+尺+字幕窓))で変更カットだけ再書き出し→セクションは`-c copy`連結（タイミングの土台=行アンカーを変えない限り次回は該当箇所のみ数分で差替）。
+
 ## コスト早見（AIインサイト実績）
 - 有料＝AIカットのみ（kling 7.5cr/本×数カット＝1本35cr前後）。
 - 無料＝Gemini TTS(枠15/日)・Pexels・ffmpeg・Whisper・BGM(CC0)・OFLフォント・アップロード。
