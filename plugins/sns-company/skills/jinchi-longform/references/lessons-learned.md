@@ -1,0 +1,51 @@
+# 第1弾ナスカで出た課題 → 次回デフォルト（着手前に通読）
+
+> 第1弾ナスカ改修（2026-06）の実制作で実際にハマった所と、その解決を「次回から既定で考慮する」形にまとめたもの。
+> 各項は**症状→原因→次回デフォルト**。詳細正本は各 [[memory]]・`drafts/nazca-cr-ledger.md`・task_log。
+
+## A. 声・ナレーション
+- **語り部の声が一定にならない**：症状＝Gemini TTSは同条件でも生成毎に基本周波数が不定（実測77-108Hz）・声の保存/再利用ができない。→ **次回**：語り部の「毎回同じ声」はGemini TTSに期待しない。口パク動画の内蔵音 or 保存ボイス（ElevenLabs Starter $6/月・30kcr≒月78本）で担保。[[reference_tts_voice_consistency_and_4k_assembler]]
+- **🔴ピッチ統一は誤り（前回方針の撤回）**：症状＝「76Hzへrubberbandでピッチ統一」したら音色が崩れ“犯人っぽい”別人声に。→ **次回**：**良いテイクを自然ピッチのまま使う（補正しない）**。複数テイクから自然なものを選ぶのが正解。rubberbandは最後の手段（やるなら `-3 -p <半音> --formant` で声色保持・`asetrate/afftdn`は別人化/劣化でNG）。
+- **誤読**：症状＝章丸ごと再生成すると語速が変わり浮く。→ **次回**：**誤読は該当文だけ再生成→無音境界でスプライス**（`splice_sentence.py`）。表示字幕は元のまま・TTS入力だけ読みをかな化。
+- **チャンク毎の音量差**：→ 全partを `loudnorm I=-17:TP=-1.5` で正規化してから連結（durations不変・冒頭テンポを壊さない）。
+
+## B. 語り部口パク動画（区分④）
+- **確立済レシピ（ED-3で実証・これを既定に）**：画像1枚（role=image＝**マットな顔close-up**）＋audio・**start_imageなし**・CRAFT最小肯定文（**肌/照明/否定語は一切書かない**）＋映画用語カメラ（Tracking/Truck/locked/push-in）＋ショット種別（膝上等）。モデル＝Seedance 2.0 std720p。正本＝`video-editing`スキル `seedance-2.0-prompting.md`§6。
+- **2画像差しは失敗**：start_image+image の2枚差しは崩れる→**1枚に限定**。
+- **てかり・老けの混入**：症状＝肌写実語・否定語・wrinkles/aged等を盛ると、てかり増＆老け顔・非写実化。→ **次回**：プロンプトに**しわ/aged/deep texture等を書かない**。マットはポストグレードで担保。[[feedback_ai_face_prompt_no_wrinkles]] [[feedback_simple_positive_prompt_no_negatives]]
+- **生成後ゲート（必須）**：採用前に**額/鼻/頬を拡大しててかり/老けを点検→passのみ採用**。甘く通さない。[[feedback_ai_human_realism_no_sheen_bar]] [[feedback_strict_self_gate_reject_failures]]
+- **内蔵音の扱い**：Seedance内蔵音は固有語を誤読しがち→**最終アセンブリで内蔵音を捨て（-an）マスター音声を上乗せ**。口パクはピッチを変えても口位置=タイミング不変＝同期は崩れない。
+- **顔window実尺pin**：内蔵音採用カットは、顔windowを実尺にpinしてフレーム一致させる（2026-06-22で口の動きとフレームを合わせた）。
+- **cr超過の教訓**：中盤口パクを2回作り直して+45cr超過。→ **口パクは1テイクで通す前提でcr見積り**。`get_cost`(0cr)で先読みしてからGO。
+
+## C. AI再現・無音モーション（区分⑤⑥）
+- **stockで作れるものはAIにしない**：空撮・地形・小道具はstock化でcr節約。人物の古代再現だけがAI必然。
+- **start_imageは過去生成のjob_id再利用可**：`medias:[{role:"start_image",value:<job_id>}]`（再アップ不要）。実物写真あり→Kling i2v。無し→画像生成1cr→確認→Kling。
+- **連続生成のラストフレームルール**：前カットのラストに全身が無いと次生成で衣装ランダム化→引いて全身を収めるか inpaintで補完。
+- **既存実証素材を先に流用する**：新ポーズ/構図を一から作る前に、soul学習セット・過去生成とそのプロンプトを検索→ベースに最小差分。一から再発明して失敗した。[[feedback_reuse_own_proven_assets_before_creating]]
+- **崩壊カットは0cr救済**：末尾にffmpegフェード・トゥ・ブラックで暗転（再生成しない）。
+
+## D. 0cr内製（図解・合成）
+- **図解2連続は禁止**：間に実写/画像を挟む（図解が続くと単調）。内容は縦中央寄せ・**下240pxは字幕帯で空ける**。
+- **★グローは円形Hann窓で縁を0に**（四角ハロー枠の防止）。**screen合成は明るい映像で弱い→暗め（夕/曇）ベース**を選ぶ。
+- **broll素材のファイル名は中身と不一致**→必ずフレーム抽出で**目視選定**。
+- 詳細＝[[reference_video_0cr_figures_composites]]。
+
+## E. 4Kアセンブル（`build_nazca_4k.py`）
+- **旧 build_nazca_video.py（1080p・語り部なし）は使わない**＝新フォーマットに不適合。新規アセンブラ `build_nazca_4k.py` が正本。
+- **比例配置はズレる**：症状＝映像尺を音声に比例配置すると図・口パク・AIカットが話とズレる。→ **行アンカー同期**＝各カットに開始ナレ行(sl)を持たせWhisper実測の行時刻に合わせる。
+- **音声駆動セクション尺**：章＝1音声源を共有する連続カット群。映像尺を音声尺へ厳密一致（不足は自動bridge延長／過多は自動トリム＝第7/8章は旧推定より短く自動トリムで整合した）。
+- **この環境のffmpeg（brew 8.x）はsubtitles/drawtext非搭載**→字幕/タイトル/ブランドは**PILでPNG生成しoverlay焼き**。
+- **PATHキャッシュ対策**：内容ハッシュ（出力名=md5(種別+素材+尺+字幕窓)）でキャッシュ→**画像差替えは必ず新パス or 該当カット削除**（同名上書きは旧画が残り反映されない）。
+- 書き出し＝25セクション分割→`-c copy`連結（変更カットだけ数分で差替）。
+
+## F. アップロード・メタ
+- **目次は timeline.json（4Kビルド出力のセクション開始時刻）から正確に作る**。症状＝旧10分版の目次を流用したまま放置していた（15:05版と不一致）。→ アップ前に必ず実尺から目次を再生成。
+- **VIDEO/THUMBパスを最終版に更新**：症状＝`upload_ainsight_video.py` が旧 `nazca-video-final.mp4`/`nazca-thumb-C.png` を指したまま。→ 最終は `nazca-video-4k.mp4`／確定サムネ。
+- **`containsSyntheticMedia:True` を毎回ON**（AI開示・YouTube 2026規約）。privacy=private で上げ、公開はオーナー。
+- **不足アセットはHiggsfield show_generationsのCloudFront URLから0crで再取得可**（ディスク欠落しても課金なしで回収できた）。
+
+## G. プロセス全般
+- **サムネは着手前にウェブ調査で高再生型をベンチマーク→真似る**（頭で考えない）。シンプル（絵＋一言）が良・ミステリー感でクリック誘発・誇大NG。[[feedback_research_proven_thumbnails_before_creating]]
+- **品質優先で材料を先に決める→cr積算→上限照合→超過時のみ削減**（cr節約を先に立てて品質を落とさない）。[[feedback_plan_best_quality_first_then_estimate]]
+- **レビュー＝作り込み済み・既知の改善余地ゼロで出す**（弱点を残して見せない）。[[feedback_review_means_finished_no_known_gaps]]

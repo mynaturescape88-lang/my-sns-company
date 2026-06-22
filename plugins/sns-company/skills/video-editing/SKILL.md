@@ -16,7 +16,8 @@ description: >
 - 「動画を編集／制作／作成して」「長尺を組んで」「ショートを作って」
 - 「カットを並べる／差し替える」「テロップ・字幕を入れる」「色補正・カラcoグレ」
 - 「BGM・効果音を付ける」「書き出し・MP4出力」「DaVinciで〜」
-- AIインサイト（@ijin-hiroku）または @mynaturescape の動画工程に着手するとき
+- @mynaturescape の動画工程に着手するとき
+- ※**「人智の外側」（@ijin-hiroku・旧称AIインサイト／古代ミステリー×AI長尺）は別手法＝専用スキル `jinchi-longform` を発動する**（本スキルでは扱わない）
 
 > 発動したら、まず下の「チャンネル分岐」で工程系統を確定し、該当 reference を読んでから着手する。
 
@@ -26,7 +27,7 @@ description: >
 
 | 系統 | 駆動 | 工程の核 | 主に読む reference |
 |---|---|---|---|
-| **AIインサイト**（古代ミステリー×AI・長尺） | **台本駆動** | 台本の章にクリップ割当→TTS尺同期→章転換SFX→AI生成カットは実写に質感寄せ | `references/longform-pipeline.md` |
+| **人智の外側**（古代ミステリー×AI・長尺／旧称AIインサイト） | **台本駆動** | → **本スキルでなく専用スキル `jinchi-longform` を発動**（題材選び→台本→章別素材台帳→制作→非公開アップの一気通貫）。@mynaturescapeとは制作手法が別物 | （`jinchi-longform` スキル） |
 | **@mynaturescape**（植物・実写長尺/イベント） | **実写駆動・1発生成** | 素材フォルダ＋名称＋色 → `mynaturescape_longform.py` が score→filter-people→assemble を自走（可変尺/散らし/フック/4K/連続BGM/エンドロール） | `references/mynaturescape-longform.md` |
 | @mynaturescape（手作業の高品質編集が要るとき） | 実写駆動 | 撮影クリップを品質スコアリング→並び替え→色補正→BGM | `references/davinci-resolve.md`（スコアリング節） |
 | 共通（全動画） | — | 冒頭フック5段・オリジナル化・カット密度・植物は静止＋カメラのみ | `references/editing-principles.md` |
@@ -38,7 +39,7 @@ description: >
 1. **チャンネル分岐を確定**（上表）し、該当 reference を読む。
 2. **editing-principles.md を必ず確認**（冒頭10秒フック5段・AI放置量産の回避・カット密度・植物演出）。
 3. 工程を実行：
-   - 台本駆動 → `longform-pipeline.md` の工程順（題材→台本FC→TTS→素材→図解→AIカット→ビルド→Whisper同期→BGM/SFX→サムネ→非公開アップ）。
+   - 台本駆動（人智の外側）→ **`jinchi-longform` スキルへ**（本スキルでは扱わない・手法が別）。
    - 実写駆動（@mynaturescape長尺/イベント）→ **`mynaturescape-longform.md` の3ステップ（score→filter-people→assemble）を実行**＝1発生成。手作業の作り込みが要るときのみ `davinci-resolve.md`。
 4. **AI生成カットはフリー素材に質感を合わせる**（documentary調・彩度/グレイン・並べて差を点検）。
 5. 完成後、PM レビュー基準（editing-principles.md のチェックリスト）でセルフチェックしてから提示する。
@@ -70,7 +71,7 @@ description: >
 |---|---|---|
 | `references/editing-principles.md` | 冒頭フック5段・オリジナル化ルール・カット密度・植物演出・高速パン回避・カット尺の抑揚・PMレビュー基準 | **毎回** |
 | `references/mynaturescape-longform.md` | @mynaturescape長尺=1発生成（score→filter-people→assemble の3ステップ・確定仕様・パラメータ） | @mynaturescapeの長尺/イベント動画を作るとき |
-| `references/longform-pipeline.md` | AIインサイト長尺の全工程・カメラ語彙8種・Kling/Wan2.5/Veo3.1術・TTS/Whisper同期 | 台本駆動のとき |
+| `references/longform-pipeline.md` | （旧）台本駆動長尺の方法論。**正本は `jinchi-longform` スキルへ移行**＝こちらは参照用に残置 | 原則 `jinchi-longform` を見る |
 | `references/seedance-2.0-prompting.md` | **Seedance 2.0 固有**のプロンプト作法（正本＝SeaArt記事）＝3基本構造/語順/@タグ/肯定形・品質語(masterpiece等は写実向上に使う)/カメラ用語/チェックリスト＋社内実証(失敗の真因=照明矛盾・老化描写)。**他モデルへ流用禁止** | Seedance 2.0 で生成するとき |
 | `references/davinci-resolve.md` | DaVinci Resolve Python API接続・タイムライン/色/音・クリップ品質スコアリング | 実写編集・DaVinci使用時 |
 | `references/ai-video-pipeline.md` | AI動画制作の調査ノウハウ（ブランディング・台本モデリング・モデル選択・素材調達） | 企画/モデル選定/コスト見積り時 |
@@ -79,7 +80,7 @@ description: >
 
 このスキルは汎用に保ち、プロジェクト固有の値は発動時に下記から読む。
 
-- AIインサイト運用手順（チャンネルID・スクリプトパス・トークン名・コスト早見）：
-  `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md`
+- 人智の外側（旧称AIインサイト）運用手順（チャンネルID・スクリプトパス・トークン名・コスト早見）：
+  `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md`（※制作手法の正本は `jinchi-longform` スキル）
 - RKJ調査由来の最新カット術・密度目標：`.company/secretary/notes/2026-06-16-rkj-p3-insights-master-list.md`
 - アカウントの正体・コンセプト：`.company/sns_accounts/`
