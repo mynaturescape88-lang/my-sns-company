@@ -73,8 +73,9 @@ description: >
 - 台帳は**現状の真実源**＝診断/提案はまず `WORKFLOWS.md` を読む（他タスクのlogは読みに行かない）[[feedback_diagnose_failure_mechanism_from_logs]]。
 
 ### ④-c 決定・記録の台帳更新（漏れやすい・該当あれば必ず）
-- まとめ作業の範囲は「task_log＋TASKS」だけではない＝**関係する全台帳の更新まで含める**（2026-06-22オーナー指摘＝台帳更新の漏れが多発）。このセッションに以下があれば、それぞれの台帳へ反映する（task_log止まりにしない＝次回リコールで参照される）：
+- まとめ作業の範囲は「task_log＋TASKS」だけではない＝**関係する全台帳の更新まで含める**（2026-06-22オーナー指摘＝台帳更新の漏れが多発）。**これは「クローズ時」だけでなく『まとめ作業・クローズ・タスク表の更新（状態変更/再分類/追加/削除）』のいずれでも一緒に行う**（2026-06-22オーナー指摘）。このセッションに以下があれば、それぞれの台帳へ反映する（task_log止まりにしない＝次回リコールで参照される）：
   - **オーナーの決定・方針確定・凍結・打切・設計変更** → `.company/DECISIONS_LEDGER.md` に1エントリ（旧決定をSUPERSEDEするなら明記・再蒸し返し禁止）[[feedback_org_memory_recall_mechanism]]。
+  - **タスク表の状態変更・再分類・追加・削除をした（クローズに限らず）** → ①その curation 判断を `DECISIONS_LEDGER.md` に1エントリ（蒸し返し防止）②変更した各タスクの `task_logs/<名>.md` 先頭「現在状態（引き継ぎ）」と矛盾がないか確認・同期③状態ラベル(🔴🟡🔵⚪)が `seo_growth/task_report.py` のキーワード自動判定とずれる場合は、TASKS.mdのラベルに合わせて `EXTERNAL_MARKERS`/`PROGRESS_MARKERS`/`OWNER_MARKERS` を補強（ラベルと自動分類を一致させる）。
   - **毎タスク共通**：新構造アーキの効果測定 → `secretary/task_logs/architecture-effect-measurement.md` に Run を1件追記（①探索②WF遵守③トークンを正直に）[[project_architecture_effect_measurement_ongoing]]。
   - **障害対応した** → `INCIDENT_LEDGER.md`（人間用）＋ `ops/monitor_config.yml` `incidents:`（機械用）の両方 [[reference_watchdog_config_ledger_sync]]。
   - **そのタスク固有の台帳**（素材台帳・移行台帳・cr台帳・効果測定表・変更履歴 等）→ 実体に合わせて更新。
@@ -123,6 +124,7 @@ description: >
 □ ④ メディア生成/DLがあれば棚卸ししたか（公開済み・ボツはゴミ箱／他用途確認後・中身判断・rmでなくゴミ箱）
 □ ④-b WF/スクリプトを追加・変更・無効化したなら、inventory_meta.yml更新＋`wf_inventory.py generate`で台帳再生成＋`check`がexit0か
 □ ④-c 決定/凍結/打切→DECISIONS_LEDGER・毎タスク→architecture-effect-measurement(Run)・障害→INCIDENT_LEDGER+monitor_config・タスク固有台帳、を漏れなく更新したか
+□ ④-c タスク表の状態変更/再分類/追加/削除をしたなら（クローズに限らず）→DECISIONS_LEDGERに curation 判断を記録＋各task_logの現在状態と同期＋ラベルとtask_report.pyのキーワード判定がずれていれば補強したか
 □ ⑤ status --short を確認し、関係する変更だけをパス指定で add したか
 □ ⑤ `git add -A`・`git add .` を使っていないか
 □ ⑤ 他タスクの編集途中ファイル・未追跡物（drafts/等）を巻き込んでいないか
