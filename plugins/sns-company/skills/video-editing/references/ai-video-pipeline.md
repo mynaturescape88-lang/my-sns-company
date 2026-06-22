@@ -157,6 +157,12 @@ setsar=1,eq=saturation=0.92:contrast=1.04,format=gbrp[bg];\
 - **#75-a 3Dモデル→任意アングルスクショ→画像生成AI参照フレーム活用**：Higgsfield generate_3dでも即活用可・構造物特定アングルの一貫再現に使える（AIチャンネル）
 - **#76-a BlenderでFBX透過(RGBA)アニメーション→ffmpeg動画化パイプライン**：Blender+ffmpegは無料・MeshAIはHiggsfield generate_3dで代替可（AIチャンネル）
 
+## RKJ P3発・Seedance2.0制作フロー組込み3件＝知識吸収済・cr実測は第2弾制作に同伴（2026-06-22）
+> B1-7/B4b-2/B4e-1（オーナー指示で「今後の制作で必要な時に提案できる知識」として畳む）。手法の大半は本KB既出＝ここは"提案トリガーの索引"。cr実測（GOはオーナーのみ）は単体実験せず**第2弾ヘルクラネウム以降の本制作に兼ねる**（[[feedback_validate_method_at_min_cost_before_scaling]]／[[feedback_higgsfield_credit_conservation]]）。Kling Motion Control節の「採用＝提案する時の型」と同じ運用。
+- **B1-7 Seedance2.0 参照動画+マルチモーダル入力/Director's Mode**：手法は本KB「Seedance2.0マルチモーダル・プロンプト術」節（@image/@image2/@video参照・最終フレーム以降も動き継続・Claude日本語確認レイヤー）に既載。**提案トリガー**＝参考実写や既存カットを参照に一貫した映像が要るカット＝Claudeで日本語確認付きプロンプト設計→Seedance映像化。狙いは試行回数減によるcr削減＝本制作で実測。
+- **B4b-2 Seedance2.0 マルチカット（複数カット/1リクエスト）**：1リクエストで複数カットを一括生成し現状~35cr/本の削減を狙う（#3-a索引と同型）。**提案トリガー**＝同一シーンの連続カットをまとめて作る時＝最安構成(480p/Fast)で1リクエスト試写→i2v個別生成とcr/品質を比較し勝てば採用。実測値はRUNBOOK Step5へ本制作時に追記。
+- **B4e-1 古写真・歴史人物を動かすフロー（Seaart ControlNet→Higgsfield Kling/Seedance）**：①古写真/絵画の人物を体の向き・顔輪郭を維持して実写化（Seaart SD1.5+ControlNet〈Canny輪郭+T2i色〉・無料200トークン/日・LoRAでエピソード間の一貫＝#69-a/#155）→②Higgsfield Kling Motion Control/Seedanceで動かす（"動かす"はMotion Control節の特定カット型と同一）。Photoshop余白拡張は`outpaint_image`で代替可（精度は要検証）。**提案トリガー**＝歴史人物の実写化カットが要る第2弾以降＝最安(短尺/低解像度)で実写化1枚→動かす1カット試作→ストック素材と並べ質感合格なら採用（[[feedback_ai_clip_match_stock_footage]]）。実在著名人・故人の肖像/パブリシティ権に抵触する題材は不採用（技術のみ抜く）。
+
 ## 出典
 - skywork「AI Video Creation Agent (JP)」: https://skywork.ai/agent/jp/ai-video-creation-agent-2018320364972335104
 - skywork「Ultimate AI Agent Guide / Copilot Pricing 2026」: https://skywork.ai/skypage/en/ultimate-skywork-ai-agent/2033789235665649664 ・ https://skywork.ai/skypage/en/skywork-ai-copilot-pricing-2026/2034521488383823872
