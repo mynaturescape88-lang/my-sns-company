@@ -36,7 +36,7 @@ description: >
 このセッションの実務を **議事メモ(sessionlog)** として1ファイル作成する（2026-06-26合意の正本方式）。再開時はTASKS.md索引＋この最新議事メモを全文読めば続けられる状態にする。
 
 - **命名**＝`yyyyMMddhhmm_<やったことのタイトル>_sessionlog.md`。**時刻はまとめ時に `date` で取得**（推測しない）。
-- **格納先**＝`.company/secretary/task_logs/`。
+- **格納先**＝`.company/secretary/task_logs/YYYY-MM/`（**YYYY-MM＝ファイル名先頭 `yyyyMM`** ＝命名の最初の6桁にハイフン挿入。`date` 再取得に依存せず名前だけで一意に決まる）。**命名規則 `yyyyMMddhhmm_..._sessionlog.md` は不変**（ファイル名は変えずサブフォルダに収めるだけ）。置き場規約の正本＝`.company/secretary/notes/file-placement-rules.md` §1。
 - **単位**＝1セッション1ファイル。同一セッション内で2回まとめる場合＝**別タスク→別ファイル／同じタスク→既存メモへ追記**。
 - **記載ルール**＝全行箇条書き・1行100字以内・**過去ログは凍結（編集しない＝履歴として振り返れる）**。最新状況は常に最新メモ。
 - 下記の **基本形テンプレート**（ヘッダ→本体→議事メモ）で作る。「関連ファイル」節は必ず含める（再開時の辿り先）。
@@ -81,12 +81,13 @@ description: >
 
 ### ④ メディア中間物の棚卸し（タスクでメディアを生成/DLした場合）
 
-- このタスクで生成・DLした画像/動画/音声（`drafts/`・`video_assets/<task>/` 等）を洗い出す。
-- **公開済み**（WP/SNSにアップ済み）→ ローカル不要。**他用途（別投稿予定等）が無いか確認**してから**ゴミ箱へ**（必要時はWP/CDNから再取得。URLだけ md に残す）[[feedback_media_asset_lifecycle]]。
-- **ボツ・試作・中間生成物** → タスク完了時に**ゴミ箱へ**。
-- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
+- このタスクで生成・DLした画像/動画/音声を洗い出す。**置き場は `drafts/<task名>/`（タスク別サブフォルダ）前提**＝散在させず1タスク1フォルダに集約（規約正本＝`.company/secretary/notes/file-placement-rules.md` §2。`video_assets/<task>/` も同様）。
+- **gitバイナリの線引き**＝`drafts/<task>/` のバイナリ（png/jpg/jpeg/mp4/mov/wav/mp3/.DS_Store 等）は **git 非追跡**（`.gitignore` で除外済）。**テキスト（台本/プロンプト/spec/設計md）は版管理する**。`git add .` で巻き込まない（⑤の `git add -A` 禁止と整合）[[feedback_video_assets_local_not_github]]。
+- **公開済みでも「公開済み＝破棄してよい」と決めつけない**（オーナー指示 2026-06-29）。ゴミ箱に入れる前に**すべて確認→すべて「無」で初めて不要**：①他用途（別投稿予定）が無いか全PF確認 ②他の関連タスク・スクリプトが使う予定が無いか ③**再生成の元素材でないか**（語り部の口パク元写真・soul元画像等＝一度失うと再現不可な"種"＝必ず保管 [[feedback_use_exact_specified_asset_not_similar]]）。不要と確定したものはURLだけ md に残してゴミ箱へ [[feedback_media_asset_lifecycle]]。
+- **ボツ・試作・中間生成物** → タスク完了時に**ゴミ箱へ**（ただし上記③に該当しないこと）。
 - **完成本編・未公開で再利用予定**のものは保持（生バイナリはGitHubに上げない＝md記録のみ）[[feedback_video_assets_local_not_github]]。
-- ※`drafts/` 全体の大規模断捨離は本ステップでなく**別タスク**（ファイル毎判断）。
+- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。**削除/移動の前に `.company/secretary/notes/cleanup-safeguard-checklist.md` §1 を全件通過する**（中身確認・参照元grep・移行先の実在・再生成元の確認等）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
+- ※`drafts/` 全体の大規模断捨離は本ステップでなく**別タスク**（ファイル毎判断・safeguard全件通過）。
 
 ### ④-b WF/スクリプト台帳の更新（WF/スクリプトを追加・変更・無効化した場合のみ）
 
@@ -144,9 +145,9 @@ description: >
 
 ```
 □ ① セッションの学び・FB・気づきを分類（ドメイン/普遍/手順）し、fb/<task>.md・pm/review-baseline.md・kb-*.md の該当所へ「□〜したか」で追記＋memory正本保存＋`[[...]]`リンクしたか（保存先を控えたか）
-□ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得）・格納`.company/secretary/task_logs/`・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
+□ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得・命名不変）・格納`.company/secretary/task_logs/YYYY-MM/`（YYYY-MM＝ファイル名先頭yyyyMM・規約正本=file-placement-rules.md §1）・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
 □ ③ TASKS表を更新したか（完了＝TASKS_COMPLETED追記＋TASKS削除／継続＝TASKS最新化）
-□ ④ メディア生成/DLがあれば棚卸ししたか（公開済み・ボツはゴミ箱／他用途確認後・中身判断・rmでなくゴミ箱）
+□ ④ メディア生成/DLがあれば棚卸ししたか（置き場=`drafts/<task名>/`・バイナリgit非追跡/テキスト版管理／公開済みだけを破棄理由にしない・再生成元素材は保管／削除/移動前に cleanup-safeguard-checklist.md §1 を全件通過・中身判断・rmでなくゴミ箱）
 □ ④-b WF/スクリプトを追加・変更・無効化したなら、inventory_meta.yml更新＋`wf_inventory.py generate`で台帳再生成＋`check`がexit0か
 □ ④-c 決定/凍結/打切→種類で振り分けて昇格（ルール→pm/review-baseline観点・PF/skill固有→該当レビューskill観点 or sns_accounts/<pf>.md却下レバー・未完→TASKS.md／旧DECISIONS_LEDGERは凍結アーカイブ＝参照しない）・毎タスク→architecture-effect-measurement(Run)・障害→INCIDENT_LEDGER+monitor_config・タスク固有台帳、を漏れなく更新したか
 □ ④-c タスク表の状態変更/再分類/追加/削除をしたなら（クローズに限らず）→curation判断を上記の振り分け先（pm/review-baseline観点・該当レビューskill観点・sns_accounts/<pf>.md・TASKS.md）に記録＋各task_logの現在状態と同期＋ラベルとtask_report.pyのキーワード判定がずれていれば補強したか
