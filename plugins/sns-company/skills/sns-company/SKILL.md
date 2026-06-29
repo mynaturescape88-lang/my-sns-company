@@ -126,7 +126,7 @@ PM（要件との整合性確認）
 
 **指摘・フィードバックの扱い（全役割共通）:**
 プロジェクト中にユーザーから指摘・修正・フィードバックを受けた場合、その内容を `secretary/notes/YYYY-MM-DD-learnings.md` に記録し、以降の全作業に反映する。同じ指摘を二度受けないようにする。これはすべての役割に適用される。
-さらに、まとめ/クローズ時には `task-wrapup` skill が `COMMON.md`「FBの消化ライフサイクル」に従い、各FBを **ドメイン固有→`fb/<task>.md`／普遍→`pm/review-baseline.md`／手順→`knowledge/kb-*.md`** へ「□〜したか」で昇華し、auto-memory に正本保存＋`[[link]]`する。次回は `review-check` skill が自動適用する（learnings.md は深い正本／一次記録として併存）。
+さらに、まとめ/クローズ時には `task-wrapup` skill が `COMMON.md`「FBの消化ライフサイクル」に従い、各FBを分類して昇華する：**Pd手順→`knowledge/kb-*.md`／木を持つ大skill本文（＝そこが正本・MEMORY索引行は新設しない 2026-06-30）／Wx働き方→普遍は`pm/review-baseline.md`・固有は`fb/<task>.md`／F長期事実・R参照→auto-memory**。F/R/Wxは auto-memory に正本保存＋`[[link]]`する（Pdはリンク先を作らない）。次回は `review-check` skill が自動適用する（learnings.md は深い正本／一次記録として併存）。
 
 ---
 

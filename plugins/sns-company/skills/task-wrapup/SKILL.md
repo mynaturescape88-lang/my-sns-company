@@ -16,11 +16,22 @@ description: >
 ### ① 知識の昇華（このセッションで出た学び・FB・気づきを棚卸し）
 
 - このセッションでオーナーから出たFB・学び・気づき・決定を洗い出す（`secretary/notes/YYYY-MM-DD-learnings.md` 等に書いた分も含む）。
-- `COMMON.md`「FBの消化ライフサイクル」に従い、各々を**分類→行き先決定→抽象化**する：
-  - **ドメイン固有FB**（特定タスク種別の作法）→ そのタスクの `.company/fb/<task>.md` に「□〜したか」の判断基準で1行追記（1タスク1ファイル・混在禁止。タスク↔fbは `skill-routing.md`）。
-  - **全レビュー普遍の働き方FB** → `.company/pm/review-baseline.md`（6観点の該当所）に1行追記。
-  - **手順・方法論** → 該当 `.company/knowledge/kb-*.md`／**外部リソースの場所** → auto-memory(reference)。
-- いずれの場合も **memory `feedback_*`（または project/reference）に正本を保存**（背景・why）し、追記行から `[[feedback_...]]` でリンクする。
+- `COMMON.md`「FBの消化ライフサイクル」に従い、各々を**分類（Pd/F/R/Wx）→行き先決定→抽象化**する。**分類でMEMORY索引行を作るか否かが分岐する**（下表）：
+
+  | 種類 | 例 | 行き先（正本） | MEMORY正本/索引行 |
+  |---|---|---|---|
+  | **Pd 手順・方法論** | ショップ記事の書き方、口パクレシピ、TTS手順 | 該当 `.company/knowledge/kb-*.md` ／木を持つ大skillはSKILL本文・`references/*`・`checklist.md` | **作らない**（Skill本文がそのまま正本。MEMORY索引行を新設しない） |
+  | **F 長期事実** | 各SNSの正体、認証情報の置き場 | memory `project`/`reference` | 残す（従来どおり） |
+  | **R 参照・定数** | cr単価、APIクォータ、価格 | memory `reference` | 残す（従来どおり） |
+  | **Wx 横断の働き方** | 承認ゲート、収益最優先、レビュー普遍観点 | `.company/pm/review-baseline.md`（普遍）／そのタスクの `.company/fb/<task>.md`（ドメイン固有の働き方判断基準）に「□〜したか」で1行追記 | 残す（memory `feedback_*` に正本＋追記行から `[[feedback_...]]` リンク） |
+
+  - **Pd（手順・方法論）の扱い＝新方針（2026-06-30）**：手順をSkill本文（kb-*.md／木を持つ大skillの該当ノード）へ書いたら**そこが正本＝MEMORY正本も索引1行も新設しない**。理由＝Skillのトリガ語がそのままrecall入口で、手順が要る場面＝Skillが発動する場面。MEMORY索引行は二重入口で廃せる（毎ターン読まれる索引の再肥大を流入側で止める）。
+  - **F / R / Wx は従来どおり**：memory（`project`/`reference`/`feedback_*`）に正本を保存（背景・why）し、Wxの追記行からは `[[feedback_...]]` でリンクする。F/Rは索引行を残す。
+
+- **Pdの安全2条件（省くと知識消失・必ず手順に内包）**：
+  - **逆順厳禁**＝Skillを先に強化→**実際に発動して反映を確認**→そのあとで（既存MEMORY正本があれば）撤去する。先にMEMORYを消すと索引が唯一の控えだった場合に完全忘却する [[feedback_skill_first_then_memory_removal]]。
+  - **トリガ確認**＝Skill本文へ移す手順1件ごとに、**それを確実に発動させるSkillトリガ語が実在するか**を確認する。**トリガが無い（どのSkillも発動しない）手順はMEMORYに残す**（Pd例外＝recall入口が無いと届かないため）。漏れていればdescription/トリガ語を直してから移す [[feedback_skill_autotrigger_coverage_fix]]。
+  - ※本ステップは「今後の新規手順は索引を増やさない」流入側の蛇口締め。**既存MEMORY索引の一括削除はしない**（再圧縮は別タスク）。
 - 「ここだけのメモで」と指定された一回限りの内容のみ task_log 止まり。
 - **各々どこへ入れたかを後の⑤報告で読み返す**（勘違い・取りこぼし防止）[[feedback_record_for_future_means_elevate]]。
 
@@ -144,7 +155,7 @@ description: >
 ## 実行前/完了前チェック
 
 ```
-□ ① セッションの学び・FB・気づきを分類（ドメイン/普遍/手順）し、fb/<task>.md・pm/review-baseline.md・kb-*.md の該当所へ「□〜したか」で追記＋memory正本保存＋`[[...]]`リンクしたか（保存先を控えたか）
+□ ① セッションの学び・FB・気づきを分類（Pd手順/F長期事実/R参照/Wx働き方）したか。**Pd（手順）＝kb-*.md／木を持つ大skill本文へ書いたらそこが正本＝MEMORY正本/索引行は新設しない**（安全2条件＝Skill先強化→発動確認→後でMEMORY撤去・逆順厳禁／移す手順にトリガ実在を1件ずつ確認・無トリガはMEMORYに残す）。**F/R/Wxは従来どおりmemoryに正本＋（Wxは）追記行から`[[...]]`リンク・F/Rは索引行を残す**。既存索引の一括削除はしない（保存先を控えたか）
 □ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得・命名不変）・格納`.company/secretary/task_logs/YYYY-MM/`（YYYY-MM＝ファイル名先頭yyyyMM・規約正本=file-placement-rules.md §1）・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
 □ ③ TASKS表を更新したか（完了＝TASKS_COMPLETED追記＋TASKS削除／継続＝TASKS最新化）
 □ ④ メディア生成/DLがあれば棚卸ししたか（置き場=`drafts/<task名>/`・バイナリgit非追跡/テキスト版管理／公開済みだけを破棄理由にしない・再生成元素材は保管／削除/移動前に cleanup-safeguard-checklist.md §1 を全件通過・中身判断・rmでなくゴミ箱）

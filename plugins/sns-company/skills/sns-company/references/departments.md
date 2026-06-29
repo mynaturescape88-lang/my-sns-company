@@ -43,10 +43,11 @@
 - 秘匿情報（APIキー/トークン）をチャットに貼るよう案内しない
 
 ## FBの消化ライフサイクル（新FBを必ずチェックリストへ）
-- ① 分類：ドメイン固有 か 全レビュー普遍 か 手順か
-- ② 行き先：(固有)→`fb/<task>.md`／(普遍)→`pm/review-baseline.md`／(手順)→`knowledge/kb-*.md`。同時に auto-memory に正本保存（背景・why）
-- ③ 抽象化：経験談でなく「□〜したか」の判断基準に変換＋`[[...]]`でmemory正本へリンク
-- ④ 次回そのタスク/レビューで `review-check` が自動適用（昇華の本処理は `task-wrapup`）
+- ① 分類：Pd手順・方法論 か F長期事実 か R参照・定数 か Wx横断の働き方か
+- ② 行き先：**(Pd手順)→`knowledge/kb-*.md`／木を持つ大skillはSKILL本文＝そこが正本（MEMORY正本/索引行は新設しない・2026-06-30）**／(Wx働き方)→普遍は`pm/review-baseline.md`・ドメイン固有は`fb/<task>.md`／(F・R)→auto-memory(project/reference)。**F/R/Wxは同時に auto-memory に正本保存（背景・why）。Pdは作らない**
+- ③ 抽象化：経験談でなく「□〜したか」の判断基準に変換。**F/R/Wxは`[[...]]`でmemory正本へリンク（Pdはリンク先を作らないので張らない）**
+- ④ 安全2条件（Pd）＝Skill先強化→発動確認→後でMEMORY撤去（逆順厳禁）／移す手順にトリガ実在を1件ずつ確認・無トリガはMEMORYに残す。既存索引の一括削除はしない
+- ⑤ 次回そのタスク/レビューで `review-check` が自動適用（昇華の本処理は `task-wrapup`）
 ```
 
 ---
