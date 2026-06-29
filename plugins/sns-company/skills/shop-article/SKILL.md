@@ -71,3 +71,13 @@ description: >
 □ 内部管理（水揚げ・仕入れ等）を断言していないか
 ```
 > 「レビューに出す＝作り込み済み・既知の改善余地ゼロ」（[[feedback_review_means_finished_no_known_gaps]]）。
+
+---
+
+## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
+- 本文執筆後 → `shop-review-body` を発動（pass のみ写真配置へ）
+- 写真配置後 → `shop-review-layout` を発動
+- アイキャッチ/ig画像確定後 → `shop-review-image` を発動
+- タイトル/メタ確定後 → `shop-review-seotitle` を発動
+- 全◆pass後・公開直前 → `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる
+※写真確認・WP公開は作業ノード＝レビューskillを当てない（公開前法令/著作/事実は content-compliance）
