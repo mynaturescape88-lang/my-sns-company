@@ -114,3 +114,14 @@ Instagram（@mynaturescape・@myraisingdiary）の投稿キャプションを作
 □ @myraisingdiary：【〇日目】フォーマット・英語タグ含む5個か
 ```
 > 「レビューに出す＝作り込み済み・既知の改善余地ゼロ」（[[feedback_review_means_finished_no_known_gaps]]）。
+
+---
+
+## ◆成果物／・作業ノードの分類
+- ◆キャプション（→ `caption-review`・アカウント分岐@mynaturescape/@myraisingdiaryは1skill内で）
+- ・投稿操作（既存キャプション更新はアプリ手動編集のみ有効＝純作業／カルーセル枚数等の規約は caption-review 観点で担保）
+
+## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
+- キャプション執筆後 → `caption-review` を発動（pass のみ提示/投稿へ）
+- ◆pass後 → `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる
+※投稿操作は作業ノード＝レビューskillを当てない（公開前の法令/著作/事実は content-compliance）

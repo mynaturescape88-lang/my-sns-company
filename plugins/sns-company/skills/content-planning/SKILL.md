@@ -85,3 +85,17 @@ description: >
 - **#15-a ER（エンゲージメント率）＝再生数÷登録者数：比率1:1以上が高評価目安**：競合分析・自己診断・effect_measurement_schedule.mdのER計算列追加（植物YT/AIチャンネル）
 - **#16-a「再利用コンテンツ」ペナルティの正確な定義：付加価値のない同一映像の使い回しがNG（テーマ横展開はOK）**：当社は独自撮影・解説のため問題なし（全般）
 - **#16-b 年齢層別競合密度：高齢者向け＝競合少＝成功確率高・単価低**：ニッチ選定時の補助視点（AIチャンネル/植物YT）
+
+---
+
+## ◆成果物／・作業ノードの分類
+- ◆企画コンセプト（→ `planning-review-concept`）
+- ◆台本・構成（汎用企画＝植物/子育て/その他ch／→ `planning-review-script`）
+  - ※**長尺「人智の外側」の台本は本系統でなく `jinchi-longform`→`jinchi-review-script` が正本**。jinchi-longformから呼ばれたら jinchi-review-script を優先し planning-review-script は適用しない（二重適用しない）
+- ・字幕取得（youtube-transcript）・transcript整形（純作業＝レビューskillを当てない）
+
+## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
+- 企画案確定後 → `planning-review-concept` を発動（pass のみ台本へ）
+- 台本・構成完成後（汎用企画）→ `planning-review-script` を発動
+- 全◆pass後 → `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる
+※字幕取得・transcript整形は作業ノード＝レビューskillを当てない

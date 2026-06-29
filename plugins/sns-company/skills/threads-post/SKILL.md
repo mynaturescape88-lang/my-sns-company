@@ -49,3 +49,14 @@ Threadsの投稿文を作るときに発動する。
 
 - Threads APIはMeta Graph API経由。投稿済みIDは `threads_posted_ids.txt` で管理
 - Stage1→Stage2移行のため、投稿後1時間のコメント返信を人手で対応する必要がある（自動化不可）
+
+---
+
+## ◆成果物／・作業ノードの分類
+- ◆投稿文（→ `threads-review`・小さい木）
+- ・投稿操作（post_thread／GitHub Actions自動WF＝純作業・承認の遵守は threads-review 観点で担保）
+
+## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
+- 投稿文執筆後・オーナー提示前 → `threads-review` を発動（pass のみ提示へ）
+- ◆pass後 → `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる
+※投稿操作は作業ノード＝レビューskillを当てない（公開前の法令/著作/事実は content-compliance）

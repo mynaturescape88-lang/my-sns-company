@@ -84,3 +84,11 @@ description: >
   `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md`（※制作手法の正本は `jinchi-longform` スキル）
 - RKJ調査由来の最新カット術・密度目標：`.company/secretary/notes/2026-06-16-rkj-p3-insights-master-list.md`
 - アカウントの正体・コンセプト：`.company/sns_accounts/`
+
+---
+
+## ◆成果物／・作業ノードの分類（当面 子レビューskillは付けない・親注記のみ）
+- 本スキルの工程（冒頭フック・カット並べ・テロップ・色補正・BGM・書き出し）には成果物レビューが要る側面があるが、**当面 `fb/video.md` が現役**で観点を担保している。子レビューskillは追加しない（成果物レビューが要る工程が固有化したら後日 `video-review-*` を追加する）。
+- **「人智の外側」（@ijin-hiroku・古代ミステリー×AI長尺）は別系統＝`jinchi-longform` とその子 `jinchi-review-*`** が制作とレビューの正本（実写＝本スキルとは制作手法が別物・混同しない）。本スキルが扱うのは @mynaturescape の実写長尺/イベント。
+- ・素材取得・MP4書き出し等は純作業ノード＝レビューskillを当てない。
+- 提出前は editing-principles.md のチェックリスト＋`fb/video.md`＋`pm/review-baseline.md` でセルフチェックする。

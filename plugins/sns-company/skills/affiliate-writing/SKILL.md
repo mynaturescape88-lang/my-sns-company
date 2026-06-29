@@ -74,3 +74,18 @@ description: >
 ```
 > 「レビューに出す＝作り込み済み・既知の改善余地ゼロ」（[[feedback_review_means_finished_no_known_gaps]]）。
 > 関連：[[reference_rakuten_room_is_affiliate]] [[rakuten_room_automation_tos]]
+
+---
+
+## ◆成果物／・作業ノードの分類
+- ◆本文・コメント（→ `affiliate-review-body`）
+- ◆価格・数値・データ（価格を扱う記事＝子育て節約等のみ／→ `affiliate-review-price`）
+- ◆ASP提出・収益系記事の体裁（ASP案件のみ／→ `affiliate-review-asp`）
+- ・楽天ROOMへの商品登録（手動コピペ＝純作業／取得は公式API・自動投稿は規約違反でしない）
+
+## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
+- 本文・コメント執筆後 → `affiliate-review-body` を発動
+- 価格を扱う記事は本文確定後 → `affiliate-review-price` を発動
+- ASP案件はHTML/メタ確定後・提出前 → `affiliate-review-asp` を発動
+- 全◆pass後・公開/提出直前 → `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる
+※公開前の法令/著作/事実は content-compliance。ROOM登録操作は作業ノード＝レビューskillを当てない

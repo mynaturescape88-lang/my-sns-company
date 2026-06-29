@@ -37,3 +37,10 @@ description: >
 - **対策（恒久）**：投稿前にローカルで `python jp/shop_article_generator.py --prepare-images`（特定ショップは `--shop "名前"`）を実行→選定画像をWPへアップロードし公開URLを `pending.json` の `ig_image_url_map`/`ig_image_urls` にキャッシュ→コミット&プッシュ。ランナーはキャッシュ済みURLで投稿（ローカル画像不要・冪等）。**新フォルダを選定したら都度 --prepare-images を実行すること**。
 - `do_prepare_images` はフォルダ単位でエラーを握りつぶし途中経過を保存して継続（一過性のWPアップロードタイムアウトで全体停止しない／再実行で続きから）。`_resolve_selected_image_urls` は `url_map` を早期に `pending` へ紐づけ、失敗時も成功分を保持（二重アップロード防止）。
 - **追跡済み pending.json のステージは `git add -u shop_images/`**。`git add 'shop_images/*'` は親ディレクトリ除外でignoreに弾かれる（[[github_actions_gitignore_fix]] 準拠）。
+
+---
+
+## ◆成果物／・作業ノードの分類（子レビューskillなし・純作業／親注記のみ）
+- 本スキルは**投稿経路の実装/改修＝純作業（取得・公開・投稿・画像事前キャッシュ）**であり、レビュー対象の成果物（キャプション文・画像選定）を生み出さない。よって子レビューskillを付けない。
+  - キャプション文の成果物レビューは instagram-caption（→ `caption-review`）が担う。
+- ・pending.jsonマージ更新・--prepare-imagesによる事前キャッシュ・do_auto_post等は純作業ノード＝レビューskillを当てない（データ破壊防止のマージ方式・投稿経路の通し検証は本スキルの手順で担保）。
