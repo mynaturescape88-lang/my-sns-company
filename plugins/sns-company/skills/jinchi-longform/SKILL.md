@@ -7,7 +7,7 @@ description: >
 # 人智の外側 長尺制作スキル v1.0（一気通貫）
 
 チャンネル＝**人智の外側**（@ijin-hiroku / `UCWqUEgQiqgWKLyjhbkrNHiA`・旧称「AIインサイト」＝**この名称は廃止**）。
-コンセプト＝**「人間には解けなかった真実を、AIが解き明かす」古代ミステリー×AI**。落ち着いたナレで10〜15分。
+コンセプト＝**「人間には解けなかった真実を、AIが解き明かす」古代ミステリー×AI**。落ち着いたナレで15分以上。
 第1弾ナスカで全工程を確立済み。**技術面はほぼ自動＝ボトルネックは台本／ファクトチェックの質**。
 
 > ⚠️ @mynaturescape の実写長尺は**別手法**（`video-editing` スキル＝score→filter-people→assembleの1発生成）。本スキルは「人智の外側」専用。混ぜない。
@@ -25,17 +25,17 @@ description: >
 5. **生成GO・公開GOはオーナーのみ**。crを使うカットは `get_cost`(0cr)で先読み→残高記録→承認後に生成。
 
 ## 11工程（順番・正本＝`references/pipeline.md`）
-1. **題材確定** … コンセプト適合（AIが人間の不可能を可能にした題材）。題材キューは sns_accounts/youtube_ainsight.md。
-2. **台本＋★ファクトチェック** … `content-planning`発動→起承転結＋語り部3挿入。数字はかな/漢字表記。FCログを台本に残す（公開前ゲート）。
-3. **★章別素材台帳を作る** … `ledger-template.md`。再生順マスターショットリストに区分①〜⑥を割当→予cr積算→1本上限300crと照合。
-4. **ナレーション（Gemini TTS・無料）** … 全part loudnorm正規化→連結。**全再生成しない**（誤読は文スプライス）。
+1. **題材確定** … コンセプト適合（AIが人間の不可能を可能にした題材）。題材キューは sns_accounts/youtube_ainsight.md。→ 確定したら `jinchi-review-topic` を発動して合否を取る（pass のみ工程2へ）。
+2. **台本＋★ファクトチェック** … `content-planning`発動→起承転結＋語り部3挿入。数字はかな/漢字表記。FCログを台本に残す（公開前ゲート）。→ 台本＋FC完成後 `jinchi-review-script` を発動（★最重要・fail-closed）。
+3. **★章別素材台帳を作る** … `ledger-template.md`。再生順マスターショットリストに区分①〜⑥を割当→予cr積算→1本上限300crと照合。→ 台帳を埋めたら `jinchi-review-ledger` を発動（尺の実合算を必ず検算）。
+4. **ナレーション（Gemini TTS・無料）** … 全part loudnorm正規化→連結。**全再生成しない**（誤読は文スプライス）。→ ナレ連結後 `jinchi-review-narration` を発動。
 5. **実写素材（6サイト横断・無料）** … `fetch_broll.py`。本物で作れるものはAIにしない。H.264選別。
-6. **図解・★合成（0cr内製）** … PIL図解（暗背景/金/ヒラギノW6・下240pxは字幕帯）＋numpyグロー×ffmpeg `blend=screen`。Higgsfield課金不要。
-7. **AIの“撮れないシーン”だけ生成（有料・各カット許可制）** … 語り部口パク＝Seedance／無音モーション・再現＝Kling。フリー素材に質感を寄せる。
-8. **4Kアセンブル（`build_nazca_4k.py`を題材別にテンプレ流用）** … **音声駆動セクション尺＋行アンカー同期**。口パク内蔵音は捨てマスター上乗せ。
-9. **★Whisper字幕同期（最重要）** … `nazca4k_whisper.py`／`align_captions.py`で実発話時刻を取得。**この環境のffmpegはsubtitles/drawtext非搭載→字幕はPIL PNGをoverlay焼き**。
+6. **図解・★合成（0cr内製）** … PIL図解（暗背景/金/ヒラギノW6・下240pxは字幕帯）＋numpyグロー×ffmpeg `blend=screen`。Higgsfield課金不要。→ 図解/合成カット完成後 `jinchi-review-figure` を発動。
+7. **AIの“撮れないシーン”だけ生成（有料・各カット許可制）** … 語り部口パク＝Seedance／無音モーション・再現＝Kling。フリー素材に質感を寄せる。→ 各カットは生成"前"に `jinchi-review-aicut`（生成前ゲート・fail-closed）、生成"後"に同skill（採否ゲート）を発動。
+8. **4Kアセンブル（`build_nazca_4k.py`を題材別にテンプレ流用）** … **音声駆動セクション尺＋行アンカー同期**。口パク内蔵音は捨てマスター上乗せ。→ 4K書き出し後 `jinchi-review-assemble` を発動。
+9. **★Whisper字幕同期（最重要）** … `nazca4k_whisper.py`／`align_captions.py`で実発話時刻を取得。**この環境のffmpegはsubtitles/drawtext非搭載→字幕はPIL PNGをoverlay焼き**。→ align・再ビルド後 `jinchi-review-caption` を発動。
 10. **BGM＋効果音** … BGM=archive.org FreePD(CC0)・vol0.10・サイドチェインダッキング。章頭にSE。
-11. **サムネ→非公開アップ** … サムネはウェブ調査で高再生型を真似る [[feedback_research_proven_thumbnails_before_creating]]。`upload_ainsight_video.py`（privacy=private・`containsSyntheticMedia:True`必須・概要欄に目次＋AI免責）。公開はオーナー（Studioで終了画面配置→金/土夜予約公開）。
+11. **サムネ→非公開アップ** … サムネはウェブ調査で高再生型を真似る [[feedback_research_proven_thumbnails_before_creating]]。`upload_ainsight_video.py`（privacy=private・`containsSyntheticMedia:True`必須・概要欄に目次＋AI免責）。公開はオーナー（Studioで終了画面配置→金/土夜予約公開）。→ サムネ3案後 `jinchi-review-thumbnail` を発動（アップ直前メタもここで最終確認）。アップ前に `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる。
 
 ## reference 索引
 | ファイル | 中身 | 読むとき |
