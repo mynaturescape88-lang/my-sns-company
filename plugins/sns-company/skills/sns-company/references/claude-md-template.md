@@ -27,7 +27,7 @@
 - 共通ルール・標準フロー → [COMMON.md](COMMON.md)（役割が着手時に読む）
 - 各役割の責務 → `.company/<役割>/CLAUDE.md`
 - タスク→skill／FB の対応 → [skill-routing.md](skill-routing.md)
-- 前提（アカウントの正体・沿革・戦略）→ `sns_accounts/`／決定・凍結 → `DECISIONS_LEDGER.md`
+- 前提（アカウントの正体・沿革・戦略）→ `sns_accounts/`／決定・凍結 → **種類で振り分け（ルール→`pm/review-baseline.md`・各レビューskill観点／データ→`sns_accounts/`／未完→`TASKS.md`）。旧`DECISIONS_LEDGER.md`は凍結アーカイブ＝参照しない（2026-06-29 Step4）**
 
 ## 振り分け
 | 依頼 | 担当 |
