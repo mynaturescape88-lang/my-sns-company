@@ -1,5 +1,6 @@
 ---
 name: affiliate-review-body
+disable-model-invocation: true
 description: >
   affiliate-writingの工程「本文・コメント」のレビュー時に発動。親skill affiliate-writing の紹介文/コメント/記事本文執筆後から呼ばれる成果物レビュー（木の内側の子ノード）。体験偽装の非記載・数字や配送在庫の非約束・推薦スタイル維持・インフルエンサー名/第三者推薦の不引用・子育て節約の倹約家ペルソナと非断定・必需品を不要に混ぜない・コメントの自己矛盾なしを合否判定する。
 ---

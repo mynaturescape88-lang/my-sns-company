@@ -1,5 +1,6 @@
 ---
 name: planning-review-concept
+disable-model-invocation: true
 description: >
   content-planningの工程「企画コンセプト確定」のレビュー時に発動。親skill content-planning の企画案確定後・台本着手前から呼ばれる成果物レビュー（木の内側の子ノード）。稼げるジャンル先決→AI効率化の順・バズ判定3基準（好奇心/珍しさ/没入感）を1つ以上充足・競合との演出差別化・アカウント人格の注入・確立テーマ内・バズ企画へのひねりを合否判定する。
 ---

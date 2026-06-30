@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-assemble
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程8「4Kアセンブル」のレビュー時に発動。親skill jinchi-longform の工程8末尾（4K書き出し完了・字幕同期前 or 字幕反映後の再ビルド時）から呼ばれる成果物レビュー（木の内側の子ノード）。行アンカー同期・口パク内蔵音保持・正規スクリプト使用・PNG overlay字幕・PATHキャッシュ対策・尺を合否判定する。
 ---

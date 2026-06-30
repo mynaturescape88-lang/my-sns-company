@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-script
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程2「台本＋ファクトチェック」のレビュー時に発動。親skill jinchi-longform の工程2末尾（台本＋FCログ完成・台帳着手前）から呼ばれる成果物レビュー（木の内側の子ノード・★最重要）。起承転結・語り部3挿入・FC裏取り・TTS誤読対策・尺・謎を残さないかを合否判定する。
 ---

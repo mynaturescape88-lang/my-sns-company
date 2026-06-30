@@ -1,5 +1,6 @@
 ---
 name: report-review-strategy
+disable-model-invocation: true
 description: >
   sns-reportの工程「戦略コメント・見直し判断（マーケター成果物）」のレビュー時に発動。親skill sns-report のマーケター戦略照合完了後・秘書報告着手前から呼ばれる成果物レビュー（木の内側の子ノード）。各PF戦略との照合・見直し不要なら監視ログ追記のみ・見直し要なら具体修正＋推奨1案＋根拠・原本の無断変更なし（承認ゲート）・別台帳を作らないを合否判定する。
 ---

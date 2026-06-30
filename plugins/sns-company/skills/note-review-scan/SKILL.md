@@ -1,5 +1,6 @@
 ---
 name: note-review-scan
+disable-model-invocation: true
 description: >
   note-writingの工程「公開前スキャン・コードセキュリティ」のレビュー時に発動。親skill note-writing の本文完成後・公開操作着手前から呼ばれる成果物レビュー（木の内側の子ノード・★秘匿の最終ゲート）。ブログ名/SNSアカウント名/アプリ名/実ドメイン/実ID・トークン値の非記載（コード・コメント・末尾含む全文）・APIキー等のプレースホルダー化を合否判定する。
 ---

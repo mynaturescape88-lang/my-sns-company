@@ -1,5 +1,6 @@
 ---
 name: shop-review-seotitle
+disable-model-invocation: true
 description: >
   shop-articleの工程「SEOタイトル・メタ」のレビュー時に発動。親skill shop-article のタイトル/メタ確定後・公開操作着手前から呼ばれる成果物レビュー（木の内側の子ノード）。変更履歴を確認したコロコロ変更回避（メタ=excerpt）・タイトル/メタ文字数・誇大でない結果数字ベースを合否判定する。
 ---

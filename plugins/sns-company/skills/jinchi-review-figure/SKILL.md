@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-figure
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程6「図解・合成」のレビュー時に発動。親skill jinchi-longform の工程6末尾（図解/合成カット完成・台帳の該当行を済にする直前）から呼ばれる成果物レビュー（木の内側の子ノード）。ブランド統一・図解2連続回避・グロー縁処理・0cr内製・絵文字0・画面内テキストの健全性を合否判定する。
 ---

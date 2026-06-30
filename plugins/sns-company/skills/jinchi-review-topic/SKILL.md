@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-topic
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程1「題材確定」のレビュー時に発動。親skill jinchi-longform の工程1末尾（題材確定直後・台本着手前）から呼ばれる成果物レビュー（木の内側の子ノード）。題材のコンセプト適合・バズ性・却下レバー非抵触・結で答えを言える題材かを合否判定する。
 ---

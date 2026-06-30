@@ -1,5 +1,6 @@
 ---
 name: shop-review-body
+disable-model-invocation: true
 description: >
   shop-articleの工程「本文」のレビュー時に発動。親skill shop-article の本文末尾から呼ばれる成果物レビュー（木の内側の子ノード）。写真にない植物名の非断定・時間/季節/価格/電話/予約/内部管理の非記載・参考プロンプト準拠・オリジナル文・h3直後の本文p・まとめ節・体験記の固有名詞性を合否判定する。
 ---

@@ -1,5 +1,6 @@
 ---
 name: threads-review
+disable-model-invocation: true
 description: >
   threads-postの工程「投稿文」のレビュー時に発動。親skill threads-post の投稿文執筆後・オーナー提示前から呼ばれる成果物レビュー（木の内側の子ノード・小さい木）。記事タイトルそのまま使わず興味を引く導入文・ハッシュタグ規定（#観葉植物 #植物好きな人と繋がりたい＋内容に応じた1つ）・fediverse拡散前提で内輪向け表現を避ける・手動投稿はオーナー承認後を合否判定する。
 ---

@@ -1,5 +1,6 @@
 ---
 name: shop-review-layout
+disable-model-invocation: true
 description: >
   shop-articleの工程「写真配置・レイアウト」のレビュー時に発動。親skill shop-article の写真配置末尾から呼ばれる成果物レビュー（木の内側の子ノード）。各h3最低1枚/2段落ごと1枚の写真・GoogleMapの所在地直下配置・関連記事エリア非新規・WP HTMLの健全性を合否判定する。
 ---

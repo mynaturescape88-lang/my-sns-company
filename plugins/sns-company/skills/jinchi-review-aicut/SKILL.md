@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-aicut
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程7「AI生成カット」のレビュー時に発動。親skill jinchi-longform の工程7で各カット生成「前」（cr消費前の照合ゲート）＋生成「後」（採否ゲート）の2点から呼ばれる成果物レビュー（木の内側の子ノード・cr消費に関わる最重要ゲート）。生成前は尺/画角/単価照合・口パクレシピ・流用をfail-closedで、生成後はてかり/老け/質感寄せ/崩壊救済を合否判定する。
 ---

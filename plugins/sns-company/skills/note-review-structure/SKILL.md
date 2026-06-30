@@ -1,5 +1,6 @@
 ---
 name: note-review-structure
+disable-model-invocation: true
 description: >
   note-writingの工程「構成・タイトル・価格設定」のレビュー時に発動。親skill note-writing の構成確定後・本文執筆着手前から呼ばれる成果物レビュー（木の内側の子ノード）。有料/無料の構成比・価格・CTA・タイトルの結果数字ベース・無料部で核心を出さない有料価値設計・重い定型免責の不採用を合否判定する。
 ---

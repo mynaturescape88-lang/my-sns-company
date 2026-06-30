@@ -1,5 +1,6 @@
 ---
 name: affiliate-review-price
+disable-model-invocation: true
 description: >
   affiliate-writingの工程「価格・数値・データ」のレビュー時に発動。親skill affiliate-writing の価格を扱う記事（子育て節約等）で本文確定後から呼ばれる成果物レビュー（木の内側の子ノード）。価格の正確さ最優先・既存ファイルの相場観プレースホルダ鵜呑み禁止・楽天API中央値の手動補正・¥0や桁違いの非混入・サマリー整合・同一商品の必要/不要両出し矛盾なしを合否判定する。
 ---

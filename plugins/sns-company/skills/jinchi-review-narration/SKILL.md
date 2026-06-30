@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-narration
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程4「ナレーション生成」のレビュー時に発動。親skill jinchi-longform の工程4末尾（連結ナレ完成・アセンブル前）から呼ばれる成果物レビュー（木の内側の子ノード）。loudnorm正規化・誤読のスプライス修正・自然ピッチ維持・字幕原文保持・語り部声の担保を合否判定する。
 ---

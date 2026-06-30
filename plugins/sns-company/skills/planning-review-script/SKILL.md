@@ -1,5 +1,6 @@
 ---
 name: planning-review-script
+disable-model-invocation: true
 description: >
   content-planningの工程「台本・構成」のレビュー時に発動。親skill content-planning の台本/構成完成後から呼ばれる成果物レビュー（木の内側の子ノード）。起承転結4幕の明示・コールドオープンのフック・各幕の役割充足・転を1点に最大化・冒頭フックへの回収・謎を残さない結・尺見積もり・構造モデリング（逐語コピー禁止）を合否判定する。 ※棲み分け＝**長尺「人智の外側」の台本は jinchi-review-script／汎用企画（植物・子育て・その他ch）の台本は本skill／jinchi-longformから呼ばれたら jinchi-review-script を優先**（重複適用しない）。
 ---

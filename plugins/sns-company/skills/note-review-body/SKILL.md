@@ -1,5 +1,6 @@
 ---
 name: note-review-body
+disable-model-invocation: true
 description: >
   note-writingの工程「本文」のレビュー時に発動。親skill note-writing の本文執筆後・公開前スキャン着手前から呼ばれる成果物レビュー（木の内側の子ノード）。数字を実コード確認後に記載・ライブラリ名の用途括弧書き・体験記の固有名詞性・規約違反手順の非指南・最新モデルID・テーブルのPNG画像化・note.com貼り付け前提を合否判定する。
 ---

@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-caption
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程9「Whisper字幕同期」のレビュー時に発動。親skill jinchi-longform の工程9末尾（align後・再ビルド後）から呼ばれる成果物レビュー（木の内側の子ノード）。実発話時刻の反映・エーアイ→AI置換・PNG overlay字幕方式・音と字幕のズレ0を合否判定する。
 ---

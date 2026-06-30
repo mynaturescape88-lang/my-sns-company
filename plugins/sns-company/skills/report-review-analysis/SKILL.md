@@ -1,5 +1,6 @@
 ---
 name: report-review-analysis
+disable-model-invocation: true
 description: >
   sns-reportの工程「数値分析（アナリスト成果物）」のレビュー時に発動。親skill sns-report のアナリスト分析完了後・マーケター戦略コメント着手前から呼ばれる成果物レビュー（木の内側の子ノード）。データ取得の実行順序遵守・4点構成（直近数値＋帰属＋週次WoW＋打ち手）・伸びの起因切り分け・数値の意味の実体確認・Instagram個別＋合算2視点を合否判定する。
 ---

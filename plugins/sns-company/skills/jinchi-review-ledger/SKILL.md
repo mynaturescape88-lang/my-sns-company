@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-ledger
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程3「章別素材台帳」のレビュー時に発動。親skill jinchi-longform の工程3末尾（台帳が再生順に埋まった直後・生成着手前）から呼ばれる成果物レビュー（木の内側の子ノード）。区分割当・尺整合・最高品質材料の先決・最新単価でのcr積算・300cr照合・✅の正当性を合否判定する。
 ---

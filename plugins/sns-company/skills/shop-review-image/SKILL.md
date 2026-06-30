@@ -1,5 +1,6 @@
 ---
 name: shop-review-image
+disable-model-invocation: true
 description: >
   shop-articleの工程「アイキャッチ・画像セット」のレビュー時に発動。親skill shop-article のアイキャッチ/ig画像セット確定後から呼ばれる成果物レビュー（木の内側の子ノード）。アイキャッチと本文1枚目の差異・ブログサムネイル命名・ig_images先頭のinstagramサムネイル・同名アップ時のfeatured_media別ID（衝突なし）を合否判定する。
 ---

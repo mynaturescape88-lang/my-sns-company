@@ -1,5 +1,6 @@
 ---
 name: jinchi-review-thumbnail
+disable-model-invocation: true
 description: >
   人智の外側(jinchi-longform)の工程11a「サムネ」のレビュー時に発動。親skill jinchi-longform の工程11で3案出した直後（選定→アップ前）から呼ばれる成果物レビュー（木の内側の子ノード）。高再生ベンチマーク踏襲・10字以内/2-3色・3案選定・絵文字0、およびアップ直前メタ（目次/パス/合成開示）の最終確認を合否判定する。
 ---

@@ -1,5 +1,6 @@
 ---
 name: affiliate-review-asp
+disable-model-invocation: true
 description: >
   affiliate-writingの工程「ASP提出・収益系記事の体裁」のレビュー時に発動。親skill affiliate-writing のASP案件記事のHTML/メタ確定後・提出前から呼ばれる成果物レビュー（木の内側の子ノード）。高額報酬表記の不採用・収益額の日時/エリア＋指定免責・商標スラッグ禁止・招待コード非掲載・登録/提出URLのドメイン一致・参考記事と同スタイル付きHTMLのレンダリング目視・構造健全性を合否判定する。
 ---

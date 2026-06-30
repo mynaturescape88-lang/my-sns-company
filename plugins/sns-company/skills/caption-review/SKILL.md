@@ -1,5 +1,6 @@
 ---
 name: caption-review
+disable-model-invocation: true
 description: >
   instagram-captionの工程「キャプション」のレビュー時に発動。親skill instagram-caption のキャプション執筆後から呼ばれる成果物レビュー（木の内側の子ノード）。アカウント分岐（@mynaturescape＝絵文字/フッター/訴求なし・一人称の刺さる言葉・ハッシュタグ1〜2個／@myraisingdiary＝【〇日目】フォーマット・英語タグ含む5個・個人特定情報なし）・ショップ投稿の地名タグ/フッター種別/カルーセル構成を1skill内で分岐して合否判定する。
 ---
