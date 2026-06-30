@@ -70,7 +70,7 @@ description: >
 4. **模倣プロンプト生成**：抽出構造を**自社題材＋自社の声（日本語ナレ・AIインサイトの世界観・免責方針）に置換**した「台本生成プロンプト」をコピペ完全形で出力（[[feedback_prompt_copypaste_full]]）。**ここで停止＝実際の台本生成/TTS/画像/動画生成は別工程（無料テキストはClaude、cr生成はオーナーGO）**。
 5. 出力プロンプトはAIインサイト制作RUNBOOK Step1（台本+FC）の入力にそのまま使える。
 
-**実証例**：The Infographics Show『AI Just Decoded the Unreadable Herculaneum Scrolls』(28万再生)→ 二人称没入フック「あなたは石炭の塊を蹴る→実は呪いの古代巻物」＋弱者の人間ドラマ(Farritor)＋段階的スケール拡大(失われた図書館→歴史を書き換える)を抽出→第2弾ヘルクラネウム台本プロンプトへ変換。出典記録=[P3分析ノート](.company/secretary/notes/2026-06-15-rkj-p3-analysis.md)。
+**実証例**：The Infographics Show『AI Just Decoded the Unreadable Herculaneum Scrolls』(28万再生)→ 二人称没入フック「あなたは石炭の塊を蹴る→実は呪いの古代巻物」＋弱者の人間ドラマ(Farritor)＋段階的スケール拡大(失われた図書館→歴史を書き換える)を抽出→第2弾ヘルクラネウム台本プロンプトへ変換。出典記録=[P3分析ノート](.company/analyst/work/2026-06-15-rkj-p3-analysis.md)。
 
 ### RKJ P3抽出ノウハウ（企画・YouTube戦略・一行索引・実施可否は後日判断）
 

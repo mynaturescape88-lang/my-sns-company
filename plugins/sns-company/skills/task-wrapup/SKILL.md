@@ -15,7 +15,7 @@ description: >
 
 ### ① 知識の昇華（このセッションで出た学び・FB・気づきを棚卸し）
 
-- このセッションでオーナーから出たFB・学び・気づき・決定を洗い出す（`secretary/notes/YYYY-MM-DD-learnings.md` 等に書いた分も含む）。
+- このセッションでオーナーから出たFB・学び・気づき・決定を洗い出す（`secretary/work/learnings/YYYY-MM-DD-learnings.md` 等に書いた分も含む）。
 - `COMMON.md`「FBの消化ライフサイクル」に従い、各々を**分類（Pd/F/R/Wx）→行き先決定→抽象化**する。**分類でMEMORY索引行を作るか否かが分岐する**（下表）：
 
   | 種類 | 例 | 行き先（正本） | MEMORY正本/索引行 |
@@ -47,7 +47,7 @@ description: >
 このセッションの実務を **議事メモ(sessionlog)** として1ファイル作成する（2026-06-26合意の正本方式）。再開時はTASKS.md索引＋この最新議事メモを全文読めば続けられる状態にする。
 
 - **命名**＝`yyyyMMddhhmm_<やったことのタイトル>_sessionlog.md`。**時刻はまとめ時に `date` で取得**（推測しない）。
-- **格納先**＝`.company/secretary/task_logs/YYYY-MM/`（**YYYY-MM＝ファイル名先頭 `yyyyMM`** ＝命名の最初の6桁にハイフン挿入。`date` 再取得に依存せず名前だけで一意に決まる）。**命名規則 `yyyyMMddhhmm_..._sessionlog.md` は不変**（ファイル名は変えずサブフォルダに収めるだけ）。置き場規約の正本＝`.company/secretary/notes/file-placement-rules.md` §1。
+- **格納先**＝`.company/secretary/task_logs/YYYY-MM/`（**YYYY-MM＝ファイル名先頭 `yyyyMM`** ＝命名の最初の6桁にハイフン挿入。`date` 再取得に依存せず名前だけで一意に決まる）。**命名規則 `yyyyMMddhhmm_..._sessionlog.md` は不変**（ファイル名は変えずサブフォルダに収めるだけ）。置き場規約の正本＝`governance/file-placement-rules.md` §1。
 - **単位**＝1セッション1ファイル。同一セッション内で2回まとめる場合＝**別タスク→別ファイル／同じタスク→既存メモへ追記**。
 - **記載ルール**＝全行箇条書き・1行100字以内・**過去ログは凍結（編集しない＝履歴として振り返れる）**。最新状況は常に最新メモ。
 - 下記の **基本形テンプレート**（ヘッダ→本体→議事メモ）で作る。「関連ファイル」節は必ず含める（再開時の辿り先）。
@@ -92,12 +92,12 @@ description: >
 
 ### ④ メディア中間物の棚卸し（タスクでメディアを生成/DLした場合）
 
-- このタスクで生成・DLした画像/動画/音声を洗い出す。**置き場は `drafts/<task名>/`（タスク別サブフォルダ）前提**＝散在させず1タスク1フォルダに集約（規約正本＝`.company/secretary/notes/file-placement-rules.md` §2。`video_assets/<task>/` も同様）。
+- このタスクで生成・DLした画像/動画/音声を洗い出す。**置き場は `drafts/<task名>/`（タスク別サブフォルダ）前提**＝散在させず1タスク1フォルダに集約（規約正本＝`governance/file-placement-rules.md` §2。`video_assets/<task>/` も同様）。
 - **gitバイナリの線引き**＝`drafts/<task>/` のバイナリ（png/jpg/jpeg/mp4/mov/wav/mp3/.DS_Store 等）は **git 非追跡**（`.gitignore` で除外済）。**テキスト（台本/プロンプト/spec/設計md）は版管理する**。`git add .` で巻き込まない（⑤の `git add -A` 禁止と整合）[[feedback_video_assets_local_not_github]]。
 - **公開済みでも「公開済み＝破棄してよい」と決めつけない**（オーナー指示 2026-06-29）。ゴミ箱に入れる前に**すべて確認→すべて「無」で初めて不要**：①他用途（別投稿予定）が無いか全PF確認 ②他の関連タスク・スクリプトが使う予定が無いか ③**再生成の元素材でないか**（語り部の口パク元写真・soul元画像等＝一度失うと再現不可な"種"＝必ず保管 [[feedback_use_exact_specified_asset_not_similar]]）。不要と確定したものはURLだけ md に残してゴミ箱へ [[feedback_media_asset_lifecycle]]。
 - **ボツ・試作・中間生成物** → タスク完了時に**ゴミ箱へ**（ただし上記③に該当しないこと）。
 - **完成本編・未公開で再利用予定**のものは保持（生バイナリはGitHubに上げない＝md記録のみ）[[feedback_video_assets_local_not_github]]。
-- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。**削除/移動の前に `.company/secretary/notes/cleanup-safeguard-checklist.md` §1 を全件通過する**（中身確認・参照元grep・移行先の実在・再生成元の確認等）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
+- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。**削除/移動の前に `governance/cleanup-safeguard-checklist.md` §1 を全件通過する**（中身確認・参照元grep・移行先の実在・再生成元の確認等）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
 - ※`drafts/` 全体の大規模断捨離は本ステップでなく**別タスク**（ファイル毎判断・safeguard全件通過）。
 
 ### ④-b WF/スクリプト台帳の更新（WF/スクリプトを追加・変更・無効化した場合のみ）
