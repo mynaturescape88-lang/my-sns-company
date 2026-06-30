@@ -85,10 +85,15 @@ description: >
 
 ### ③ タスク表の更新
 
+**TASKS.md の書式ルール（2026-07-01 オーナー指示・厳守）**：
+- TASKS.md は**未完了タスクのみ**を並べる＝`## 未完了` 等の見出しは不要（ファイル全体が未完了リスト）。完了 `[x]` を残さない。
+- **1行＝1タスク**。詳細・背景・経緯は**参照先リンク（議事メモ/正本/log）に逃がし、TASKS.md本文に長文を書かない**（一目で「やること」が分かる粒度）。
+- 「親タスク」括りで完了項目を生かさない。**残作業は完了項目の本文に埋め込まず、必ず独立した `[ ]` で立てる**。
+
 - **タスク完了時**：
-  ② **該当タスクを TASKS_COMPLETED.md の末尾に追記**（`- [x] **タスク名** | 完了日・内容サマリ`）
-  ③ **TASKS.md から該当タスクを削除**（セクションも空になれば削除）
-- **継続時**：TASKS.md を最新状態へ更新する（`[ ]` のみが存在する状態を維持）。
+  ② **該当タスクを TASKS_COMPLETED.md の末尾に追記**（`- [x] **タスク名** | 完了日・内容サマリ`。長い経緯はこちら側に集約してよい＝アーカイブだから）
+  ③ **TASKS.md から該当タスクを即削除**（`[x]` をTASKS.mdに残さない）。完了項目の本文に残作業があれば、それを TASKS.md の独立 `[ ]` として切り出してから削除する。
+- **継続時**：TASKS.md を最新状態へ更新する（上の書式ルールに従い `[ ]` 1行のみが存在する状態を維持）。
 
 ### ④ メディア中間物の棚卸し（タスクでメディアを生成/DLした場合）
 
@@ -115,6 +120,11 @@ description: >
   - **毎タスク共通**：新構造アーキの効果測定 → `secretary/task_logs/architecture-effect-measurement.md` に Run を1件追記（①探索②WF遵守③トークンを正直に）[[project_architecture_effect_measurement_ongoing]]。
   - **障害対応した** → `INCIDENT_LEDGER.md`（人間用）＋ `ops/monitor_config.yml` `incidents:`（機械用）の両方 [[reference_watchdog_config_ledger_sync]]。
   - **そのタスク固有の台帳**（素材台帳・移行台帳・cr台帳・効果測定表・変更履歴 等）→ 実体に合わせて更新。
+
+### ④-d ディレクトリ整理（フォルダ増減・完成物の使用後掃き出しがあった場合のみ）
+
+- **ディレクトリツリー更新**＝このタスクで**新しいトップレベル/用途フォルダを新設・廃止（増減）した**なら、`DIRECTORY_TREE.md`（root直下＝配置の地図）の該当注記を**追記/削除**して地図と現物を一致させる。粒度＝**トップレベル/用途フォルダの増減時のみ**（個々のバイナリ増減では更新しない＝索引を膨らませない）。根拠＝`DIRECTORY_TREE.md` §1-3／memory [[feedback_maintain_directory_tree_master]]。
+- **使用後への掃き出し**＝成果物が**完成したら、採用された1.0だけを各役割の `work/` に残し**、不採用・差し替え済みの旧版・余りテイクを該当役割の `使用後/` へ `mv`（捨てずに脇へ寄せる＝`work/` を開けば実際に使った1.0だけが見える状態を維持）。規律＝`rm` でなく**可逆な `mv`**・参照があれば移動前に張替え・`使用中/`箱は作らない（`work/`＝作業中＆現役1.0／`使用後/`＝退役の2フォルダ）。根拠＝`DIRECTORY_TREE.md` §2／[[feedback_maintain_directory_tree_master]][[feedback_delete_to_trash_not_rm]]。
 
 ### ⑤ 選択的コミット & プッシュ（両リポジトリ・安全策つき）
 
@@ -162,6 +172,7 @@ description: >
 □ ④-b WF/スクリプトを追加・変更・無効化したなら、inventory_meta.yml更新＋`wf_inventory.py generate`で台帳再生成＋`check`がexit0か
 □ ④-c 決定/凍結/打切→種類で振り分けて昇格（ルール→pm/review-baseline観点・PF/skill固有→該当レビューskill観点 or sns_accounts/<pf>.md却下レバー・未完→TASKS.md／旧DECISIONS_LEDGERは凍結アーカイブ＝参照しない）・毎タスク→architecture-effect-measurement(Run)・障害→INCIDENT_LEDGER+monitor_config・タスク固有台帳、を漏れなく更新したか
 □ ④-c タスク表の状態変更/再分類/追加/削除をしたなら（クローズに限らず）→curation判断を上記の振り分け先（pm/review-baseline観点・該当レビューskill観点・sns_accounts/<pf>.md・TASKS.md）に記録＋各task_logの現在状態と同期＋ラベルとtask_report.pyのキーワード判定がずれていれば補強したか
+□ ④-d トップレベル/用途フォルダを増減したなら `DIRECTORY_TREE.md`（root直下）の注記を追記/削除したか／成果物完成時に採用1.0を `work/` に残し不採用・旧版・余りテイクを該当役割の `使用後/` へ `mv`（rmでなく可逆・参照は移動前に張替え）したか
 □ ⑤ status --short を確認し、関係する変更だけをパス指定で add したか
 □ ⑤ `git add -A`・`git add .` を使っていないか
 □ ⑤ 他タスクの編集途中ファイル・未追跡物（drafts/等）を巻き込んでいないか
