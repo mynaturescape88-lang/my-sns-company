@@ -51,3 +51,6 @@
 - **品質優先で材料を先に決める→cr積算→上限照合→超過時のみ削減**（cr節約を先に立てて品質を落とさない）。[[feedback_plan_best_quality_first_then_estimate]]
 - **レビュー＝作り込み済み・既知の改善余地ゼロで出す**（弱点を残して見せない）。[[feedback_review_means_finished_no_known_gaps]]
 - **★台帳の尺・本数・crは"実合算"で検証してから出す（自己申告を信じない）**：症状＝第2弾ヘルクラネウムの初版台帳が「骨格カット止まり」で、A表の尺合計は約634s（10.5分）なのに集計欄は「総尺905s（15分）」と書かれ**数値が合っていなかった**（C表も全章「要敷き詰め」のまま放置）。PMレビューはcr・図解2連続・章数は裏取りしたが**尺の足し算を実検証していなかった**ため見逃した。→ **次回デフォルト**：①台帳は最初からナスカ準拠の粒度（約130カット・各章カットを実際に並べてC表で割付＝想定の差分0）で作る。「要敷き詰め」プレースホルダを残さない。②**レビュー時は機械パース等でA表の尺列を実際に合計し、章別小計・総尺・区分本数・予crが集計欄と一致するかを必ず再計算**（特に「尺の合計／敷き詰め／消費cr」はオーナーが必ず突く）。③素材取得先はfetch_broll 6系統（動画Pexels/Pixabay/NASA/Internet Archive・画像Pexels/Pixabay/Openverse/Wikimedia Commons）＝v3で「stock無し」とした被写体もWikimedia/Archive/NASAで実写化を再検討し①を増やす（generic stock使い回し回避・AI本数は増やさない）。[[feedback_report_verify_before_reporting]]
+
+## H. 台本の情報密度・フック（2026-07-01 The Life Guide実測比較で確定）
+- **台本の情報密度・フック設計の具体ルール（固有名詞の回転数/立てて出す/数値の主役化/章末cliffhanger/主役反復）は `content-planning` スキルの「台本の情報密度・フック設計ルール」に集約**（本ファイルでは二重管理しない）。工程2レビューは `jinchi-review-script` の追加観点で担保。実測データ・比較表の正本＝`.company/secretary/work/task_logs/2026-07/202607011530_人智の外側制作方針転換_sessionlog.md` タスクB。
