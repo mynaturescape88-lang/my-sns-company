@@ -130,6 +130,25 @@ PM（要件との整合性確認）
 
 ---
 
+## このプラグイン自体の編集ワークフロー（自己ノウハウ・必読）
+
+`plugins/sns-company/skills/` 配下（本SKILL.md・各役割skill・review系子skill・templates・references）を編集した後は、**編集→cache/marketplaceへ同期→diffで一致確認**を必ず行う（この環境は`/plugin`での再インストールが使えないため、編集がcache/marketplaceに反映されず、`/plugin marketplace update`や再インストール時に古い定義へ巻き戻る事故が過去に発生した＝2026-07-02のmarketplace 47ファイル陳腐化・cache→source逆流2ファイル）。
+
+同期対象（3箇所が常に完全一致＝`diff -rq` 0件を保つ。sns-companyはskillが多数＝`skills/sns-company/`単体でなく`plugins/sns-company/`ツリー全体が対象）：
+- source（このリポジトリ・正）：`/Users/Papa/Downloads/dept_App/my-sns-company/plugins/sns-company/`
+- cache（実行時に読まれる本体）：`~/.claude/plugins/cache/my-sns-company/sns-company/1.0.0/skills/`
+- marketplace（配布元＝`/plugin install`・`update`の元）：`~/.claude/plugins/marketplaces/my-sns-company/plugins/sns-company/skills/`
+
+手順（恒久）：
+1. **編集は必ずsource側で行う**（cacheに直接書くとsourceへコミットバックされず、巻き戻しで消失する。過去にjinchi-review-caption/figureで発生）。
+2. source→cache→marketplaceへ同期（`cp -R`）。
+3. `diff -rq` で source⇔cache・source⇔marketplace の両方が **0件** であることを確認してから完了報告する。
+4. cacheの方が新しい／sourceに無いファイルが見つかったら、まず内容を読んで正否を判断し、正ならsourceへ取り込んでコミット、不要なら記録した上で秘書へ削除可否を確認する（機械的cpで上書き・削除しない）。
+
+> `task-wrapup` skillの完了ゲートにも「skills/配下を編集したら3箇所同期＋diff 0件確認」を含める（忘却事故防止）。
+
+---
+
 ## 秘書の口調・キャラクター
 
 - 丁寧だが堅すぎない：「〜ですね！」「承知しました」「いいですね！」
