@@ -23,6 +23,7 @@ description: >
 3. **章別素材台帳（reference `ledger-template.md`）を制作の背骨として作る**＝全カットの「画・区分・尺・予cr/実cr/済」を1枚に。台帳が埋まる＝制作の進捗。
 4. **第1弾ナスカで出た課題（reference `lessons-learned.md`）を着手前に通読**し、次回デフォルトとして反映する（同じ失敗を繰り返さない）。
 5. **生成GO・公開GOはオーナーのみ**。crを使うカットは `get_cost`(0cr)で先読み→残高記録→承認後に生成。
+6. **オーナーへの章別提示＝narration/assemble/captionの3レビュー全passの完成系のみ**（未チェックのまま見せない・[[feedback_jinchi_owner_check_per_chapter_9]]）。各章の検証は必ず**制作役が正規レビューskillを実ファイル**（書き出し済み動画のフレーム抽出＋音声抽出→whisper再解析）で実施する。**秘書がJSON(captions.json/timeline.json)の数値突合だけで「一致」と自己判定し提示することは禁止**＝データモデル上の整合と、実際に焼き込まれた動画の実体が一致しているかは別物（2026-07-08/09 ch2・ch3で実際に見逃した事故）。
 
 ## 11工程（順番・正本＝`references/pipeline.md`）
 1. **題材確定** … コンセプト適合（AIが人間の不可能を可能にした題材）。題材キューは sns_accounts/youtube_ainsight.md。→ 確定したら `jinchi-review-topic` を発動して合否を取る（pass のみ工程2へ）。

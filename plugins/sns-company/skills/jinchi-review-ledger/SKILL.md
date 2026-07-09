@@ -31,6 +31,7 @@ description: >
 - [ ] 台帳が単一正本(cr-ledger)として置かれているか（新規） [[feedback_reconcile_params_with_canon_before_generation]]
 - [ ] 台帳に未記載（空欄）が0か
 - [ ] 本番素材が未完成のカットに✅がついていないか [[feedback_ledger_done_mark_means_final_asset]]
+- [ ] **全カットが固有素材で、同一素材の使い回しが無いか（全編ユニーク＝2回目の使用も不可）**：台帳の全カットの素材（実写prefix・静止画・合成★・図解③）が延べ本数ぶん固有か。同一prefixがN回登場するなら固有バリアントがN本（`{prefix}_01…_0N`）用意される計画になっているか。不足は追加0cr素材の調達で埋める（generic stockの再掲で埋めない・2026-07-01オーナー決定）
 
 ## 原則
 - レビューに出す＝既知の改善余地ゼロ・自分で直せる弱点を残さない [[feedback_review_means_finished_no_known_gaps]]
