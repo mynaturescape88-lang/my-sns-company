@@ -39,7 +39,7 @@ description: >
 - このセッションでオーナーが**目的/方針/戦略/コスト**を見直したら、該当の正本を更新する（前提無視の再発防止＝次タスクで正しく参照される）：
   - **per-platform戦略**（その媒体の方針・勝ち筋）→ `.company/sns_accounts/<platform>.md` の戦略欄。**更新者＝マーケター**。全媒体を1か所に集約しない＝該当媒体のファイルだけ直す。
   - **横断（共通）の戦略**（経費回収/予算配分/抜本レバー）→ `.company/knowledge/kb-marketing-strategy.md`。**更新者＝マーケター**（案→オーナー合意で確定）。
-  - **投資・収益の数値**（月次投資/cr単価/収益）→ `secretary/task_logs/cost-revenue-budget-visibility.md`。**更新者＝アナリスト**（数値供給）。共通の前提ゲートは `pm/review-baseline.md` 観点6が正。
+  - **投資・収益の数値**（月次投資/cr単価/収益）→ `secretary/work/task_logs/cost-revenue-budget-visibility.md`。**更新者＝アナリスト**（数値供給）。共通の前提ゲートは `pm/review-baseline.md` 観点6が正。
 - 更新後は PM が確認。どこを更新したかを⑤報告に含める。
 
 ### ② 作業記録＝議事メモ(sessionlog)を作成（基本形）
@@ -47,7 +47,7 @@ description: >
 このセッションの実務を **議事メモ(sessionlog)** として1ファイル作成する（2026-06-26合意の正本方式）。再開時はTASKS.md索引＋この最新議事メモを全文読めば続けられる状態にする。
 
 - **命名**＝`yyyyMMddhhmm_<やったことのタイトル>_sessionlog.md`。**時刻はまとめ時に `date` で取得**（推測しない）。
-- **格納先**＝`.company/secretary/task_logs/YYYY-MM/`（**YYYY-MM＝ファイル名先頭 `yyyyMM`** ＝命名の最初の6桁にハイフン挿入。`date` 再取得に依存せず名前だけで一意に決まる）。**命名規則 `yyyyMMddhhmm_..._sessionlog.md` は不変**（ファイル名は変えずサブフォルダに収めるだけ）。置き場規約の正本＝`governance/file-placement-rules.md` §1。
+- **格納先**＝`.company/secretary/work/task_logs/YYYY-MM/`（**YYYY-MM＝ファイル名先頭 `yyyyMM`** ＝命名の最初の6桁にハイフン挿入。`date` 再取得に依存せず名前だけで一意に決まる）。**命名規則 `yyyyMMddhhmm_..._sessionlog.md` は不変**（ファイル名は変えずサブフォルダに収めるだけ）。置き場規約の正本＝`DIRECTORY_TREE.md` §2 規範。
 - **単位**＝1セッション1ファイル。同一セッション内で2回まとめる場合＝**別タスク→別ファイル／同じタスク→既存メモへ追記**。
 - **記載ルール**＝全行箇条書き・1行100字以内・**過去ログは凍結（編集しない＝履歴として振り返れる）**。最新状況は常に最新メモ。
 - 下記の **基本形テンプレート**（ヘッダ→本体→議事メモ）で作る。「関連ファイル」節は必ず含める（再開時の辿り先）。
@@ -97,12 +97,12 @@ description: >
 
 ### ④ メディア中間物の棚卸し（タスクでメディアを生成/DLした場合）
 
-- このタスクで生成・DLした画像/動画/音声を洗い出す。**置き場は `drafts/<task名>/`（タスク別サブフォルダ）前提**＝散在させず1タスク1フォルダに集約（規約正本＝`governance/file-placement-rules.md` §2。`video_assets/<task>/` も同様）。
-- **gitバイナリの線引き**＝`drafts/<task>/` のバイナリ（png/jpg/jpeg/mp4/mov/wav/mp3/.DS_Store 等）は **git 非追跡**（`.gitignore` で除外済）。**テキスト（台本/プロンプト/spec/設計md）は版管理する**。`git add .` で巻き込まない（⑤の `git add -A` 禁止と整合）[[feedback_video_assets_local_not_github]]。
+- このタスクで生成・DLした画像/動画/音声を洗い出す。**置き場は `.company/creator/work/<PF>/<task>/`（PF×タスク別サブフォルダ）前提**＝散在させず1タスク1フォルダに集約（規約正本＝`DIRECTORY_TREE.md` §2 規範）。
+- **gitバイナリの線引き**＝`.company/creator/work/<PF>/<task>/` のバイナリ（png/jpg/jpeg/mp4/mov/wav/mp3/.DS_Store 等）は **git 非追跡**（`.gitignore` で除外済）。**テキスト（台本/プロンプト/spec/設計md）は版管理する**。`git add .` で巻き込まない（⑤の `git add -A` 禁止と整合）[[feedback_video_assets_local_not_github]]。
 - **公開済みでも「公開済み＝破棄してよい」と決めつけない**（オーナー指示 2026-06-29）。ゴミ箱に入れる前に**すべて確認→すべて「無」で初めて不要**：①他用途（別投稿予定）が無いか全PF確認 ②他の関連タスク・スクリプトが使う予定が無いか ③**再生成の元素材でないか**（語り部の口パク元写真・soul元画像等＝一度失うと再現不可な"種"＝必ず保管 [[feedback_use_exact_specified_asset_not_similar]]）。不要と確定したものはURLだけ md に残してゴミ箱へ [[feedback_media_asset_lifecycle]]。
 - **ボツ・試作・中間生成物** → タスク完了時に**ゴミ箱へ**（ただし上記③に該当しないこと）。
 - **完成本編・未公開で再利用予定**のものは保持（生バイナリはGitHubに上げない＝md記録のみ）[[feedback_video_assets_local_not_github]]。
-- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。**削除/移動の前に `governance/cleanup-safeguard-checklist.md` §1 を全件通過する**（中身確認・参照元grep・移行先の実在・再生成元の確認等）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
+- 規律：`rm` でなく**ゴミ箱へ移動**・判断は**ファイル名でなく中身**で（迷えばオーナー確認）。**削除/移動の前に `DIRECTORY_TREE.md` §4 安全規律 を全件通過する**（中身確認・参照元grep・移行先の実在・再生成元の確認等）。詳細手順は `local-file-cleanup` skill に従う [[feedback_delete_to_trash_not_rm]][[feedback_verify_content_not_filename]]。
 - ※`drafts/` 全体の大規模断捨離は本ステップでなく**別タスク**（ファイル毎判断・safeguard全件通過）。
 
 ### ④-b WF/スクリプト台帳の更新（WF/スクリプトを追加・変更・無効化した場合のみ）
@@ -117,14 +117,14 @@ description: >
 - まとめ作業の範囲は「task_log＋TASKS」だけではない＝**関係する全台帳の更新まで含める**（2026-06-22オーナー指摘＝台帳更新の漏れが多発）。**これは「クローズ時」だけでなく『まとめ作業・クローズ・タスク表の更新（状態変更/再分類/追加/削除）』のいずれでも一緒に行う**（2026-06-22オーナー指摘）。このセッションに以下があれば、それぞれの台帳へ反映する（task_log止まりにしない＝次回リコールで参照される）：
   - **オーナーの決定・方針確定・凍結・打切・設計変更** → **種類で振り分けて昇格**（旧`DECISIONS_LEDGER.md`は凍結アーカイブ＝参照しない・2026-06-29 Step4）：全タスク共通の働き方ルール→`pm/review-baseline.md`の該当観点／PF・skill固有のルール・却下レバー→該当レビューskill観点 or `sns_accounts/<platform>.md`の却下レバー・確定事項節／未完→`TASKS.md`。旧決定をSUPERSEDEするなら明記・再蒸し返し禁止[[feedback_org_memory_recall_mechanism]]。
   - **タスク表の状態変更・再分類・追加・削除をした（クローズに限らず）** → ①その curation 判断を**上記の振り分け先（ルール→`pm/review-baseline.md`・該当レビューskill観点・`sns_accounts/<platform>.md`／未完→`TASKS.md`）**へ記録（蒸し返し防止）②変更した各タスクの `task_logs/<名>.md` 先頭「現在状態（引き継ぎ）」と矛盾がないか確認・同期③状態ラベル(🔴🟡🔵⚪)が `seo_growth/task_report.py` のキーワード自動判定とずれる場合は、TASKS.mdのラベルに合わせて `EXTERNAL_MARKERS`/`PROGRESS_MARKERS`/`OWNER_MARKERS` を補強（ラベルと自動分類を一致させる）。
-  - **毎タスク共通**：新構造アーキの効果測定 → `secretary/task_logs/architecture-effect-measurement.md` に Run を1件追記（①探索②WF遵守③トークンを正直に）[[project_architecture_effect_measurement_ongoing]]。
+  - **毎タスク共通**：新構造アーキの効果測定 → `secretary/work/task_logs/architecture-effect-measurement.md` に Run を1件追記（①探索②WF遵守③トークンを正直に）[[project_architecture_effect_measurement_ongoing]]。
   - **障害対応した** → `INCIDENT_LEDGER.md`（人間用）＋ `ops/monitor_config.yml` `incidents:`（機械用）の両方 [[reference_watchdog_config_ledger_sync]]。
   - **そのタスク固有の台帳**（素材台帳・移行台帳・cr台帳・効果測定表・変更履歴 等）→ 実体に合わせて更新。
 
-### ④-d ディレクトリ整理（フォルダ増減・完成物の使用後掃き出しがあった場合のみ）
+### ④-d ディレクトリ整理（フォルダ増減・完成物の退役整理があった場合のみ）
 
 - **ディレクトリツリー更新**＝このタスクで**新しいトップレベル/用途フォルダを新設・廃止（増減）した**なら、`DIRECTORY_TREE.md`（root直下＝配置の地図）の該当注記を**追記/削除**して地図と現物を一致させる。粒度＝**トップレベル/用途フォルダの増減時のみ**（個々のバイナリ増減では更新しない＝索引を膨らませない）。根拠＝`DIRECTORY_TREE.md` §1-3／memory [[feedback_maintain_directory_tree_master]]。
-- **使用後への掃き出し**＝成果物が**完成したら、採用された1.0だけを各役割の `work/` に残し**、不採用・差し替え済みの旧版・余りテイクを該当役割の `使用後/` へ `mv`（捨てずに脇へ寄せる＝`work/` を開けば実際に使った1.0だけが見える状態を維持）。規律＝`rm` でなく**可逆な `mv`**・参照があれば移動前に張替え・`使用中/`箱は作らない（`work/`＝作業中＆現役1.0／`使用後/`＝退役の2フォルダ）。根拠＝`DIRECTORY_TREE.md` §2／[[feedback_maintain_directory_tree_master]][[feedback_delete_to_trash_not_rm]]。
+- **退役物の整理**＝成果物が**完成したら、採用された1.0だけを各役割の `work/` に残し**、不採用・差し替え済みの旧版・余りテイクは `DIRECTORY_TREE.md` §4 安全規律に従いゴミ箱へ（`使用後/` フォルダは廃止＝退役の常設置き場は作らない）。規律＝`rm` でなくゴミ箱へ移動・参照があれば移動前に張替え・`work/` を開けば実際に使う1.0＋作業中だけが見える状態を保つ。根拠＝`DIRECTORY_TREE.md` §4／[[feedback_maintain_directory_tree_master]][[feedback_delete_to_trash_not_rm]]。
 
 ### ⑤ 選択的コミット & プッシュ（両リポジトリ・安全策つき）
 
@@ -166,13 +166,13 @@ description: >
 
 ```
 □ ① セッションの学び・FB・気づきを分類（Pd手順/F長期事実/R参照/Wx働き方）したか。**Pd（手順）＝kb-*.md／木を持つ大skill本文へ書いたらそこが正本＝MEMORY正本/索引行は新設しない**（安全2条件＝Skill先強化→発動確認→後でMEMORY撤去・逆順厳禁／移す手順にトリガ実在を1件ずつ確認・無トリガはMEMORYに残す）。**F/R/Wxは従来どおりmemoryに正本＋（Wxは）追記行から`[[...]]`リンク・F/Rは索引行を残す**。既存索引の一括削除はしない（保存先を控えたか）
-□ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得・命名不変）・格納`.company/secretary/task_logs/YYYY-MM/`（YYYY-MM＝ファイル名先頭yyyyMM・規約正本=file-placement-rules.md §1）・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
+□ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得・命名不変）・格納`.company/secretary/work/task_logs/YYYY-MM/`（YYYY-MM＝ファイル名先頭yyyyMM・規約正本=DIRECTORY_TREE.md §2 規範）・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
 □ ③ TASKS表を更新したか（完了＝TASKS_COMPLETED追記＋TASKS削除／継続＝TASKS最新化）
-□ ④ メディア生成/DLがあれば棚卸ししたか（置き場=`drafts/<task名>/`・バイナリgit非追跡/テキスト版管理／公開済みだけを破棄理由にしない・再生成元素材は保管／削除/移動前に cleanup-safeguard-checklist.md §1 を全件通過・中身判断・rmでなくゴミ箱）
+□ ④ メディア生成/DLがあれば棚卸ししたか（置き場=`.company/creator/work/<PF>/<task>/`・バイナリgit非追跡/テキスト版管理／公開済みだけを破棄理由にしない・再生成元素材は保管／削除/移動前に DIRECTORY_TREE.md §4 安全規律 を全件通過・中身判断・rmでなくゴミ箱）
 □ ④-b WF/スクリプトを追加・変更・無効化したなら、inventory_meta.yml更新＋`wf_inventory.py generate`で台帳再生成＋`check`がexit0か
 □ ④-c 決定/凍結/打切→種類で振り分けて昇格（ルール→pm/review-baseline観点・PF/skill固有→該当レビューskill観点 or sns_accounts/<pf>.md却下レバー・未完→TASKS.md／旧DECISIONS_LEDGERは凍結アーカイブ＝参照しない）・毎タスク→architecture-effect-measurement(Run)・障害→INCIDENT_LEDGER+monitor_config・タスク固有台帳、を漏れなく更新したか
 □ ④-c タスク表の状態変更/再分類/追加/削除をしたなら（クローズに限らず）→curation判断を上記の振り分け先（pm/review-baseline観点・該当レビューskill観点・sns_accounts/<pf>.md・TASKS.md）に記録＋各task_logの現在状態と同期＋ラベルとtask_report.pyのキーワード判定がずれていれば補強したか
-□ ④-d トップレベル/用途フォルダを増減したなら `DIRECTORY_TREE.md`（root直下）の注記を追記/削除したか／成果物完成時に採用1.0を `work/` に残し不採用・旧版・余りテイクを該当役割の `使用後/` へ `mv`（rmでなく可逆・参照は移動前に張替え）したか
+□ ④-d トップレベル/用途フォルダを増減したなら `DIRECTORY_TREE.md`（root直下）の注記を追記/削除したか／成果物完成時に採用1.0を `work/` に残し不採用・旧版・余りテイクを `DIRECTORY_TREE.md` §4 安全規律に従いゴミ箱へ（`使用後/` フォルダは廃止・rmでなくゴミ箱・参照は移動前に張替え）したか
 □ ⑤ status --short を確認し、関係する変更だけをパス指定で add したか
 □ ⑤ `git add -A`・`git add .` を使っていないか
 □ ⑤ 他タスクの編集途中ファイル・未追跡物（drafts/等）を巻き込んでいないか
