@@ -81,7 +81,7 @@ description: >
 このスキルは汎用に保ち、プロジェクト固有の値は発動時に下記から読む。
 
 - 人智の外側（旧称AIインサイト）運用手順（チャンネルID・スクリプトパス・トークン名・コスト早見）：
-  `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md`（※制作手法の正本は `jinchi-longform` スキル）
+  `.company/secretary/work/task_logs/2026-06/ainsight-longform-production-RUNBOOK.md`（※制作手法の正本は `jinchi-longform` スキル）
 - RKJ調査由来の最新カット術・密度目標：`.company/analyst/work/2026-06-16-rkj-p3-insights-master-list.md`
 - アカウントの正体・コンセプト：`.company/sns_accounts/`
 

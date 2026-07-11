@@ -26,7 +26,7 @@ description: >
 6. **オーナーへの章別提示＝narration/assemble/captionの3レビュー全passの完成系のみ**（未チェックのまま見せない・[[feedback_jinchi_owner_check_per_chapter_9]]）。各章の検証は必ず**制作役が正規レビューskillを実ファイル**（書き出し済み動画のフレーム抽出＋音声抽出→whisper再解析）で実施する。**秘書がJSON(captions.json/timeline.json)の数値突合だけで「一致」と自己判定し提示することは禁止**＝データモデル上の整合と、実際に焼き込まれた動画の実体が一致しているかは別物（2026-07-08/09 ch2・ch3で実際に見逃した事故）。
 
 ## 11工程（順番・正本＝`references/pipeline.md`）
-1. **題材確定** … コンセプト適合（AIが人間の不可能を可能にした題材）。題材キューは sns_accounts/youtube_ainsight.md。→ 確定したら `jinchi-review-topic` を発動して合否を取る（pass のみ工程2へ）。
+1. **題材確定** … コンセプト適合（AIが人間の不可能を可能にした題材）。題材キューは .company/sns_accounts/youtube_ainsight.md。→ 確定したら `jinchi-review-topic` を発動して合否を取る（pass のみ工程2へ）。
 2. **台本＋★ファクトチェック** … `content-planning`発動→起承転結。数字はかな/漢字表記。FCログを台本に残す（公開前ゲート）。→ 台本＋FC完成後 `jinchi-review-script` を発動（★最重要・fail-closed）。
 3. **★章別素材台帳を作る** … `ledger-template.md`。再生順マスターショットリストに区分①〜⑤を割当→予cr積算→1本上限300crと照合。→ 台帳を埋めたら `jinchi-review-ledger` を発動（尺の実合算を必ず検算）。
 4. **ナレーション（Gemini TTS・無料）** … 全part loudnorm正規化→連結。**全再生成しない**（誤読は文スプライス）。→ ナレ連結後 `jinchi-review-narration` を発動。
@@ -48,7 +48,7 @@ description: >
 ### 他スキル／正本への参照（本スキルに埋めない）
 - **台本の企画・起承転結・バズ構造** → `content-planning` スキル（工程2で必ず発動）。
 - **冒頭フック5段・カット密度・AI放置量産の回避・PMレビュー基準** → `video-editing` スキル `references/editing-principles.md`。
-- **プロジェクト固有の実パス・チャンネルID・トークン名・スクリプト一覧** → `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md`（実行値の正本）。
+- **プロジェクト固有の実パス・チャンネルID・トークン名・スクリプト一覧** → `.company/secretary/work/task_logs/2026-06/ainsight-longform-production-RUNBOOK.md`（実行値の正本）。
 - **アカウントの正体・コスト前提・1本上限300cr** → `.company/sns_accounts/youtube_ainsight.md`。
 
 ## 絶対原則（全工程共通）

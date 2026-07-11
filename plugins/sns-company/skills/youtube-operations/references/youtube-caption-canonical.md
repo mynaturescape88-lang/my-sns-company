@@ -16,6 +16,6 @@
 
 ## ツール・根拠・実施状況
 
-- **ツール**＝`seo_growth/youtube_caption_build.py`（統合config→生成・冪等・dry-run/--apply/--backup）。日次WFフッターと整合（ブログ行マーカーで二重更新防止）。トラッカー＝`task_logs/youtube-caption-rebuild-tracker.md`。
+- **ツール**＝`seo_growth/youtube_caption_build.py`（統合config→生成・冪等・dry-run/--apply/--backup）。日次WFフッターと整合（ブログ行マーカーで二重更新防止）。トラッカー＝`.company/secretary/work/task_logs/2026-06/youtube-caption-rebuild-tracker.md`。
 - **根拠**：beans（同ジャンル高再生ピア）の型を分析し採用。BGMのみ＝文字情報でKW補完／関連動画＝セッション視聴時間↑／レバーG＝ROOM多収益源化。
 - **実施状況**：2026-06-15に**<2,000の85本へ一括push完了・実機検証済**。**⚠️残り（>2,000の伸びている動画+自宅4本）の扱いは未決＝要協議**＝キャプションタスクは未クローズ。効果測定は2〜4週間後。旧正本ノート(2026-06-14)は廃止・本フォーマットが最新。

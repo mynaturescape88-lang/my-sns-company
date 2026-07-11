@@ -6,7 +6,7 @@
 > 人智の外側（古代ミステリー×AI・落ち着いたナレで10〜15分）で全工程を確立。
 > **技術面はほぼ自動＝ボトルネックは台本/ファクトチェックの質**。
 > プロジェクト固有の実パス・チャンネルID・トークン名は
-> `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md` を正本とする（ここは方法論）。
+> `.company/secretary/work/task_logs/2026-06/ainsight-longform-production-RUNBOOK.md` を正本とする（ここは方法論）。
 
 ## 工程（順番）
 

@@ -1,7 +1,7 @@
 # 第1弾ナスカで出た課題 → 次回デフォルト（着手前に通読）
 
 > 第1弾ナスカ改修（2026-06）の実制作で実際にハマった所と、その解決を「次回から既定で考慮する」形にまとめたもの。
-> 各項は**症状→原因→次回デフォルト**。詳細正本は各 [[memory]]・`drafts/nazca-cr-ledger.md`・task_log。
+> 各項は**症状→原因→次回デフォルト**。詳細正本は各 [[memory]]・`.company/creator/work/youtube-jinchi/nazca/nazca-cr-ledger.md`・task_log。
 
 ## A. 声・ナレーション
 - **語り部の声が一定にならない**（⚠️2026-07 語り部＝案内人 廃止済＝本項は過去動画の再ビルド時のみ参考）：症状＝Gemini TTSは同条件でも生成毎に基本周波数が不定（実測77-108Hz）・声の保存/再利用ができない。→ **（旧・語り部版）**：語り部の「毎回同じ声」はGemini TTSに期待しない。口パク動画の内蔵音 or 保存ボイス（ElevenLabs Starter $6/月・30kcr≒月78本）で担保。[[reference_tts_voice_consistency_and_4k_assembler]]

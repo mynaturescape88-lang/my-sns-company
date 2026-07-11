@@ -2,7 +2,7 @@
 
 > 第1弾ナスカ（2026-06）で全工程を確立・実証。**技術はほぼ自動＝ボトルネックは台本/FCの質**。
 > プロジェクト固有の実パス・チャンネルID・トークン名・スクリプト名は
-> `.company/secretary/task_logs/ainsight-longform-production-RUNBOOK.md` を正本（ここは方法論）。
+> `.company/secretary/work/task_logs/2026-06/ainsight-longform-production-RUNBOOK.md` を正本（ここは方法論）。
 > 実行python＝**system `python3`**（PILあり）。Whisperだけ **`.venv/bin/python`**（faster-whisper）。
 
 ## 1. 題材確定
@@ -15,7 +15,7 @@
 - **章転換の「間（ま）」は工程8の黒画面章転換で担保**（黒みフェード＋無音＋ポーン効果音）。
 - **数字はかな/漢字表記**（TTS誤読対策）。**FCログを台本末尾に残す**（公開前ゲート）。誤読は工程4で文スプライス。
 - 尺見積り＝**ナレ字数 ÷ 312字/分（実測）＋章転換無音/stinger余白**。15分≒ナレ約3,900〜4,400字。
-- 原稿＝`drafts/<topic>-narration-text-v2.txt`（空行で章、改行で字幕行）。
+- 原稿＝`.company/creator/work/youtube-jinchi/<topic>/<topic>-narration-text-v2.txt`（空行で章、改行で字幕行）。
 
 ## 3. ★章別素材台帳を作る（制作の背骨）
 - `references/ledger-template.md` に従い**再生順マスターショットリスト**を作る。各カット＝[# / シーン / セリフ要約 / 画 / 区分①〜⑥ / 尺 / 予cr / 実cr / 済 / 備考]。
@@ -62,7 +62,7 @@
 
 ## 10. BGM＋効果音
 - 音声＝ナレ＋無音をセクション連結→loudnorm→**BGMサイドチェインダッキング**→SE配置→alimiter。
-- BGM＝archive.org FreePD(CC0)・volume0.10・末尾afade。SE＝`assets/sfx/pon.wav`等を各章頭に`adelay`配置。
+- BGM＝archive.org FreePD(CC0)・volume0.10・末尾afade。SE＝`.company/creator/work/_shared/sfx/pon.wav`等を各章頭に`adelay`配置。
 
 ## 11. サムネ→非公開アップ→（公開はオーナー）
 - サムネ＝**着手前にウェブ調査で同ジャンル高再生サムネをベンチマーク→勝ちパターンを真似る** [[feedback_research_proven_thumbnails_before_creating]]（10字以内/2-3色/ダーク+1アクセント/単一被写体）。実写＋PIL文字。3案出して選定。

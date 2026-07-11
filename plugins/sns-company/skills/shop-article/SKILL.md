@@ -17,6 +17,8 @@ description: >
 
 > このスキルはショップ紹介記事**専用**。note・Instagram・アフィリエイト文のルールは含まない（各専用スキルを使う）。
 
+**成果物・素材の置き場**＝`.company/creator/work/blog-shop/`。撮影写真は `.company/creator/work/blog-shop/shop_images/<店フォルダ>/` に店ごとに置く（`jp/shop_article_generator.py` の画像ベースもここ）。
+
 ---
 
 ## ショップ紹介記事（WordPress ブログ）

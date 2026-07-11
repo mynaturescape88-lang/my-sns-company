@@ -25,7 +25,7 @@ python video_editing/mynaturescape_longform.py assemble \
   --scores video_editing/<name>_segments_nopeople.json \
   --out .company/creator/work/youtube-mynaturescape/<店名ケバブ>/<name>-4k.mp4 \
   --label "<画面に出す名称>" --color 0xRRGGBB \
-  --bgm "<曲ファイル>"            # 省略可＝assets/bgm_pool から直近10未使用を自動選曲 \
+  --bgm "<曲ファイル>"            # 省略可＝.company/creator/work/_shared/bgm_pool から直近10未使用を自動選曲 \
   --ending "/Users/Papa/Downloads/SNS関連/youtube_ending3.MOV" \
   --endroll video_editing/endroll_master.txt \
   --res 4k
@@ -43,7 +43,7 @@ python video_editing/mynaturescape_longform.py assemble \
 - **本編の並べ**：**散らし配置（位相分散）**・同一素材の連続/近接回避・**重複/ループNG**（フックのみ重複OK）。
 - **カット尺**：**BGMの強弱に同期した可変尺**。本編は**最短5秒**（静か→長回し最大9秒・展開→短め）。フックは別（高速）。
 - **音**：BGMは**フック＋本編＋エンディングを通して連続**。**エンディング素材音はミュート**。**全体末尾4秒でBGMフェードアウト**。BGMは無音除去＋クロスフェードでシームレスループ・音量0.5。
-- **BGM選曲**：`assets/bgm_pool/` から直近 `--dedup`（既定10）動画で未使用の曲を自動選曲（台帳 `video_editing/used_bgm.json`）。プールはオーナーがYouTubeオーディオライブラリ（商用可・Content ID無し）から格納。明示`--bgm "曲ファイル"`があれば優先。⚠️**プールの曲数が選曲の前提＝1曲だと毎回同じになる**。「被っても約N本に1回」を満たすにはプールに**N曲以上**入れ`--dedup N`にする（例：20本に1回希望→20曲以上＋`--dedup 20`）。曲数<NだとN本待たずに一周する。
+- **BGM選曲**：`.company/creator/work/_shared/bgm_pool/` から直近 `--dedup`（既定10）動画で未使用の曲を自動選曲（台帳 `video_editing/used_bgm.json`）。プールはオーナーがYouTubeオーディオライブラリ（商用可・Content ID無し）から格納。明示`--bgm "曲ファイル"`があれば優先。⚠️**プールの曲数が選曲の前提＝1曲だと毎回同じになる**。「被っても約N本に1回」を満たすにはプールに**N曲以上**入れ`--dedup N`にする（例：20本に1回希望→20曲以上＋`--dedup 20`）。曲数<NだとN本待たずに一周する。
 - **人物**：顔が特定できる or 約3秒以上写り続けるカットは除外／遠景・小・一瞬の映り込みはOK（肌色ゲートで葉花の誤検出を排除）。
 - **尺**：最低8分（広告）・長いほど良い。20分超はシリーズ分割。
 - **エンドロール**：`video_editing/endroll_master.txt`（撮影協力店舗＆イベントの最新マスター・色は現状黄）。ショップ紹介動画なら当該店を末尾追記（イベント動画は追記保留）。

@@ -38,7 +38,7 @@ GitHub Actionsワークフローの設計・保守・障害対応をするとき
 
 ## 自己修復監視 watchdog の運用則
 
-- **通知は「未解決＝オーナー判断が要る障害」だけ**飛ばす。失敗しても後続/リトライで成功したものは通知しない（ノイズ防止）。`monitor_config.yml` の `group:` で本体＋リトライをまとめ、`watchdog.detect()` が「失敗より後にグループ内成功あり＝resolved(自己解決)」を判定→resolved失敗は通知せず台帳に「自己解決」記録。未解決は同一グループで1通に集約。欠落・自動修復失敗・未知シグネチャは従来どおり通知。正本＝`task_logs/wf-self-healing-design.md §9`。
+- **通知は「未解決＝オーナー判断が要る障害」だけ**飛ばす。失敗しても後続/リトライで成功したものは通知しない（ノイズ防止）。`monitor_config.yml` の `group:` で本体＋リトライをまとめ、`watchdog.detect()` が「失敗より後にグループ内成功あり＝resolved(自己解決)」を判定→resolved失敗は通知せず台帳に「自己解決」記録。未解決は同一グループで1通に集約。欠落・自動修復失敗・未知シグネチャは従来どおり通知。正本＝`.company/secretary/work/task_logs/2026-06/wf-self-healing-design.md §9`。
 - **watchdog WF には `actions: read` を必ず付ける**。`ops/watchdog.py` は `gh run list` でWF履歴を取得して検知するが、`contents: write` だけだと `actions: read` が無く `gh run list` が403→exit1。`gh_json()` は例外を握りつぶし `[]` を返す設計なので、**全WFで検知0件・通知0件のまま静かに目隠し（沈黙故障）**になる（INC-A7／2026-06-15発覚）。`permissions:` 明示時は監視系スコープを書き忘れない。
 - インシデント対応時の台帳同期（シグネチャ源YAML＝`monitor_config` と INCIDENT台帳は別物・両方更新）は技術定数としてMEMORY `reference_watchdog_config_ledger_sync` 側に温存。
 
