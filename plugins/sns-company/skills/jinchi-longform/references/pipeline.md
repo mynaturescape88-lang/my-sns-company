@@ -24,7 +24,7 @@
 - 台帳は task_log のインライン表より優先する**単一の正本**（例＝`.company/creator/work/youtube-jinchi/nazca/nazca-cr-ledger.md`）。
 
 ## 4. ナレーション（Gemini TTS・無料）
-- `python3 scripts/gemini_tts.py tts --file drafts/<topic>-narration-text-v2.txt --voice Charon --style "落ち着いた低い声で、ミステリー番組のナレーターのように。" --output drafts/<topic>-narration.mp3 --partsdir assets/<topic>_broll/_audio`
+- `python3 scripts/gemini_tts.py tts --file .company/creator/work/youtube-jinchi/<topic>/<topic>-narration-clean/ --voice Charon --style "落ち着いた低い声で、ミステリー番組のナレーターのように。" --output .company/creator/work/youtube-jinchi/<topic>/_audio/<topic>-narration.mp3 --partsdir .company/creator/work/youtube-jinchi/<topic>/_audio/`
 - ⚠️無料枠 ~15回/日・JST16時頃リセット。429で止まったら枠回復後にresume（既存partスキップ）。
 - ⚠️チャンク毎に音量がばらつく→全partを `loudnorm I=-17:TP=-1.5` で正規化してから連結（durations不変）。
 - ⚠️**全再生成しない**（冒頭の良いテンポまで変わる）。直すのは音量正規化＋該当チャンクのみ。**誤読は章再生成せず文スプライス**（`splice_sentence.py`・無音境界）。
@@ -47,7 +47,7 @@
 - **`get_cost:true` で必ず0cr先読み→残高記録**。presetが返り実生成されない時は`declined_preset_id`でリテラル生成。
 - **生成後ゲート**＝採用前に額/鼻/頬を拡大し**てかり/老け**を点検→passのみ採用（`lessons-learned.md`）。崩壊カットは末尾にffmpegフェード・トゥ・ブラック(0cr)で救済。
 - 顔の一貫性＝soul_2（soul_id=`ca82d851`・髭なし）。soul_2は画面内に文字を幻覚→暗い下地ならcv2 inpaint or クロップで除去。
-- 生成物＝`assets/<topic>_broll/_ai/`。
+- 生成物＝`.company/creator/work/youtube-jinchi/<topic>/_ai/`。
 
 ## 8. 4Kアセンブル（`build_nazca_4k.py` を題材別にテンプレ流用）★旧 build_nazca_video.py は使わない
 - 設計＝**音声駆動セクション尺＋行アンカー同期**。各カットに開始ナレ行(sl)を持たせ、**Whisper実測の行時刻**に合わせる（比例配置は図・AIカットがズレる主因）。章＝1音声源を共有する連続カット群。映像尺を音声尺へ厳密一致（不足は自動bridge延長／過多は自動トリム）。

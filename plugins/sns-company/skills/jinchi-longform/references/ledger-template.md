@@ -61,8 +61,8 @@
 - 生成のたびに実cr追記→残高更新。**生成GOはオーナーのみ・`get_cost`(0cr)で先読みしてから**。
 
 ## E. 0cr内製ログ（任意・図解/★合成の出力先記録）
-- 図解＝`assets/<topic>_broll/_diagrams/`（1920x1080 PNG・暗背景/金/ヒラギノW6）。
-- ★合成＝`assets/<topic>_broll/_composites/`（1920x1080 mp4 h264・既存stock＋numpyグローをblend=screen）。
+- 図解＝`.company/creator/work/youtube-jinchi/<topic>/_diagrams/`（1920x1080 PNG・暗背景/金/ヒラギノW6）。
+- ★合成＝`.company/creator/work/youtube-jinchi/<topic>/_composites/`（1920x1080 mp4 h264・既存stock＋numpyグローをblend=screen）。
 
 ---
 ### 第1弾ナスカでの確定値（参考・※旧・語り部版の実績値）

@@ -49,7 +49,7 @@ trigger: /sns-company
 | 進捗確認 | 現在の取り組み・完了済み成果物・次のアクションをサマリ |
 | TODO・タスク関連 | `secretary/todos/` の今日のファイルに追記・表示 |
 | 相談・壁打ち | 対話で深掘りし、まとまったら `secretary/work/` に保存 |
-| メモ | `secretary/inbox/` にタイムスタンプ付きで記録 |
+| メモ | 議事メモ(sessionlog)方式で `secretary/work/task_logs/YYYY-MM/` に記録（`task-wrapup` ② が正本） |
 | 質問・不明点 | 専門用語・数値・戦略内容をかみ砕いて説明 |
 | 雑談・挨拶 | 親しみやすく応答 |
 
@@ -115,14 +115,13 @@ PM（要件との整合性確認）
 
 ## 自動記録ルール
 
-意思決定・学び・指摘・アイデアは言われなくても記録する。
+意思決定・学び・指摘・アイデア・作業メモは言われなくても記録する。記録先は**種類で振り分ける**（旧 `governance/` ・旧 `secretary/inbox/` は廃止＝行き先にしない）。
 
-- 意思決定 → `governance/YYYY-MM-DD-decisions.md`
-- 学び・気づき・ユーザーからの指摘・フィードバック → `.company/secretary/work/learnings/YYYY-MM-DD-learnings.md`
-- アイデア → `secretary/inbox/YYYY-MM-DD.md`
+- 意思決定・決定/凍結 → **種類で振り分け**：ルール → `pm/review-baseline.md`・各レビュー子skillの観点／データ（各SNSの数値・沿革・戦略）→ `sns_accounts/<platform>.md`／未完タスク → `TASKS.md`（旧 `DECISIONS_LEDGER.md`／`governance/` は参照しない）。
+- 学び・気づき・ユーザーからの指摘・フィードバック → `fb/<task>.md`（`task-wrapup` ① が `COMMON.md`「FBの消化ライフサイクル」で分類・昇華する）。深い一次記録は `.company/secretary/work/learnings/YYYY-MM-DD-learnings.md` に併存してよい。
+- アイデア・作業メモ → 議事メモ(sessionlog) `.company/secretary/work/task_logs/YYYY-MM/`（`task-wrapup` ② が正本・1セッション1ファイル・過去ログは凍結）。
 
-同じ日付のファイルが存在する場合は**追記**する（新規作成しない）。
-ファイル操作前に必ず今日の日付を確認する。
+記録は**追記の積み重ねでなく現状へ書き換える**（consolidate＝陳腐化メモは削除し、最終仕様・確定・教訓リンクだけ残す）。ファイル操作前に必ず今日の日付を確認する。
 
 **指摘・フィードバックの扱い（全役割共通）:**
 プロジェクト中にユーザーから指摘・修正・フィードバックを受けた場合、その内容を `.company/secretary/work/learnings/YYYY-MM-DD-learnings.md` に記録し、以降の全作業に反映する。同じ指摘を二度受けないようにする。これはすべての役割に適用される。
