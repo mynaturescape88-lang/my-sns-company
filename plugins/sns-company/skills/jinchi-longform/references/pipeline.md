@@ -11,11 +11,11 @@
 
 ## 2. 台本＋★入念なファクトチェック
 - **🔴台本前に `content-planning` スキルを必ず発動**（企画チェック6項目＋起承転結フロー＋#3-cバズ構造モデリング）。
-- 構成＝**コールドオープン＋【起】1章【承】3章【転】2章【結】2章＋各章転換teaser＋ED（コーダ＋次弾匂わせstinger）**（The Life Guide型＝ホスト非表示・純ナレーション）。各章＝空行区切りチャンク。stinger（次弾匂わせ）は純ナレ＋字幕で成立させる（語り部に依存しない）。
+- 構成＝**コールドオープン＋【起】1章【承】3章【転】2章【結】2章＋各章転換teaser＋ED（コーダ＋次弾匂わせstinger）**（The Life Guide型＝ホスト非表示・純ナレーション）。**各章＝独立した1ファイル（章別txt）**＝TTSは「1章=1リクエスト」で生成する（工程4・段落分割しない）。stinger（次弾匂わせ）は純ナレ＋字幕で成立させる（語り部に依存しない）。
 - **章転換の「間（ま）」は工程8の黒画面章転換で担保**（黒みフェード＋無音＋ポーン効果音）。
 - **数字はかな/漢字表記**（TTS誤読対策）。**FCログを台本末尾に残す**（公開前ゲート）。誤読は工程4で文スプライス。
 - 尺見積り＝**ナレ字数 ÷ 312字/分（実測）＋章転換無音/stinger余白**。15分≒ナレ約3,900〜4,400字。
-- 原稿＝`.company/creator/work/youtube-jinchi/<topic>/<topic>-narration-text-v2.txt`（空行で章、改行で字幕行）。
+- 原稿＝`.company/creator/work/youtube-jinchi/<topic>/<topic>-narration-clean/` に**章別txt（1ファイル=1章・改行で字幕行）**を置く（旧・単一ファイル空行区切り方式は廃止）。1章=1リクエストでTTSし章内の声の揺れをゼロにする（工程4）。
 
 ## 3. ★章別素材台帳を作る（制作の背骨）
 - `references/ledger-template.md` に従い**再生順マスターショットリスト**を作る。各カット＝[# / シーン / セリフ要約 / 画 / 区分①〜⑥ / 尺 / 予cr / 実cr / 済 / 備考]。
@@ -23,11 +23,12 @@
 - **cr＝予cr（get_cost見積）と実cr（実消費）を分けて記録**。生成済み・既存沈没素材も実crを記入（0にしない）。
 - 台帳は task_log のインライン表より優先する**単一の正本**（例＝`.company/creator/work/youtube-jinchi/nazca/nazca-cr-ledger.md`）。
 
-## 4. ナレーション（Gemini TTS・無料）
-- `python3 scripts/gemini_tts.py tts --file .company/creator/work/youtube-jinchi/<topic>/<topic>-narration-clean/ --voice Charon --style "落ち着いた低い声で、ミステリー番組のナレーターのように。" --output .company/creator/work/youtube-jinchi/<topic>/_audio/<topic>-narration.mp3 --partsdir .company/creator/work/youtube-jinchi/<topic>/_audio/`
-- ⚠️無料枠 ~15回/日・JST16時頃リセット。429で止まったら枠回復後にresume（既存partスキップ）。
-- ⚠️チャンク毎に音量がばらつく→全partを `loudnorm I=-17:TP=-1.5` で正規化してから連結（durations不変）。
-- ⚠️**全再生成しない**（冒頭の良いテンポまで変わる）。直すのは音量正規化＋該当チャンクのみ。**誤読は章再生成せず文スプライス**（`splice_sentence.py`・無音境界）。
+## 4. ナレーション（Gemini TTS・無料）＝1章1リクエスト方式
+- **確立手法＝`<topic>-narration-clean/` の章別txt（1ファイル=1章）を「1章=1リクエスト」でTTS**（`\n\n`段落分割はしない＝章内の声の揺れをゼロにする）。参照実装＝`scripts/ghost_hominin_gemini_nar.py`（章ごとにcutoff/loop検出リトライ＋端無音トリム＋loudnorm を内包）。汎用スクリプトなら `scripts/gemini_tts.py tts --file <章txt> --whole --voice Charon --style "落ち着いた低い声で、ミステリー番組のナレーターのように。" --output ...` を**章ごとに**回す（`--whole`＝全文1リクエスト）。
+- ⚠️無料枠 ~15回/日・JST16時頃リセット。429で止まったら枠回復後にresume（生成済みの章はスキップ）。無料枠は10 req/分（RPM）＝リトライや連続章を連射しない（各章前に間隔を空ける）。
+- ⚠️**音量のばらつきは章境界にだけ出る**（1章＝1リクエストなので章内は揺れなし）→各章を端の無音のみトリム＋`loudnorm I=-17:TP=-1.5:LRA=11` で正規化してから連結（章内の自然な「間」は保持）。
+- ⚠️**全再生成しない**（他章の良いテンポまで変わる）。直すのは音量正規化＋**該当章のみ**再生成。**誤読は章再生成せず文スプライス**（`splice_sentence.py`・無音境界）。
+- ⚠️cutoff（喋り止め後ずっと無音）/loop（同一文反復）は**総尺でなく実発話尺＝字/秒＋whisper文字カバレッジ**で検出（raw総尺は末尾無音に騙される）。
 - 尺目安＝日本語100字≒25秒／2000字≒5〜6分。
 
 ## 5. 実写素材（6サイト横断・無料/商用可）

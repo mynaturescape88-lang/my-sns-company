@@ -85,7 +85,13 @@ Day範囲用に**ランナーの定数を書き替えて実行**（`build_digest
 `seo_growth/.venv/bin/python seo_growth/upload_kosodate_digest.py --video <OUT> --title "<案>" --desc-file <概要欄txt> --thumbnail <サムネ>`
 - 認証＝`YOUTUBE_KIDS_UPLOAD_REFRESH_TOKEN`（スカイツリーch＋`youtube.force-ssl`書込スコープ）。**ch自己ガード**あり（認証chがスカイツリーでなければ中止）。→ [[reference_youtube_refresh_token_bound_to_channel_and_scope]]
 - `privacyStatus=private` 固定（公開はオーナー）。まず `--dry-run` で投げる内容を確認。
-- 概要欄＝前回テンプレ（`.company/creator/work/kosodate/skytree-newborn-day0-27-digest-youtube-description.md`）を当該Dayアークに書き換え。BGMは**YouTubeオーディオライブラリ曲（商用/収益化可）**＝概要欄にクレジット記載。
+- 概要欄＝**確定書式（Day101-150で確定・2026-07-11オーナー指示）**。この5ブロックをこの順・絵文字ゼロで作る：
+  ①**導入3行**＝1行目「生後N日目からM日目まで。」／2行目「はじめての◯◯、はじめての△△、…」（当該Dayアークの実イベントを台帳・実素材から拾って列挙）／3行目「生後X〜Yヶ月ごろの、〜◯日間をまるごと1本にまとめました。」（◯日間＝実日数）。素朴な一人称・誇張なし。
+  ②**BGMブロック**＝ヘッダ「BGM：YouTube オーディオ ライブラリ」＋`・曲名 - アーティスト` を**この動画の実使用曲**で列挙（見本の曲名を流用しない）。
+  ③**楽天ROOM**＝「子育てグッズを楽天ROOMにまとめています」＋`https://room.rakuten.co.jp/room_1639d2613f/items`（固定）。
+  ④**ハッシュタグ**＝`#育児記録 #生後Xヶ月 #生後Yヶ月 #成長記録 #赤ちゃんのいる暮らし #baby #赤ちゃん動画 #<その回の象徴イベント>`。**月齢タグは当該Dayの実月齢に合わせる**（例:Day101-150→#生後4ヶ月/#生後5ヶ月・#百日は101日以降外す）。個数感は8個前後。
+  - 前作へのリンク・英語要約・みどころ一覧は**入れない**（シンプルに寄せる）。正本テンプレ＝`.company/creator/work/kosodate/skytree-day101-150-digest-youtube-description.md`。
+  - BGMは**YouTubeオーディオライブラリ曲（商用/収益化可）**＝②でクレジット記載。
 - サムネ＝指定イラスト（**16:9**・`thumbnails.set`は2MB上限＝超えるならJPEG化）。→ [[reference_youtube_thumbnail_2mb_limit]]
 - **アップ後にAPI実測検証**：`videos().list`で privacyStatus=private・尺・title・description・サムネ設定を確認（read-after-writeラグに注意＝即listがNGならsleepリトライ）。→ [[reference_youtube_videos_update_lag_and_sort_collision]]
 
