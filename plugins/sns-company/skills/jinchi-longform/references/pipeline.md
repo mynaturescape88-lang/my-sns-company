@@ -36,6 +36,7 @@
 - 横断＝Pexels/Pixabay（要キー・帰属不要）＋NASA/Wikimedia/Openverse/Internet Archive（キー不要）。**Internet Archiveは著作権物混入可→収益動画で使う前に個別license確認**。確実に安全＝Pexels/Pixabay/NASA。
 - 動画は ffprobe で H.264 自動選別（[[reference_gyre_h264_only_codec]]）。**素材ファイル名は中身と不一致しがち→必ずフレーム抽出で目視選定**。
 - 原則＝**本物で作れるものはAIにしない**（空撮・地形・小道具はstock化でcr節約／人物の古代再現はstock不可＝AI必然）。
+- **実在の企業/製品/人物/事件を扱う回は"本物の画像・ロゴ"を最優先**（汎用の無料実写や社名ワードマーク板＝プレーン文字板は、本物が使えない時の"代替"であって既定ではない）[[feedback_jinchi_use_real_images_not_only_free_stock]]。**可否の一次軸は著作権(copyright)＝商標ブランドガイドラインではない**。商標のnominative/referential use（推奨/提携を示唆しない解説・言及目的の表示）は一般に許容され、各社ブランドガイドラインは"権利者の運用姿勢"で著作権上の使用可否の最終根拠ではない（＝これでfail-closedして本物を一律排除しない）。ロゴの多くは「ありふれた書体の文字/単純図形」で創作性の閾値(threshold of originality)未満＝**public domain**であり、Wikimedia Commonsに**{{PD-textlogo}}**タグで存在＝**著作権フリーで本物を使える**（複雑な絵柄/独自イラストのロゴは著作権保護＝non-free＝代替）。**手順**＝①Wikimedia Commons等でPD-textlogo/CC/PDの本物を**必ず探索**し著作権的に問題なければ本物を使う→②本当に著作権保護される複雑ロゴ・確認できないものだけ代替（ワードマーク板）。**"調べずに代替"は本物最優先原則の違反**。公的機関/公開Webの公式画面（NVD/CVE/政府/公開記録）は無改変スクショで事実提示に使う。オーナー指定スコープ（本物を使う）を勝手に絞らない[[feedback_secretary_do_not_shrink_owner_specified_scope]]。
 
 ## 6. 図解・★合成（0cr内製・Higgsfield課金不要）
 - 図解＝PIL（`make_diagrams.py`系）。ブランド統一＝**暗背景／金アクセント／ヒラギノ角ゴW6**。内容は縦中央寄せ・**下~240pxは字幕帯で空ける**。**図解2連続は禁止**（間に実写/画像を挟む）。地上絵はアルキメデス螺旋が一発でclean。
