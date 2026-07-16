@@ -61,6 +61,12 @@
 ## 9. ★Whisper字幕同期（最重要・無料）
 - `.venv/bin/python scripts/nazca4k_whisper.py`（または `align_captions.py`）→ 行ごとの実発話時刻 → アセンブラの行アンカーへ。文字数比だと実発話と最大±5秒ズレる。**align後に再ビルド**。
 - ⚠️**この環境のffmpeg（brew 8.x）はsubtitles/drawtextフィルタ非搭載**→字幕/タイトル/ブランドは**PILでPNG生成しoverlayで焼く**方式（`build_nazca_4k.py`に内蔵）。
+- **★行頭アンカーは「読み形」に寄せて照合する（恒久・2026-07-17 第4弾で確立／実装正本＝`scripts/build_aivuln_4k.py`）**：clean台本は**TTS読み表記**（AI→エーアイ 等＝`<topic>_prep_tts_text.py` の `REPL` で変換済）だが、Whisper認識は**綴り**（AI）で返る。この不一致で `find()` が外れた行は **char-ratio補間へ落ち、実発話の「間」を無視した比例配置＝1.0〜1.6s早い字幕**になる（第4弾起1で実測・数値ゲートは誤PASS）。恒久対処＝アセンブラに**読み正規化レイヤ**を持たせる：
+  1. `from <topic>_prep_tts_text import REPL` してWhisper側にも同じ変換を当て、**両側を読み形へ寄せて照合**（`_READ_RULES` / `_read_norm_str` / `_read_norm_pairs`）。**辞書はREPLが単一の真実源**＝将来の固有名はREPLに足せば台本・字幕・照合へ自動反映。
+  2. REPLに無い**Whisper綴りゆれ**（一つ↔ひとつ／例える↔たとえる 等）は `_READ_EXTRA` で補う。
+  3. 完全一致で拾えない行は **difflibの行頭probe（ratio≥0.6）** で拾い、**補間へ落とさない**（`_fuzzy_head_pos`）。
+- **★glued限定の実音声スナップ**：`_speech_mask` / `_snap_to_speech` ＝直前語とのwhisper gapが **<0.08s** の「貼り付き語」だけを発話再開位置へ前進スナップする。**真正の「間」では不発**＝演出の間を潰さない。
+- **工程9の完了条件（この2つを満たすまで次へ進めない）**：① 章ごとに**アンカー成立＝全行／補間0**（成立率を記録）② **フレーム抽出×独立Whisperの実測で全札|Δ|<0.35s**。`jinchi_caption_sync_check.py` の median/max のPASSは**合格根拠にしない**（最寄りonsetを拾うため誤PASSする）→ 判定は `jinchi-review-caption` の観点で行う。
 
 ## 10. BGM＋効果音
 - 音声＝ナレ＋無音をセクション連結→loudnorm→**BGMサイドチェインダッキング**→SE配置→alimiter。
