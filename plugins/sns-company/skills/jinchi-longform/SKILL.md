@@ -37,7 +37,7 @@ description: >
 7. **AIの“撮れないシーン”だけ生成（有料・各カット許可制）** … 無音モーション・再現＝Kling。フリー素材に質感を寄せる。→ 各カットは生成"前"に `jinchi-review-aicut`（生成前ゲート・fail-closed）、生成"後"に同skill（採否ゲート）を発動。
 8. **4Kアセンブル（`build_nazca_4k.py`を題材別にテンプレ流用）** … **音声駆動セクション尺＋行アンカー同期**。純ナレ章nar＋無音章sil＋黒画面の章転換のみ（次回題材はkind=guide章・GA/GV参照・GUIDE_FADEを書かない＝純ナレ運用）。→ 4K書き出し後 `jinchi-review-assemble` を発動。
 9. **★Whisper字幕同期（最重要）** … `nazca4k_whisper.py`／`align_captions.py`で実発話時刻を取得。**この環境のffmpegはsubtitles/drawtext非搭載→字幕はPIL PNGをoverlay焼き**。→ align・再ビルド後 `jinchi-review-caption` を発動。
-10. **BGM＋効果音** … BGM=archive.org FreePD(CC0)・vol0.10・サイドチェインダッキング。章頭にSE。
+10. **最終アセンブル（OP/ED結合＋章転換札）** … 下記「§最終アセンブル（確定仕様）」に従う。**本編BGMは付けない**（ナレのみ）。BGMはOP/EDに元から入っている分だけ。→ 結合前後で「§承認素材 同一性ゲート」を通す。
 11. **サムネ→非公開アップ** … サムネはウェブ調査で高再生型を真似る [[feedback_research_proven_thumbnails_before_creating]]。`upload_ainsight_video.py`（privacy=private・`containsSyntheticMedia:True`必須・概要欄に目次＋AI免責）。公開はオーナー（Studioで終了画面配置→金/土夜予約公開）。→ サムネ3案後 `jinchi-review-thumbnail` を発動（アップ直前メタもここで最終確認）。アップ前に `pm/review-baseline.md`（Layer1てっぺん総合）を1回当てる。
 
 ## reference 索引
@@ -52,6 +52,45 @@ description: >
 - **冒頭フック5段・カット密度・AI放置量産の回避・PMレビュー基準** → `video-editing` スキル `references/editing-principles.md`。
 - **プロジェクト固有の実パス・チャンネルID・トークン名・スクリプト一覧** → `.company/secretary/work/task_logs/2026-06/ainsight-longform-production-RUNBOOK.md`（実行値の正本）。
 - **アカウントの正体・コスト前提** → `.company/sns_accounts/youtube_ainsight.md`（＝「1本上限300cr」「月1,000cr枠」はHiggsfield完全解約で**撤廃済み**と明記されている正本）。
+
+## 最終アセンブル（確定仕様・2026-07-19 オーナー確定／第4弾で確立）
+
+### A. 並び
+`OP → [黒gap] → ch1(コールド) → [札第一章] → ch2 → [札第二章] → ch3 → … → [札終章] → ch11 → [黒gap] → ED`
+
+- **OP/EDは固定資産＝改変しない**。使うのは 4K アップスケール版のみ（`op-ed/op_final_4k.mp4` / `ed_final_4k.mp4`）。作り直さない・音量を触らない。
+- **コールド（ch1）には札を置かない**＝掴みを止めない。札は**第一章＝ch2 の直前**から始まり、**終章＝最終章の直前**まで。
+- ED は concat 前に音声だけ 48kHz へ揃える（`-c:v copy -c:a aac -ar 48000`）。映像は copy のまま。
+
+### B. 章転換＝黒画面＋章タイトル札＋ポーンSE
+- 尺 **4.0s**（fade in 0.4 / hold 3.2 / fade out 0.4）。
+- SE ＝ `_shared/sfx/pon.wav` を **t=0 に1回**鳴らし、`apad` で 4.0s へ充填。
+- 札 PNG の決定的仕様：3840×2160・**純黒 (0,0,0)** 背景・中央寄せ。
+  - タイトル＝`ZenMaruGothic-Bold` **160px**・トラッキング **+6**・色 **#efece8**。
+  - 番号（第一章／終章）＝`ZenMaruGothic-Medium` **64px**・トラッキング **+16**・色 **#9a9490**。
+  - 縦並び＝［番号］→ ギャップ **72px** →［タイトル］。ブロック全体を画面中央へ。
+  - **title-safe = 3360px**。超過するタイトルはフォントを 8px 刻みで 80px まで縮めてフィットさせる（改行しない）。
+- 札クリップは `libx264 / yuv420p / 30fps / crf20` ＋ `aac 256k / 48kHz / stereo` で書き出す（本編章と同一パラメータ＝`-c copy` concat が通る）。
+
+### C. 本編BGMは付けない
+- 本編（ch1〜ch11）は**ナレーションのみ**。章別BGM・ダッキング・サイドチェインは**やらない**。
+- 音の変化は章転換のポーンSEだけが担う。
+- BGMプール（`_shared/bgm_pool/`）と `BGM_LICENSE_AND_SOURCES.txt` は資産として保持するが、本編へは載せない。
+
+### D. 承認素材 同一性ゲート（必須・fail-closed）
+**目的＝「オーナーがOKを出した素材"そのもの"だけを繋ぐ」ことを機械で証明する。**
+
+1. **承認時に凍結**＝章がオーナー承認された時点で、その章 mp4 の `bytes / 尺 / full-md5 / streamhash(v,a)` を**承認マニフェスト**（`<topic>/approval-manifest-<弾>.md`）へ記録する。
+2. **正本キー＝streamhash(v/a)**。full-md5 は stream-copy concat で容器メタ（creation_time 等）が書き換わるため結合後に保存されない＝同一性の判定に使わない。
+3. **結合前**＝concat 入力の各ファイルの streamhash がマニフェストと一致することを確認する。1件でも不一致なら結合しない。
+4. **結合後**＝完成フル版から各章区間を切り出し、streamhash がマニフェストと再一致することを確認する。一致表を「完成」報告に添付する。
+5. **禁止**＝`all` 再生成・`pick_stock` 巡回・本編章の映像再エンコード。結合は **stream-copy のみ**（[[reference_jinchi_full_rebuild_pick_stock_nondeterminism]]）。
+6. 分岐＝**不一致が出た場合**は結合を中止し、承認済みの実体（マニフェストに載っている方）を正としてビルド成果物側を差し替える。マニフェストを実体に合わせて書き換えることは**しない**。
+
+### E. 仕様の決め方（オーナーに選ばせない）
+- 「章転換をどうするか」「OPをどこに置くか」等の**確定済み仕様はオーナーに質問しない**＝**前回の完成品が仕様**。前作の実物を測って再現する。
+- 完成フル版 mp4 は**アップ後にディスクから消えている**（[[reference_jinchi_finished_fullversion_deleted_lives_on_youtube.md]]）＝参照先は **YouTube 上の実アップ動画**。企画メモ・台帳から仕様を起こさない。
+- 分岐＝再現できていない箇所が見つかったら、質問せずに**修正して合わせる**。オーナーへ上げるのは①出来映え②コスト③不可逆だけ。
 
 ## 絶対原則（全工程共通）
 - **AI放置量産はしない**：ファクトチェック・落ち着いた語りを必ず注入（inauthentic/BAN回避）。
