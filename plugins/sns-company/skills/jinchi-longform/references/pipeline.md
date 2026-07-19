@@ -18,10 +18,11 @@
 - 原稿＝`.company/creator/work/youtube-jinchi/<topic>/<topic>-narration-clean/` に**章別txt（1ファイル=1章・改行で字幕行）**を置く（旧・単一ファイル空行区切り方式は廃止）。1章=1リクエストでTTSし章内の声の揺れをゼロにする（工程4）。
 
 ## 3. ★章別素材台帳を作る（制作の背骨）
-- `references/ledger-template.md` に従い**再生順マスターショットリスト**を作る。各カット＝[# / シーン / セリフ要約 / 画 / 区分①〜⑥ / 尺 / 予cr / 実cr / 済 / 備考]。
-- **品質優先（2026-06-18確定）**：①各カットで最高品質の材料を先に決める（実写/0cr画像/図解/AI動画）②無理に画像にしない＝動き・順次性・実在感が要る所はAI動画③そのうえで予crを積算→**1本上限300cr**と照合→超過時のみ最小劣化で削る。
-- **cr＝予cr（get_cost見積）と実cr（実消費）を分けて記録**。生成済み・既存沈没素材も実crを記入（0にしない）。
-- 台帳は task_log のインライン表より優先する**単一の正本**（例＝`.company/creator/work/youtube-jinchi/nazca/nazca-cr-ledger.md`）。
+- `references/ledger-template.md` に従い**再生順マスターショットリスト**を作る（**テンプレが唯一の正本＝前作の台帳を写さない**）。各カット＝[# / VO要約 / 画 / 区分①②③★(間) / 実写① / 尺s / 素材ID / 済 / 入手経路・注記]（**A表9列固定**）。
+- **品質優先（2026-06-18確定）**：①各カットで最高品質の材料を先に決める（実写/0cr画像/図解/★合成）②無理に画像にしない＝動き・順次性・実在感が要る所は実写素材を探し切る。
+- **cr（Higgsfieldクレジット）概念は廃止**＝Higgsfield完全解約（2026-07-07失効）で有料AIカット自体が選択肢に無く**全カット0cr確定**。予cr/実cr列・cr収支節・「1本上限300cr」照合は台帳に持ち込まない（`ledger-template.md` 冒頭・`lessons-learned.md` §I）。
+- 台帳は task_log のインライン表より優先する**単一の正本**（現行の実証済み例＝`.company/creator/work/youtube-jinchi/ai-vulnerability/ai-vulnerability-cr-ledger.md`）。**ファイル名は `<topic>-cr-ledger.md` のまま＝cr節を廃止しても変更しない**。
+- **★素材の合法性（絶対基準・恒久2026-07-19 オーナー指示）**：**使用する動画素材（ロゴ・画像・映像・公式画面スクショ等、画面に映る全アセット）は、すべて合法であること。** 合法だと確認できない素材は使用不可＝この基準を満たさない章は完了・提示・公開しない。
 
 ## 4. ナレーション（Gemini TTS・無料）＝1章1リクエスト方式
 - **確立手法＝`<topic>-narration-clean/` の章別txt（1ファイル=1章）を「1章=1リクエスト」でTTS**（`\n\n`段落分割はしない＝章内の声の揺れをゼロにする）。参照実装＝`scripts/ghost_hominin_gemini_nar.py`（章ごとにcutoff/loop検出リトライ＋端無音トリム＋loudnorm を内包）。汎用スクリプトなら `scripts/gemini_tts.py tts --file <章txt> --whole --voice Charon --style "落ち着いた低い声で、ミステリー番組のナレーターのように。" --output ...` を**章ごとに**回す（`--whole`＝全文1リクエスト）。
