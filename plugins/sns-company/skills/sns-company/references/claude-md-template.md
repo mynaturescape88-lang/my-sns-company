@@ -57,7 +57,7 @@
 ## 同時生成する常時/オンデマンド層（雛形）
 - `COMMON.md` … 全役割共通ルール＋標準フロー＋普遍ゲート＋FB消化ライフサイクル（→ departments.md の雛形）
 - `skill-routing.md` … タスク→skill／fb の対応表（→ departments.md の雛形）
-- `pm/review-baseline.md` … レビュー普遍6観点（→ departments.md の雛形）
+- `pm/review-baseline.md` … レビュー普遍7観点（→ departments.md の雛形）
 - `fb/`（空・タスク発生時に `fb/<task>.md` を1タスク1ファイルで追加）
 - `<役割>/results/`（直近結果の永続化先・初回は空）
 - `knowledge/`（手順・方法論の正本 kb-*.md・初回は空）

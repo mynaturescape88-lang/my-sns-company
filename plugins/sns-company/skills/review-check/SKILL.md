@@ -11,14 +11,14 @@ description: >
 
 ## 読むのは3つだけ（混在禁止・token効率）
 - ① そのタスクの `.company/fb/<task>.md`（ドメイン固有FB）＝ `.company/skill-routing.md` の「fb/」列で決定
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の6観点）
+- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
 - ③ **対象プラットフォームの `.company/sns_accounts/<platform>.md`（戦略相違チェックの照合先）**＝ `skill-routing.md`「タスク→対象platform」で**該当1枚だけ**特定（他媒体は読まない）。横断タスクは `knowledge/kb-marketing-strategy.md`。
 - ※他タスクの fb/・他媒体の sns_accounts は読まない（1タスク1ファイル）。深掘りは `[[feedback_...]]` で memory 正本へ
 
 ## フロー（発動＝この順で全実行）
 - ① 対象タスクを特定 → `skill-routing.md` で該当 `fb/<task>.md` を決める（無ければ普遍のみ）
 - ② `fb/<task>.md` の各「□」を成果物に1つずつ照合（pass/fail）
-- ③ `pm/review-baseline.md` の6観点を1つずつ照合（pass/fail）。**観点4＝★戦略相違チェック**＝提案/施策が対象 `sns_accounts/<platform>.md` の戦略（役割・勝ち筋・コスト前提・却下レバー）と**相違していないか**を照合（相違＝fail）
+- ③ `pm/review-baseline.md` の7観点を1つずつ照合（pass/fail・★観点7＝権利・合法性はfail-closed）。**観点4＝★戦略相違チェック**＝提案/施策が対象 `sns_accounts/<platform>.md` の戦略（役割・勝ち筋・コスト前提・却下レバー）と**相違していないか**を照合（相違＝fail）
 - ④ **fail-closed**：1つでもfailなら**提出しない**→該当箇所を修正→②へ戻る
 - ⑤ 全passのみ提出（自己チェック＝役割→PMへ／PMレビュー＝PM→秘書→オーナー）
 - ⑥ レビューで新たな指摘が出たら `COMMON.md`「FBの消化ライフサイクル」で該当 `fb/<task>.md` か `pm/review-baseline.md` へ1行追記（昇華は `task-wrapup` が担う）
@@ -33,7 +33,7 @@ description: >
 ```
 □ ① 対象タスクの fb/<task>.md を skill-routing.md で正しく特定したか（他タスクのfbを混ぜていないか）
 □ ② fb/<task>.md の全「□」を成果物に照合したか
-□ ③ pm/review-baseline.md の6観点を全て照合したか（特に観点4＝対象platform戦略と相違ないか・観点6＝経費前提）
+□ ③ pm/review-baseline.md の7観点を全て照合したか（★観点7＝権利・合法性を含む／特に観点4＝対象platform戦略と相違ないか・観点6＝経費前提）
 □ ④ failが1つでもあれば提出せず修正→再照合したか（fail-closed）
 □ ⑤ 全passの成果物だけを次工程へ渡したか
 □ ⑥ 新規指摘は該当 fb/ or review-baseline へ追記したか（昇華本処理は task-wrapup）

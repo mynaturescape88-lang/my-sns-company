@@ -12,12 +12,12 @@ description: >
 
 ## 読むのは3つだけ（混在禁止・token効率）
 - ① **本skill内の観点リスト**（下記＝工程11a固有の合格ライン）
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の6観点）
+- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
 - ③ `.company/sns_accounts/youtube_ainsight.md`（人智の外側の戦略・サムネ勝ち筋の照合先）
 
 ## フロー（発動＝この順で全実行・fail-closed）
 - ① 本skillの観点を成果物（サムネ3案＋選定案＋アップ直前メタ）に1つずつ照合（pass/fail）
-- ② `pm/review-baseline.md` の6観点を1つずつ照合（特に観点4＝絵文字0/戦略相違）
+- ② `pm/review-baseline.md` の7観点を1つずつ照合（★観点7＝権利・合法性はfail-closed／特に観点4＝絵文字0/戦略相違）
 - ③ **fail-closed**：1つでもfailなら提出せず→修正→①へ戻る
 - ④ 全passのみアップへ進める（アップ前に親手順で `pm/review-baseline.md` Layer1てっぺん総合を1回当てる）
 

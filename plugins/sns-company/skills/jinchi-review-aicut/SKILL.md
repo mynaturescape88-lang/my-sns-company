@@ -11,12 +11,12 @@ description: >
 
 ## 読むのは3つだけ（混在禁止・token効率）
 - ① **本skill内の観点リスト**（下記＝工程7固有の合格ライン・生成前/後の2セクション）
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の6観点）
+- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
 - ③ `.company/sns_accounts/youtube_ainsight.md`（人智の外側の戦略・1本300cr上限・コスト前提の照合先）
 
 ## フロー（発動＝この順で全実行・fail-closed）
 - ① **生成前**：下記「生成前ゲート」の観点を計画（尺/画角/単価/プロンプト/流用）に1つずつ照合（pass/fail）。**一つでもfailなら生成しない**（cr消費前に止める）
-- ② `pm/review-baseline.md` の6観点を照合（特に観点6＝最新単価での総cr≤300・費用対効果）
+- ② `pm/review-baseline.md` の7観点を照合（★観点7＝権利・合法性はfail-closed／特に観点6＝最新単価での総cr≤300・費用対効果）
 - ③ **生成後**：実生成カットに「生成後ゲート（採否）」の観点を1つずつ照合（pass/fail）
 - ④ **fail-closed**：いずれの段でも1つでもfailなら採用せず→修正/再対応→該当段へ戻る
 - ⑤ 全passのみ次工程へ進める
