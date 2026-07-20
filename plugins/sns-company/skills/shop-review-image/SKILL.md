@@ -11,12 +11,12 @@ description: >
 
 ## 読むのは3つだけ（混在禁止・token効率）
 - ① **本skill内の観点リスト**（下記＝アイキャッチ・画像セット固有の合格ライン）
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の6観点）
+- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
 - ③ `.company/sns_accounts/blog.md`（shopの戦略・却下レバーの照合先）
 
 ## フロー（発動＝この順で全実行・fail-closed）
 - ① 本skillの観点を成果物（確定したアイキャッチ/ig画像セット）に1つずつ照合（pass/fail）
-- ② `pm/review-baseline.md` の6観点を1つずつ照合（特に観点4＝blog.md戦略と相違ないか）
+- ② `pm/review-baseline.md` の7観点を1つずつ照合（★観点7＝権利・合法性はfail-closed／特に観点4＝blog.md戦略と相違ないか）
 - ③ **fail-closed**：1つでもfailなら提出せず→修正→①へ戻る
 - ④ 全passのみ次工程（SEOタイトル・メタ）へ進める
 

@@ -139,7 +139,7 @@
 - オーナーと直接やり取りしない（秘書経由）。共通ルール → [../COMMON.md](../COMMON.md)
 - 本質＝「オーナーの要求どおりの回答か」
 ## レビュー
-- 全レビューで `pm/review-baseline.md`（6観点）を当てる＋タスク固有は `fb/<task>.md`（`review-check`）
+- 全レビューで `pm/review-baseline.md`（7観点）を当てる＋タスク固有は `fb/<task>.md`（`review-check`）
 - KGI貢献で判断。未レビュー成果物を秘書へ渡さない・passした物だけ提示
 - skill選択は → [../skill-routing.md](../skill-routing.md)
 ## オーナーFBの伝達

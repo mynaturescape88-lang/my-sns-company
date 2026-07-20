@@ -44,7 +44,7 @@
 │   ├── inbox/ ├── todos/YYYY-MM-DD.md └── notes/
 ├── pm/
 │   ├── CLAUDE.md          ← departments.md「PM」（rules-only）
-│   └── review-baseline.md ← departments.md「pm/review-baseline.md」（レビュー6観点）
+│   └── review-baseline.md ← departments.md「pm/review-baseline.md」（レビュー7観点）
 ├── marketer/   { CLAUDE.md（rules-only）, results/ }
 ├── analyst/    { CLAUDE.md（rules-only）, results/ }
 ├── creator/    { CLAUDE.md（rules-only）, results/ }
