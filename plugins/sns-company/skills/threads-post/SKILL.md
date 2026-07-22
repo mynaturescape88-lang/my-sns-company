@@ -9,10 +9,17 @@ description: >
 Threadsの投稿文を作るときに発動する。
 **目的**：creator/CLAUDE.md にルールを書いて毎回読む方式をやめ、Threads投稿タスクのときだけ本スキルを発動して全ルールを過不足なく適用する。
 
+> **状態（2026-07-22）：Threads運用は停止＝本スキルは非活性（停止中）**。
+> オーナー決定で Threads運用を停止（①直近パフォーマンスの悪さ＝月15PV・約¥1.3／②プラットフォームとしての存在価値のなさ）。
+> - 自動投稿基盤（threads_on_publish.yml／common/threads_poster.py／common/wp_threads_auto.py）は削除済み・GitHub側WFも停止済み。
+> - 数値取得 threads_report.py もレポート集計対象外（実行ガードで無効化）。
+> - **本スキルは新規発動しない**。誤って呼ばれた場合は「Threads運用停止中」を返し、投稿文を作らない。
+> - 認証情報（THREADS_ACCESS_TOKEN 等）・過去データは将来の再開余地のため削除せず残置。再開はオーナー判断（トークン再登録が前提）。
+
 ## 発動時に必ず行う（発動＝適用）
 
 1. 下記ルールを適用して投稿文を作る。
-2. **必ずオーナーへ提示して承認を得てから投稿する**（[[feedback_go_signal_owner_only_no_soliciting]]・秘書窓口経由）。GitHub Actions の自動投稿ワークフローは既承認のため除く。
+2. **必ずオーナーへ提示して承認を得てから投稿する**（[[feedback_go_signal_owner_only_no_soliciting]]・秘書窓口経由）。自動投稿WFは廃止済みのため、**例外なく承認が要る**。
 
 > このスキルは Threads 投稿文**専用**。Instagram・note・記事系のルールは含まない（各専用スキルを使う）。
 
@@ -47,14 +54,17 @@ Threadsの投稿文を作るときに発動する。
 
 ## SE技術メモ（Threads）
 
-- Threads APIはMeta Graph API経由。投稿済みIDは `threads_posted_ids.txt` で管理
+- Threads APIはMeta Graph API経由。**自動投稿は 2026-07-22 に廃止**したため、
+  投稿本体スクリプトと投稿済みID台帳（`threads_posted_ids.txt`）は運用されていない。
+- 数値取得のみ現役：`seo_growth/threads_report.py`（月次レポート用に
+  フォロワー数・表示回数等を取得）。トークンはこちらでも使う。
 - Stage1→Stage2移行のため、投稿後1時間のコメント返信を人手で対応する必要がある（自動化不可）
 
 ---
 
 ## ◆成果物／・作業ノードの分類
 - ◆投稿文（→ `threads-review`・小さい木）
-- ・投稿操作（post_thread／GitHub Actions自動WF＝純作業・承認の遵守は threads-review 観点で担保）
+- ・投稿操作（**人手での手動投稿のみ**＝純作業・承認の遵守は threads-review 観点で担保）
 
 ## 子レビューskill 発動連鎖（成果物ノードごと・fail-closedで次へ）
 - 投稿文執筆後・オーナー提示前 → `threads-review` を発動（pass のみ提示へ）
