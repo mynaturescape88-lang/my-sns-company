@@ -8,6 +8,8 @@ description: >
 
 目的を達成するために、下記の順番で作業を実行する。
 
+**担当**：工程1〜6は creator が実行する。工程7（最終レビュー）は PM が実行する。
+
 - **成果物・素材の置き場**＝`.company/creator/work/blog-shop/`。撮影写真は `.company/creator/work/blog-shop/shop_images/<店フォルダ>/` に店ごとに置く（`jp/shop_article_generator.py` の画像ベースもここ）。
 
 ## 工程1. 前提情報の確認
@@ -103,14 +105,11 @@ description: >
 　failした場合：直ちに修正し、`shop-review-seotitle` を再発動する
 　全passするまで工程7へ進まない
 
-## 工程7. IGキャプション執筆
-- `ig_caption` も creator が執筆する（書式は instagram-caption スキル）。
-
 → 設定JSONに `wp_post_id`（工程3で記録したID）／`html_body`（写真マーカー入り最終版）／
-　`featured_image`／`ig_images`／`title`／`ig_caption` を全て記載し、
+　`featured_image`／`ig_images`／`title` を全て記載し、
 　`python jp/shop_article_generator.py --config /tmp/shop_config.json` を実行して下書きを更新する
 
-## 工程8. 最終レビュー
+## 工程7. 最終レビュー（PM担当）
 ・`content-compliance` スキルを発動する（法令/著作権/事実/日本語/安全性）
 　failした場合：直ちに修正し、`content-compliance` を再発動する
 ・`wordpress-publishing` スキルを発動する（タイトル/メタ基準・事実確認・プレビュー目視必須）
