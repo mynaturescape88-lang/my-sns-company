@@ -7,26 +7,13 @@ description: >
 
 # shop-review-image（アイキャッチ・画像セットの成果物レビュー）
 
-ショップ紹介記事パイプラインの **アイキャッチ・画像セット** 専用の成果物レビュー。親 `shop-article` のアイキャッチ/ig画像セット確定後から発動され、画像セットの命名と割当が正しいかを合否判定する（Layer2＝工程固有の作り込み合否）。
+下記の観点がすべて満たしていることを確認する。
 
-## 読むのは3つだけ（混在禁止・token効率）
-- ① **本skill内の観点リスト**（下記＝アイキャッチ・画像セット固有の合格ライン）
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
-- ③ `.company/sns_accounts/blog.md`（shopの戦略・却下レバーの照合先）
-
-## フロー（発動＝この順で全実行・fail-closed）
-- ① 本skillの観点を成果物（確定したアイキャッチ/ig画像セット）に1つずつ照合（pass/fail）
-- ② `pm/review-baseline.md` の7観点を1つずつ照合（★観点7＝権利・合法性はfail-closed／特に観点4＝blog.md戦略と相違ないか）
-- ③ **fail-closed**：1つでもfailなら提出せず→修正→①へ戻る
-- ④ 全passのみ次工程（SEOタイトル・メタ）へ進める
-
-## アイキャッチ・画像セットの観点（合格ラインを内包・1つずつ照合）
 - [ ] アイキャッチと本文1枚目が異なる写真か [[feedback_shop_article_rules]]
-- [ ] アイキャッチが「ブログサムネイル_〇〇.png」か（Instagramサムネと混同なし） （新規）
-- [ ] ig_images先頭が「instagramサムネイル_〇〇.png」か （新規）
-- [ ] 同名「サムネイル.png」を一意キーでアップしfeatured_mediaが別IDか（衝突なし） （新規）
+- [ ] アイキャッチが「ブログサムネイル_〇〇.png」か（Instagramサムネと混同なし）
+- [ ] ig_images先頭が「instagramサムネイル_〇〇.png」か
+- [ ] 同名「サムネイル.png」を一意キーでアップしfeatured_mediaが別IDか（衝突なし）
+- [ ] アイキャッチは優先順位①②③（①既存サムネイル最優先→②YouTube「店名のみ」画像→③自作せずオーナー確認）に従って選定したか
 
-## 原則
-- レビューに出す＝既知の改善余地ゼロ・自分で直せる弱点を残さない [[feedback_review_means_finished_no_known_gaps]]
-- 要件未達は自分で不合格にして作り直す（NGを「採用に足る」で通さない）[[feedback_strict_self_gate_reject_failures]]
-- passした物だけ見せる（failを見せて判断を仰がない）
+- **fail-closed**：1つでもfailなら提出せず→修正→観点確認へ戻る
+- 全passのみ次工程（SEOタイトル・メタ）へ進める
