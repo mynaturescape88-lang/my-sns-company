@@ -20,14 +20,14 @@ description: >
 
   | 種類 | 例 | 行き先（正本） | MEMORY正本/索引行 |
   |---|---|---|---|
-  | **Pd 手順・方法論** | ショップ記事の書き方、口パクレシピ、TTS手順 | 該当 `.company/knowledge/kb-*.md` ／木を持つ大skillはSKILL本文・`references/*`・`checklist.md` | **作らない**（Skill本文がそのまま正本。MEMORY索引行を新設しない） |
-  | **F 長期事実** | 各SNSの正体、認証情報の置き場 | memory `project`/`reference` | 残す（従来どおり） |
-  | **R 参照・定数** | cr単価、APIクォータ、価格 | memory `reference` | 残す（従来どおり） |
-  | **Wx 横断の働き方** | 承認ゲート、収益最優先、レビュー普遍観点 | `.company/pm/review-baseline.md`（普遍）／そのタスクの `.company/fb/<task>.md`（ドメイン固有の働き方判断基準）に「□〜したか」で1行追記 | **作らない**（review-baseline.md/fb/<task>.mdがそのまま正本。今後の新規分はMEMORY索引行を作らない。既存分は遡って移行・削除しない） |
+  | **Pd 手順・方法論** | ショップ記事の書き方、口パクレシピ、TTS手順 | 該当 `.company/knowledge/kb-*.md` ／木を持つ大skillはSKILL本文・`references/*`・`checklist.md` | **作らない** |
+  | **F 長期事実** | 各SNSの正体、認証情報の置き場 | memory `project`/`reference` | 残す |
+  | **R 参照・定数** | cr単価、APIクォータ、価格 | memory `reference` | 残す |
+  | **Wx 横断の働き方** | 承認ゲート、収益最優先、レビュー普遍観点 | `.company/pm/review-baseline.md`（普遍）／そのタスクの `.company/fb/<task>.md`（ドメイン固有の働き方判断基準）に「□〜したか」で1行追記 | **作らない** |
 
   - **Pd（手順・方法論）の扱い**：Skill本文（kb-*.md／木を持つ大skillの該当ノード）へ直接反映する（そこが正本＝MEMORY正本も索引1行も作らない）。
-  - **Wx（横断の働き方）の扱い**：`.company/pm/review-baseline.md`（普遍）／該当タスクの`.company/fb/<task>.md`（ドメイン固有）へ直接反映する（そこが正本＝MEMORY正本も索引1行も新規には作らない）。既存のmemory feedback_*は遡って移行・削除しない（今後の新規分のみ対象）。
-  - **F / R は従来どおり**：memory（`project`/`reference`）に正本を保存し、索引行を残す。
+  - **Wx（横断の働き方）の扱い**：`.company/pm/review-baseline.md`（普遍）／該当タスクの`.company/fb/<task>.md`（ドメイン固有）へ直接反映する（そこが正本＝MEMORY正本も索引1行も作らない）。
+  - **F / R**：memory（`project`/`reference`）に正本を保存し、索引行を残す。
 
 - **Pd/Wxをskillへ反映する手順（省くと誤反映・必ず手順に内包）**：
   1. 反映したい内容の「現在の記載」を提示する
