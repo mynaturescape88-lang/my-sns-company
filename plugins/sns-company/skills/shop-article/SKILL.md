@@ -100,6 +100,7 @@ description: >
 
 ## 工程6. タイトル／メタの確定
 ・SEOタイトル・メタを確定する
+・タイトルの構成：XXXX（ショップ名）｜XXX（SEOを意識したタイトル）
 
 → レビュー：`shop-review-seotitle` を発動する
 　failした場合：直ちに修正し、`shop-review-seotitle` を再発動する
