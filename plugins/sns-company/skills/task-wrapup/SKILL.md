@@ -23,15 +23,21 @@ description: >
   | **Pd 手順・方法論** | ショップ記事の書き方、口パクレシピ、TTS手順 | 該当 `.company/knowledge/kb-*.md` ／木を持つ大skillはSKILL本文・`references/*`・`checklist.md` | **作らない**（Skill本文がそのまま正本。MEMORY索引行を新設しない） |
   | **F 長期事実** | 各SNSの正体、認証情報の置き場 | memory `project`/`reference` | 残す（従来どおり） |
   | **R 参照・定数** | cr単価、APIクォータ、価格 | memory `reference` | 残す（従来どおり） |
-  | **Wx 横断の働き方** | 承認ゲート、収益最優先、レビュー普遍観点 | `.company/pm/review-baseline.md`（普遍）／そのタスクの `.company/fb/<task>.md`（ドメイン固有の働き方判断基準）に「□〜したか」で1行追記 | 残す（memory `feedback_*` に正本＋追記行から `[[feedback_...]]` リンク） |
+  | **Wx 横断の働き方** | 承認ゲート、収益最優先、レビュー普遍観点 | `.company/pm/review-baseline.md`（普遍）／そのタスクの `.company/fb/<task>.md`（ドメイン固有の働き方判断基準）に「□〜したか」で1行追記 | **作らない**（review-baseline.md/fb/<task>.mdがそのまま正本。今後の新規分はMEMORY索引行を作らない。既存分は遡って移行・削除しない） |
 
-  - **Pd（手順・方法論）の扱い＝新方針（2026-06-30）**：手順をSkill本文（kb-*.md／木を持つ大skillの該当ノード）へ書いたら**そこが正本＝MEMORY正本も索引1行も新設しない**。理由＝Skillのトリガ語がそのままrecall入口で、手順が要る場面＝Skillが発動する場面。MEMORY索引行は二重入口で廃せる（毎ターン読まれる索引の再肥大を流入側で止める）。
-  - **F / R / Wx は従来どおり**：memory（`project`/`reference`/`feedback_*`）に正本を保存（背景・why）し、Wxの追記行からは `[[feedback_...]]` でリンクする。F/Rは索引行を残す。
+  - **Pd（手順・方法論）の扱い**：Skill本文（kb-*.md／木を持つ大skillの該当ノード）へ直接反映する（そこが正本＝MEMORY正本も索引1行も作らない）。
+  - **Wx（横断の働き方）の扱い**：`.company/pm/review-baseline.md`（普遍）／該当タスクの`.company/fb/<task>.md`（ドメイン固有）へ直接反映する（そこが正本＝MEMORY正本も索引1行も新規には作らない）。既存のmemory feedback_*は遡って移行・削除しない（今後の新規分のみ対象）。
+  - **F / R は従来どおり**：memory（`project`/`reference`）に正本を保存し、索引行を残す。
 
-- **Pdの安全2条件（省くと知識消失・必ず手順に内包）**：
-  - **逆順厳禁**＝Skillを先に強化→**実際に発動して反映を確認**→そのあとで（既存MEMORY正本があれば）撤去する。先にMEMORYを消すと索引が唯一の控えだった場合に完全忘却する [[feedback_skill_first_then_memory_removal]]。
-  - **トリガ確認**＝Skill本文へ移す手順1件ごとに、**それを確実に発動させるSkillトリガ語が実在するか**を確認する。**トリガが無い（どのSkillも発動しない）手順はMEMORYに残す**（Pd例外＝recall入口が無いと届かないため）。漏れていればdescription/トリガ語を直してから移す [[feedback_skill_autotrigger_coverage_fix]]。
-  - ※本ステップは「今後の新規手順は索引を増やさない」流入側の蛇口締め。**既存MEMORY索引の一括削除はしない**（再圧縮は別タスク）。
+- **Pd/Wxをskillへ反映する手順（省くと誤反映・必ず手順に内包）**：
+  1. 反映したい内容の「現在の記載」を提示する
+  2. 「更新後の記載（案）」を提示する
+  3. 更新後の記載（案）は、判断基準が明確な一文にする（曖昧な形容詞を使わない）
+  4. 更新後の記載（案）の1行に、2つ以上の要素を含めない
+  5. 更新後の記載（案）の書き方に迷ったら、反映先skillの実際の記載を確認してから書く（推測しない）
+  6. 更新後の記載（案）について、オーナーの明示的なOKを得る
+  7. OK後にskillへ反映する
+  8. Pdの場合、反映した手順に**確実に発動させるSkillトリガ語が実在するか**を確認する（トリガが無ければdescription/トリガ語を直す）[[feedback_skill_autotrigger_coverage_fix]]
 - 「ここだけのメモで」と指定された一回限りの内容のみ task_log 止まり。
 - **各々どこへ入れたかを後の⑤報告で読み返す**（勘違い・取りこぼし防止）[[feedback_record_for_future_means_elevate]]。
 
@@ -173,7 +179,11 @@ description: >
 ## 実行前/完了前チェック
 
 ```
-□ ① セッションの学び・FB・気づきを分類（Pd手順/F長期事実/R参照/Wx働き方）したか。**Pd（手順）＝kb-*.md／木を持つ大skill本文へ書いたらそこが正本＝MEMORY正本/索引行は新設しない**（安全2条件＝Skill先強化→発動確認→後でMEMORY撤去・逆順厳禁／移す手順にトリガ実在を1件ずつ確認・無トリガはMEMORYに残す）。**F/R/Wxは従来どおりmemoryに正本＋（Wxは）追記行から`[[...]]`リンク・F/Rは索引行を残す**。既存索引の一括削除はしない（保存先を控えたか）
+□ セッションの学び・FB・気づきの未分類（Pd手順/F長期事実/R参照/Wx働き方）がゼロ件である
+□ Pd/Wxは手順通りに、オーナーにOKをもらってからskillに追加した
+□ Pdは反映後、確実に発動させるトリガ語が実在することを確認済みである
+□ F/Rはmemoryに正本を保存し、索引行を残したことを確認済みである
+□ 既存のMEMORY索引を一括削除していない
 □ ② 議事メモ(sessionlog)を基本形（ヘッダ→本体→議事メモ・関連ファイル節を含む）で作成したか・命名`yyyyMMddhhmm_タイトル_sessionlog.md`（時刻は`date`取得・命名不変）・格納`.company/secretary/work/task_logs/YYYY-MM/`（YYYY-MM＝ファイル名先頭yyyyMM・規約正本=本スキル②／配置先の地図=DIRECTORY_TREE.md §1）・過去ログは凍結（完了＝次の一歩を完了／継続＝次の一歩を具体的に）。※未移行タスクは旧「現在状態（引き継ぎ）」枠でも可（壊さない）
 □ ③ TASKS表を更新したか（完了＝TASKS_COMPLETED追記＋TASKS削除／継続＝TASKS最新化）
 □ ④ メディア生成/DLがあれば棚卸ししたか（置き場=`.company/creator/work/<PF>/<task>/`・バイナリgit非追跡/テキスト版管理／公開済みだけを破棄理由にしない・再生成元素材は保管／削除/移動前に local-file-cleanup skill の安全規律 を全件通過・中身判断・rmでなくゴミ箱）
