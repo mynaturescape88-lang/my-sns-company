@@ -18,9 +18,10 @@ description: >
 ## フロー（発動＝この順で全実行）
 - ① 対象タスクを特定 → `skill-routing.md` で該当 `fb/<task>.md` を決める（無ければ普遍のみ）
 - ② `fb/<task>.md` の各「□」を成果物に1つずつ照合（pass/fail）
-- ③ `pm/review-baseline.md` の7観点を1つずつ照合（pass/fail・★観点7＝権利・合法性はfail-closed）。**観点4＝★戦略相違チェック**＝提案/施策が対象 `sns_accounts/<platform>.md` の戦略（役割・勝ち筋・コスト前提・却下レバー）と**相違していないか**を照合（相違＝fail）
+- ③ `pm/review-baseline.md` の各観点を1つずつ照合（pass/fail・権利・合法性はfail-closed）。**戦略相違チェック観点**＝提案/施策が対象 `sns_accounts/<platform>.md` の戦略（役割・勝ち筋・コスト前提・却下レバー）と**相違していないか**を照合（相違＝fail）
 - ④ **fail-closed**：1つでもfailなら**提出しない**→該当箇所を修正→②へ戻る
 - ⑤ 全passのみ提出（自己チェック＝役割→PMへ／PMレビュー＝PM→秘書→オーナー）
+- ⑤' 提出時は、実施した手順（使用したskill名・手順名）と、自己レビューで確認した具体的な観点を明記する
 - ⑥ レビューで新たな指摘が出たら `COMMON.md`「FBの消化ライフサイクル」で該当 `fb/<task>.md` か `pm/review-baseline.md` へ1行追記（昇華は `task-wrapup` が担う）
 
 ## 原則
@@ -33,8 +34,9 @@ description: >
 ```
 □ ① 対象タスクの fb/<task>.md を skill-routing.md で正しく特定したか（他タスクのfbを混ぜていないか）
 □ ② fb/<task>.md の全「□」を成果物に照合したか
-□ ③ pm/review-baseline.md の7観点を全て照合したか（★観点7＝権利・合法性を含む／特に観点4＝対象platform戦略と相違ないか・観点6＝経費前提）
+□ ③ pm/review-baseline.md の各観点を全て照合したか（戦略相違チェック観点・content-compliance発動確認の観点を含む）
 □ ④ failが1つでもあれば提出せず修正→再照合したか（fail-closed）
 □ ⑤ 全passの成果物だけを次工程へ渡したか
+□ ⑤' 提出時に、実施した手順（使用skill名・手順名）と自己レビューで確認した観点を明記したか
 □ ⑥ 新規指摘は該当 fb/ or review-baseline へ追記したか（昇華本処理は task-wrapup）
 ```
