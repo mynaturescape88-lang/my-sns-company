@@ -17,7 +17,7 @@ description: >
 - 「カットを並べる／差し替える」「テロップ・字幕を入れる」「色補正・カラcoグレ」
 - 「BGM・効果音を付ける」「書き出し・MP4出力」「DaVinciで〜」
 - @mynaturescape の動画工程に着手するとき
-- ※**「人智の外側」（@ijin-hiroku・旧称AIインサイト／古代ミステリー×AI長尺）は別手法＝専用スキル `jinchi-longform` を発動する**（本スキルでは扱わない）
+- ※**「人智の外側」（@jinchino-sotogawa・旧称AIインサイト／古代ミステリー×AI長尺）は別手法＝専用スキル `jinchi-longform` を発動する**（本スキルでは扱わない）
 
 > 発動したら、まず下の「チャンネル分岐」で工程系統を確定し、該当 reference を読んでから着手する。
 
@@ -89,6 +89,6 @@ description: >
 
 ## ◆成果物／・作業ノードの分類（当面 子レビューskillは付けない・親注記のみ）
 - 本スキルの工程（冒頭フック・カット並べ・テロップ・色補正・BGM・書き出し）には成果物レビューが要る側面があるが、**当面 `fb/video.md` が現役**で観点を担保している。子レビューskillは追加しない（成果物レビューが要る工程が固有化したら後日 `video-review-*` を追加する）。
-- **「人智の外側」（@ijin-hiroku・古代ミステリー×AI長尺）は別系統＝`jinchi-longform` とその子 `jinchi-review-*`** が制作とレビューの正本（実写＝本スキルとは制作手法が別物・混同しない）。本スキルが扱うのは @mynaturescape の実写長尺/イベント。
+- **「人智の外側」（@jinchino-sotogawa・古代ミステリー×AI長尺）は別系統＝`jinchi-longform` とその子 `jinchi-review-*`** が制作とレビューの正本（実写＝本スキルとは制作手法が別物・混同しない）。本スキルが扱うのは @mynaturescape の実写長尺/イベント。
 - ・素材取得・MP4書き出し等は純作業ノード＝レビューskillを当てない。
 - 提出前は editing-principles.md のチェックリスト＋`fb/video.md`＋`pm/review-baseline.md` でセルフチェックする。
