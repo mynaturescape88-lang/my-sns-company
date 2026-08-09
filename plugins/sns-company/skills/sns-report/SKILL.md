@@ -34,7 +34,7 @@ SNS運用レポートの作成・数値分析を依頼されたときに発動�
   interpreter は**リポジトリ直下の `.venv`**（google-analytics-data 等入り）。`seo_growth/.venv` はyt-dlp用でGA4が動かないので使わない。
 - このスクリプトが決定的に行うこと：
   1. 全SNSの実数値をライブ取得（`collect()`＝youtube/ig/ga4/adsense/search_console/rakuten/note の各report）。**各PF取得は互いに独立＝並列に走らせ、各取得に上限タイムアウトを付す**。**楽天Playwright（最重・約30秒）がタイムアウトしたらスキップ**しそのセルは現状維持でHTMLを出す（1PFの遅延で全体を止めない）。
-  2. 当週セルを `report_history.json` に記録（`record()`）＋取得可能な過去週の空セルのみ遡及充填（`backfill()`）。**過去分の再集計はしない**（`calendarize` は呼ばない＝既知の巻き戻しバグを回避）。**フロー数値の週窓＝暦週(月〜日)の直近完了週＝`wk_done=monday_of(today)-7`**（`record()`と一致・ローリング7日/API遅延バッファ禁止＝当週混入や週合算二重計上を招く）[[reference_report_flow_window_must_match_wk_done]]。
+  2. 週セルを `report_history.json` に記録（`record()`）＋取得可能な過去週の空セルのみ遡及充填（`backfill()`）。**過去分の再集計はしない**（`calendarize` は呼ばない＝既知の巻き戻しバグを回避）。**フロー数値は「依頼時点までのリアルタイム値」で記録する**＝①**進行中の当週**（`wk_cur=monday_of(today)`〜today）の**部分実測値**を毎回**上書き**、②**直近完了週**（`wk_done=wk_cur-7`＝月〜日のフル値）を確定値で**上書き**、③**それより古い週は一切書き換えない**（不変）。同じ週でも依頼のたびに最新実測へ更新される（時点が変われば値が変わるのは仕様＝リアルタイム）。週境界は**暦週(月〜日)**＝ローリング7日窓は使わない。
   3. 数値表・合計/小計/週合計/MTD を hist から再計算（決定論）。
   4. 出力HTMLの絶対パスを標準出力に印字（`integrated_out_path`＝同一月構成なら同一パスに上書き）。
 - **月次コスト（固定費）・収支（KGI対比）は触らない**：コード内固定値。オーナーからの申告があった時のみ `monthly_report_build.py` の `MONTHLY_COSTS` を修正する（毎回自動で触らない）。
