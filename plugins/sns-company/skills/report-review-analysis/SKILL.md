@@ -11,12 +11,12 @@ SNS運用レポートパイプラインの **数値分析（アナリスト成�
 
 ## 読むのは3つだけ（混在禁止・token効率）
 - ① **本skill内の観点リスト**（下記＝数値分析固有の合格ライン）
-- ② `.company/pm/review-baseline.md`（全レビュー普遍の7観点・★観点7＝権利・合法性）
+- ② `.company/pm/review-baseline.md`（全レビュー普遍の全22項目＝番号なしフラットのチェックリスト。「観点N」という番号は存在しない）
 - ③ 対象プラットフォームの `.company/sns_accounts/<platform>.md`（分析対象chの戦略・期待値の照合先＝`skill-routing.md`で特定。全PF対象時は各該当1枚）
 
 ## フロー（発動＝この順で全実行・fail-closed）
 - ① 本skillの観点を成果物（分析レポート）に1つずつ照合（pass/fail）
-- ② `pm/review-baseline.md` の7観点を1つずつ照合（★観点7＝権利・合法性はfail-closed／特に観点4＝対象platform戦略と相違ないか）
+- ② `pm/review-baseline.md` の**全22項目**を1つずつ照合（1つでもfailなら提出しない＝fail-closed／特に「提案・施策が対象プラットフォームの`sns_accounts/<platform>.md`の戦略と相違していない」と「公開コンテンツのレビューでは content-compliance skill を実際に発動している」＝権利・合法性）
 - ③ **fail-closed**：1つでもfailなら提出せず→修正→①へ戻る
 - ④ 全passのみ次工程（マーケター戦略コメント）へ進める
 

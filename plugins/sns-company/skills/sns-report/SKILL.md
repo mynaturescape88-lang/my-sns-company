@@ -44,7 +44,7 @@ SNS運用レポートの作成・数値分析を依頼されたときに発動�
   ＝各PF・各加算可能項目で「Σ(週セル) == 暦月レンジ1発取得」を差分0で確かめる。
   境界ロジックのオフライン単体テストは `.venv/bin/python seo_growth/test_month_segments.py`。
 
-> ✅ **並列取得は実装済み（2026-07-15）**：`monthly_report_build.collect()` は各PF取得を `ThreadPoolExecutor` で並列起動し、各取得にタイムアウト（既定50s／楽天Playwrightは40s）を付す。超過取得は `"__ERR__"` を返し `parse_*` が全項目None→`record()` がskip＝該当セルは現状維持（1PFの遅延で全体を止めない）。`youtube_report.py` の2回叩き重複も解消済（1回の結果を本体MAINE／人智の外側で共有）。**実測 54.8s→14.6s ＝ ≦60秒契約を安定達成**（読み取りAPIのみ・0cr・冪等・描画バイト不変）。
+> ✅ **並列取得は実装済み（2026-07-15）**：`monthly_report_build.collect()` は各PF取得を `ThreadPoolExecutor` で並列起動し、各取得にタイムアウト（既定50s／楽天Playwrightは40s／`instagram_report.py`だけ90s＝`monthly_report_build.COLLECT_TIMEOUTS` で個別指定・2アカウント×全投稿insightsの直列取得が50sを超えIG全指標がサイレント欠測していたためPR#168で延長）を付す。超過取得は `"__ERR__"` を返し `parse_*` が全項目None→`record()` がskip＝該当セルは現状維持（1PFの遅延で全体を止めない）。`youtube_report.py` の2回叩き重複も解消済（1回の結果を本体MAINE／人智の外側で共有）。**実測 54.8s→14.6s ＝ ≦60秒契約を安定達成**（読み取りAPIのみ・0cr・冪等・描画バイト不変）。
 
 ### C. レビュー（fail-closed・全pass以外は表示しない）
 成果物ノードごとに正規レビューskillを1巡当てる。全passでなければ修正してから再度当てる。
