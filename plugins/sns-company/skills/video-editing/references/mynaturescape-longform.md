@@ -16,6 +16,7 @@ python video_editing/mynaturescape_longform.py score \
   --src-glob '/path/to/IMG_*.MOV' --out video_editing/<name>_segments.json
 
 # 2) 人物除去（顔特定 or 約3秒以上写り続ける人物のカットだけ除外。遠景小/映り込みは保持）
+#    filter-people は顔検出ベースのため、顔が写らない手・前腕だけの写り込みは検出しない。
 python video_editing/mynaturescape_longform.py filter-people \
   --scores video_editing/<name>_segments.json \
   --out   video_editing/<name>_segments_nopeople.json
@@ -122,6 +123,9 @@ python video_editing/mynaturescape_longform.py assemble \
 - 4K`--preset medium`は10分本編のアップスケールで**約3時間**＝非現実的。**`--preset veryfast`で約1.5h**に短縮（アップスケール由来の体感画質差は小・YouTube側で再エンコードされる）。`--preset`引数で指定。
 - **BGM差し替えは映像非依存で後付け可**＝完成mp4の映像を再エンコードせずコピーし音声だけ再mux（`mynaturescape_longform.py` の `trim_silence`→`build_bgm_loop`→volume0.5／末尾4秒フェードを流用する小スクリプトを書いて実行）。BGM選定が後から変わっても4K再レンダ不要。
 - 量産時は1080p納品やハードウェアエンコード(`h264_videotoolbox`)の検討余地（要相談）。
+- **起動方法**：4Kエンコードは `nohup <コマンド> > <ログパス> 2>&1 &` でデタッチ起動する。
+- **中断時の症状と再開**：中断すると出力mp4は `moov atom not found` で破損するが、中間ファイル（seg群・`body_raw`）は無傷なので4K工程だけを再実行する。
+- **再開前の必須操作**：破損した `body_video.mp4` を削除してから再実行する。
 
 ## 主なパラメータ
 - `--pan-pct 0.03 --pan-floor 0.020`：**速いパンの精密除去**（動き量上位3%かつ床0.02超のカットのみ＝本当に速い数カットだけ。閾値を下げすぎる過剰除外をしない）。手動上書きは`--pan-max <値>`。
@@ -133,6 +137,7 @@ python video_editing/mynaturescape_longform.py assemble \
 - **高速パン・速い場面切り替えを残さない**（癒し系の世界観）。自動除去で取りこぼす場合は**オーナーの秒数指定→該当カットをピンポイント除外**（提示版の「再生時刻→素材」対応で照合）。
 - **カット尺に抑揚**（一定尺=単調を回避・BGMのテンポ/静動に同期）。
 - 提出前に自己レビュー＝既知の粗ゼロ（[[feedback_review_means_finished_no_known_gaps]]）：8分以上・人物大写りなし・色が自然・イントロ/ラベル/エンドロール正常・BGM無音/末尾フェードを実測確認。
+- **人物大写りなしの判定方法**：採用全区間を除外基準（約3秒）より短い間隔で実画素抽出し、全フレームを目視して判定する。
 - 出力動画(.mp4)・BGM音源はローカル保持＝gitに上げない（[[feedback_video_assets_local_not_github]]）。
 
 ## 内容面QC（見どころの質）
