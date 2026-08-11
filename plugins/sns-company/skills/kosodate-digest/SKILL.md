@@ -111,7 +111,7 @@ Day範囲用に**ランナーの定数を書き替えて実行**する（`build_
   - 前作へのリンク・英語要約・みどころ一覧は**入れない**（シンプルに寄せる）。正本テンプレ＝`.company/creator/work/kosodate/skytree-day101-150-digest-youtube-description.md`。
   - BGMは**YouTubeオーディオライブラリ曲（商用/収益化可）**＝②でクレジット記載。
 - サムネ＝指定イラスト（**16:9**・`thumbnails.set`は2MB上限＝超えるならJPEG化）。→ [[reference_youtube_thumbnail_2mb_limit]]
-- **アップ後にAPI実測検証**：`videos().list`で privacyStatus=private・尺・title・description・サムネ設定を確認（read-after-writeラグに注意＝即listがNGならsleepリトライ）。→ [[reference_youtube_videos_update_lag_and_sort_collision]]
+- **アップ後にAPI実測検証**：`videos().list`で privacyStatus=private・尺・title・description・サムネ設定を確認（read-after-writeラグに注意＝即listがNGならsleepリトライ）。アップ後のAPI実測検証は、`videos().list`応答の生JSONを保存し、確認した各項目をそのJSON値からの引用で示すこと。→ [[reference_youtube_videos_update_lag_and_sort_collision]]
 
 ### 8. アップ後の後始末（作り直しで旧非公開版が出たら）
 - **採用版を残し、旧版はオーナーGO後に `videos.delete` で削除**（削除は不可逆＝勝手にやらない）。
@@ -133,7 +133,7 @@ Day範囲用に**ランナーの定数を書き替えて実行**する（`build_
 - **アウトロ鼓動なし。** 末尾は0.8sフェードアウト＋15秒黒画面で締める（§FB定石②）。
 - **③BGM＝3曲・時間で3分割**：指定3曲を**Day範囲を3等分**して割当。各曲は区間尺より短ければ**区間内でループ**、境目は**Dayの切れ目**に合わせ**境界でクロスフェード**（曲が日の途中で切り替わらない）。
   - **BGM選定ルール（オーナー確定・毎弾適用）**：新弾の3曲は **(1) 直近弾で使用した3曲を除外** し、かつ **(2) 過去のどの回の組み合わせも丸ごと使い回さない（毎回“新しい混成”にする）**。過去回で単発採用した曲を1〜2曲再登板させるのは可（＝丸ごとの使い回しでなければよい）。3曲とも `_shared/bgm_pool/`（YTAL＝`encoder=Google`をffprobeで確認・`BGM_LICENSE_AND_SOURCES.txt`に出典記録）から採る。過去弾の使用曲は同txtの各(A-n)節で確認する。
-    - `_shared/bgm_pool/` に未使用曲が3曲揃わないときは、`~/Downloads/BGM/` から補充すること。
+    - `_shared/bgm_pool/`に未使用曲が3曲揃わないときは、プール内既存曲のうち最終使用日からの経過日数が大きい順に3曲選ぶこと。
     - `~/Downloads/BGM/` から採った曲は、`_shared/bgm_pool/` へコピーすること。
     - `_shared/bgm_pool/` へ新規に加えた曲は、`BGM_LICENSE_AND_SOURCES.txt` に新しい(A-n)節として記録すること。
 - サムネ＝指定イラスト（**16:9**）。
