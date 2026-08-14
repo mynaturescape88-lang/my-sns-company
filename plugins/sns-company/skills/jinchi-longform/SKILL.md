@@ -163,6 +163,11 @@ description: >
 → レビュー：`jinchi-review-assemble` を発動する（組上げ成果物の照合）
 → レビュー：`jinchi-review-caption` を発動する（字幕同期成果物の照合）
 - 加えて `references/chapter-verification-gates.md` の全項目を実測でpassさせる（提示前チェック）
+- 章ゲート `.venv/bin/python scripts/<topic>_chapter_gate.py --all` を実行すること
+- 章ゲートの出力末尾の「機械判定 N/13 項目 PASS（未実装＝… ／人手＝… ／他ツール＝…）」の行を、逐語のまま台帳へ記録すること
+- 台帳の合否は「全項目PASS」でなく、機械判定した項目数（N/13）で書くこと
+- 台帳には未実装・人手・他ツールに該当する項目番号を併記すること
+- 未実装・人手・他ツールの項目は、誰が何を見て判定したかを台帳へ記録すること
 　failした場合：直ちに修正し、再発動する
 　全passするまでオーナーへ提示しない
 
