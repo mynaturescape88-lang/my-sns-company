@@ -46,6 +46,7 @@ description: >
 - 元動画の置き場 `SRC`（今回のDL先ディレクトリ／`day28.mp4`〜のように連番）。
 - BGM 3曲のmp3パス（§固定仕様③）。
 - BGM3曲の原本は、`~/Downloads/BGM/`（オーナーがYouTubeオーディオライブラリからDLして置く場所）から取得すること。
+- 動画に使用したBGMの原本は、チャンネル・企画を問わず `~/Downloads/BGM/` に集約すること（素材受け渡しフォルダや Downloads 直下に置いたままにしない）。
 - フォント：ヒラギノを作業ttcへコピー → `scripts/kosodate_digest/work/` に `jp.ttc`(角ゴW3) `latin.ttc`(Helvetica) `telop_w5.ttc`(Sans W5) `telop_w6.ttc`(Sans W6)。
 
 ### 1. 競合BGM検出 → `music_scan.py`
