@@ -10,7 +10,7 @@ description: >
 コンテンツ企画パイプラインの **台本・構成** 専用の成果物レビュー（汎用企画の台本用）。親 `content-planning` の台本/構成完成後から発動され、台本が起承転結と保持装置を満たすかを合否判定する（Layer2＝工程固有の作り込み合否）。
 
 ## 棲み分け（重複回避・必読）
-- 長尺「人智の外側」（@jinchino-sotogawa・古代ミステリー×AI）の台本レビューは **`jinchi-review-script`** が正本（FC裏取り・語り部3挿入・TTS誤読対策まで内包する★最重要ノード）。
+- 長尺「人智の外側」（@jinchino-sotogawa・古代ミステリー×AI）の台本レビューは **`jinchi-review-script`** が正本（FC裏取り・TTS誤読対策まで内包する★最重要ノード）。
 - 本skillは **汎用企画（植物・子育て・その他chの台本/構成）** 専用。
 - **`jinchi-longform` から呼ばれた場合は `jinchi-review-script` を優先**し、本skillは適用しない（二重適用しない）。
 
