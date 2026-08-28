@@ -38,6 +38,7 @@ description: >
 - 指定Day範囲の**欠番ゼロを台帳で検算**してから着手。
 - DL＝`yt-dlp --cookies-from-browser chrome --extractor-args youtubejsi:runtime=deno`（1080p・**縦1920素材の除外バグに注意**＝全日DLできたか本数を検算）。参考実装 `seo_growth/raising_yt_predownload.py`。
 - Cloudinary既存があれば `seo_growth/raising_yt_state.json` の `cloud_url` を使ってよい。無い分だけ台帳のvideoIdからDL。
+- 移行台帳に行が無いseqの素材は、スカイツリーch(`UCAVCeLCuHYgEX1hThXRMsGA`)上の当該非公開(private)動画から `yt-dlp --cookies-from-browser chrome --extractor-args "youtubejsi:runtime=deno"` で取得すること（目的＝オーナーが手動アップした分は台帳にも `raising_yt_state.json` にも載らないため）。private動画はDASH分離ストリームが出ずHLS muxed format 96（1080x1920・avc1+AAC）が選ばれる。
 
 ## 制作フロー（scriptsが正本・ロジックは複製しない）
 
@@ -48,6 +49,7 @@ description: >
 - BGM3曲の原本は、`~/Downloads/BGM/`（オーナーがYouTubeオーディオライブラリからDLして置く場所）から取得すること。
 - 動画に使用したBGMの原本は、チャンネル・企画を問わず `~/Downloads/BGM/` に集約すること（素材受け渡しフォルダや Downloads 直下に置いたままにしない）。
 - フォント：ヒラギノを作業ttcへコピー → `scripts/kosodate_digest/work/` に `jp.ttc`(角ゴW3) `latin.ttc`(Helvetica) `telop_w5.ttc`(Sans W5) `telop_w6.ttc`(Sans W6)。
+- `music_scan.py` と `solve_trims.py` は `/usr/bin/python3` で実行すること（目的＝`seo_growth/.venv` にnumpyが無く起動できないため）。
 
 ### 1. 競合BGM検出 → `music_scan.py`
 `music_scan.py --src <SRC> --start <N> --end <M> --out-json mute.json`
@@ -59,6 +61,7 @@ description: >
 `solve_trims.py --src <SRC> --start <N> --end <M> --mute-json mute.json --out config.json`
 - タイトル＝台帳の「【N日目】◯◯」から`【N日目】`とハッシュタグ列（最初の`#`以降）を除いた説明部分（絵文字は角ゴにグリフ無し＝自動除去）。
 - 「残す秒数」＝カテゴリ別（highlight/normal/quiet/finale）×全体スケールで**尺基準（30本＝8分以上／60本＝15-20分）へ自動収束**。声/見どころ（笑い・泣き・くしゃみ・喃語・うなり等）日は満尺寄り、静かな長い日から削る。素材が足りない弾は全日ノートリム（keep＝実尺）で頭打ちになる。
+- トリムで削れるのはクリップの頭または尻の連続窓だけであることを前提に尺を見積もること（目的＝クリップ内部の冗長区間の除去・無音カット・手ブレ除去は実装が無いため）。
 - 区間開始＝音量エンベロープのエネルギー最大窓（静かな余白を捨てる／quiet日は中央寄せ）。
 - 競合Dayは `src_vol:0.0`（元音ミュート）を自動付与。
 - **冒頭演出（intro要素）は入れない**（§固定仕様）。
